@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vis de Verde — grădină educațională</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #73b63d;
+      --green-dark: #4f7f28;
+      --green-deep: #2f4e19;
+      --green-soft: #8fcb58;
+      --cream: #f6f4ee;
+      --cream-2: #efede6;
+      --white: #ffffff;
+      --text: #223019;
+      --muted: #5e6b56;
+      --brown: #2d180c;
+      --line: rgba(255,255,255,0.22);
+      --shadow: 0 18px 50px rgba(32, 56, 18, 0.14);
+      --container: 1240px;
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.72;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      background: #fff;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-inner {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand-logo {
+      width: 92px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .main-nav a { color: #28351f; }
+    .main-nav a:hover,
+    .main-nav a.active { color: var(--green-dark); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 28px;
+      border-radius: 999px;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 13px;
+      transition: 0.25s ease;
+      border: 2px solid transparent;
+      letter-spacing: 0.03em;
+      text-align: center;
+    }
+
+    .btn-green {
+      background: var(--green);
+      color: white;
+    }
+
+    .btn-green:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      border-color: rgba(255,255,255,0.85);
+      color: white;
+      background: transparent;
+    }
+
+    .btn-outline:hover { background: rgba(255,255,255,0.12); }
+
+    .btn-ghost {
+      border-color: rgba(34,48,25,0.12);
+      background: white;
+      color: var(--green-deep);
+    }
+
+    .btn-ghost:hover { border-color: rgba(34,48,25,0.25); }
+
+    .hero {
+      position: relative;
+      min-height: 540px;
+      display: flex;
+      align-items: center;
+      color: white;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(34,58,18,0.76) 0%, rgba(45,76,22,0.56) 40%, rgba(65,112,28,0.18) 100%),
+        url('./imagini site/WhatsApp Image 2026-04-01 at 00.29.21.jpeg') center/cover;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(24,42,12,0.28), rgba(24,42,12,0));
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(760px, 100%);
+      padding: 18px 0 18px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #eaf8da;
+      margin-bottom: 6px;
+    }
+
+    h1, h2, h3, h4 { margin: 0; line-height: 1.08; }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5.4rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      max-width: 10ch;
+      text-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    }
+
+    .hero-line {
+      width: 110px;
+      height: 4px;
+      background: rgba(255,255,255,0.86);
+      margin: 14px 0 14px;
+    }
+
+    .quote {
+      max-width: 62ch;
+      font-size: 19px;
+      color: rgba(255,255,255,0.96);
+      font-style: italic;
+      margin-bottom: 6px;
+    }
+
+    .quote-author {
+      color: rgba(255,255,255,0.82);
+      font-size: 15px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .hero-content p {
+      max-width: 60ch;
+      margin: 0;
+      font-size: 18px;
+      color: rgba(255,255,255,0.94);
+    }
+
+    .hero-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .quick-links {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .quick-link {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: white;
+      padding: 18px 16px;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .quick-link:hover { background: rgba(255,255,255,0.18); }
+
+    section { padding: 88px 0; }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2.1rem, 5vw, 4rem);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .section-title .line {
+      width: 74px;
+      height: 3px;
+      background: currentColor;
+      margin: 18px auto 0;
+      opacity: 0.85;
+    }
+
+    .split-section {
+      background: #fff;
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .split-visual {
+      min-height: 620px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow);
+    }
+
+    .visual-mission {
+      background-image: linear-gradient(to top, rgba(115,182,61,0.20), rgba(115,182,61,0)), url('./imagini site/PHOTO-2026-04-01-10-04-14.jpg');
+      min-height: 380px;
+      width: 100%;
+      max-width: none;
+      justify-self: stretch;
+    }
+
+    .visual-story {
+      background-image: linear-gradient(to top, rgba(115,182,61,0.20), rgba(115,182,61,0)), url('./imagini site/WhatsApp Image 2026-04-01 at 00.02.43.jpeg');
+      min-height: 100%;
+    }
+
+    .split-copy h2 {
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #213117;
+    }
+
+    .split-copy .line {
+      width: 74px;
+      height: 3px;
+      background: var(--green);
+      margin: 16px 0 24px;
+    }
+
+    .split-copy p,
+    .content-card p,
+    .contact-card p,
+    .thankyou-card p,
+    .tariff-card p,
+    .benefit-card p {
+      margin: 0 0 18px;
+      color: #394534;
+      font-size: 17px;
+    }
+
+    .content-card {
+      background: white;
+      box-shadow: var(--shadow);
+      padding: 34px;
+      border-top: 5px solid var(--green);
+    }
+
+    .goals {
+      background: #efefef;
+    }
+
+    .content-grid {
+      display: grid;
+      gap: 34px;
+    }
+
+    .goal-row {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      background: white;
+      box-shadow: var(--shadow);
+      align-items: stretch;
+      overflow: hidden;
+    }
+
+    .goal-row.reverse {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+
+    .goal-image {
+      min-height: 100%;
+      background-size: cover;
+      background-position: center;
+      min-height: 420px;
+    }
+
+    .goal-image.one {
+      background-image: linear-gradient(rgba(115,182,61,0.14), rgba(115,182,61,0.14)), url('./imagini site/WhatsApp Image 2026-03-31 at 23.57.52.jpeg');
+    }
+
+    .goal-image.two {
+      background-image: linear-gradient(rgba(115,182,61,0.14), rgba(115,182,61,0.14)), url('./imagini site/WhatsApp Image 2026-04-01 at 06.37.36.jpeg');
+    }
+
+    .goal-image.three {
+      background-image: linear-gradient(rgba(115,182,61,0.14), rgba(115,182,61,0.14)), url('./imagini site/WhatsApp Image 2026-04-01 at 00.33.00.jpeg');
+    }
+
+    .goal-body {
+      padding: 34px;
+      border-left: 5px solid var(--green);
+    }
+
+    .goal-row.reverse .goal-body {
+      border-left: 0;
+      border-right: 5px solid var(--green);
+    }
+
+    .content-card h3,
+    .benefit-card h3,
+    .contact-card h3,
+    .tariff-card h3,
+    .thankyou-card h3 {
+      font-size: 1.55rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--green-dark);
+      margin-bottom: 16px;
+    }
+
+    .benefits {
+      color: white;
+      background:
+        linear-gradient(rgba(115,182,61,0.90), rgba(115,182,61,0.90)),
+        url('./imagini site/WhatsApp Image 2026-04-01 at 00.39.00.jpeg') center/cover fixed;
+    }
+
+    .benefits .section-title { color: white; }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .benefit-card {
+      padding: 30px 28px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(8px);
+      min-height: 250px;
+    }
+
+    .benefit-top {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .benefit-icon,
+    .small-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      display: grid;
+      place-items: center;
+      padding: 12px;
+      flex: 0 0 54px;
+    }
+
+    .benefit-icon img,
+    .small-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    .benefit-card h3 { color: white; margin-bottom: 0; font-size: 1.35rem; }
+    .benefit-card p { color: rgba(255,255,255,0.95); margin-bottom: 0; font-size: 16px; }
+
+    .story {
+      background: #fff;
+    }
+
+    .activity-program {
+      background: var(--cream-2);
+    }
+
+    .activity-gallery {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      margin-bottom: 28px;
+    }
+
+    .activity-gallery-right {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .activity-photo {
+      min-height: 260px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow);
+    }
+
+    .activity-photo.large {
+      min-height: 544px;
+      background-image: linear-gradient(rgba(115,182,61,0.16), rgba(115,182,61,0.16)), url('./imagini site/WhatsApp Image 2026-04-01 at 00.24.58.jpeg');
+    }
+
+    .activity-photo.small-one {
+      background-image: linear-gradient(rgba(115,182,61,0.16), rgba(115,182,61,0.16)), url('./imagini site/WhatsApp Image 2026-04-01 at 06.32.37.jpeg');
+    }
+
+    .activity-photo.small-two {
+      background-image: linear-gradient(rgba(115,182,61,0.16), rgba(115,182,61,0.16)), url('./imagini site/WhatsApp Image 2026-04-01 at 06.33.59.jpeg');
+    }
+
+    .wide-photo {
+      margin-top: 28px;
+      min-height: 340px;
+      background:
+        linear-gradient(rgba(115,182,61,0.18), rgba(115,182,61,0.18)),
+        url('./imagini site/WhatsApp Image 2026-04-01 at 07.25.37.jpeg') center/cover;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: end;
+      padding: 30px;
+      color: white;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .tariff-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      margin-top: 34px;
+    }
+
+    .tariff-card {
+      background: white;
+      box-shadow: var(--shadow);
+      padding: 32px;
+      border-bottom: 5px solid var(--green);
+    }
+
+    .tariff-card ul,
+    .check-list,
+    .resource-list {
+      margin: 0;
+      padding-left: 20px;
+      color: #394534;
+      font-size: 16px;
+    }
+
+    .tariff-card li,
+    .check-list li,
+    .resource-list li { margin-bottom: 6px; }
+
+    .notice {
+      margin-top: 28px;
+      background: white;
+      box-shadow: var(--shadow);
+      padding: 28px 30px;
+      border-left: 5px solid var(--green);
+    }
+
+    .activity-hero {
+      display: none;
+    }
+
+    .activity-intro-banner {
+      margin-bottom: 28px;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      min-height: 360px;
+      background:
+        linear-gradient(90deg, rgba(34,58,20,0.78) 0%, rgba(34,58,20,0.62) 42%, rgba(34,58,20,0.26) 100%),
+        url('./imagini site/WhatsApp Image 2026-04-01 at 00.28.24.jpeg') center/cover;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      padding: 38px;
+      color: white;
+    }
+
+    .activity-intro-content {
+      max-width: 760px;
+      margin-left: 0;
+      margin-right: 20px;
+    }
+
+    .activity-intro-content h3 {
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      text-transform: uppercase;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    .activity-intro-content p {
+      color: rgba(255,255,255,0.95);
+      font-size: 17px;
+      margin: 0 0 18px;
+    }
+
+    .activity-points {
+      margin: 18px 0 0;
+      padding-left: 20px;
+      color: rgba(255,255,255,0.95);
+      font-size: 16px;
+    }
+
+    .activity-points li {
+      margin-bottom: 6px;
+    }
+
+    .conditions-box {
+      max-width: 980px;
+      margin: 28px auto 0;
+      background: white;
+      box-shadow: var(--shadow);
+      padding: 30px 34px;
+      border-left: 5px solid var(--green);
+    }
+
+    .activity-cta {
+      margin-top: 0;
+      min-height: 340px;
+      background:
+        linear-gradient(rgba(38,58,20,0.42), rgba(38,58,20,0.42)),
+        url('./imagini site/WhatsApp Image 2026-04-01 at 06.23.34.jpg') center/cover;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: end;
+      padding: 34px;
+      color: white;
+    }
+
+    .activity-cta-box {
+      max-width: 620px;
+      margin: 0 auto 0 0;
+    }
+
+    .activity-cta-box h3 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      text-transform: uppercase;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 14px;
+    }
+
+    .activity-cta-box p {
+      color: rgba(255,255,255,0.94);
+      font-size: 17px;
+      margin: 0 0 18px;
+    }
+
+    .contact {
+      background: white;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .contact-card {
+      background: var(--cream);
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .map-placeholder {
+      min-height: 100%;
+      background:
+        linear-gradient(rgba(115,182,61,0.16), rgba(115,182,61,0.16)),
+        url('./imagini site/WhatsApp Image 2026-04-01 at 07.25.37 (2).jpeg') center/cover;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: end;
+      padding: 28px;
+      color: white;
+      font-weight: 700;
+      min-height: 420px;
+    }
+
+    .thanks {
+      background: var(--green);
+      color: rgba(255,255,255,0.9);
+    }
+
+    .thanks .section-title { color: white; }
+
+    .thankyou-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 34px;
+    }
+
+    .thankyou-card h3 { color: white; }
+    .thankyou-card p,
+    .thankyou-card li { color: rgba(255,255,255,0.84); }
+
+    .thanks-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+    }
+
+    .join-banner {
+      background: var(--green);
+      color: white;
+      padding: 54px 0;
+    }
+
+    .join-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .join-inner h2 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      text-transform: uppercase;
+      font-weight: 800;
+      max-width: 18ch;
+    }
+
+    .footer {
+      background: #2a160a;
+      color: rgba(255,255,255,0.86);
+      padding-top: 72px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 0.9fr 1fr;
+      gap: 42px;
+      padding-bottom: 56px;
+    }
+
+    .footer h3,
+    .footer h4 {
+      margin: 0 0 20px;
+      color: white;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+    }
+
+    .footer-brand strong {
+      display: block;
+      font-size: 2.5rem;
+      font-family: 'Playfair Display', serif;
+      color: #b8d78f;
+      margin-bottom: 6px;
+    }
+
+    .footer p,
+    .footer a,
+    .footer span {
+      color: rgba(255,255,255,0.78);
+      display: block;
+      margin: 10px 0;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 22px 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: rgba(255,255,255,0.62);
+      font-size: 14px;
+    }
+
+    
+
+    .menu-toggle {
+      display: none;
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      border: 1px solid rgba(34,48,25,0.12);
+      background: white;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--green-dark);
+      transition: 0.25s ease;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    .footer-logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 14px;
+    }
+
+    .mobile-slider-dots {
+      display: none;
+    }
+
+    @media (max-width: 1200px) {
+      .quick-links,
+      .content-grid,
+      .benefits-grid,
+      .tariff-grid { grid-template-columns: repeat(2, 1fr); }
+      .thanks-grid,
+      .contact-grid,
+      .split-grid,
+      .footer-grid,
+      .activity-gallery { grid-template-columns: 1fr; }
+      .activity-gallery-right { grid-template-rows: auto; grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 860px) {
+      .main-nav,
+      .header-inner > .btn { display: none; }
+      .menu-toggle { display: inline-flex; }
+      .header-inner {
+        min-height: 74px;
+        position: relative;
+      }
+      .site-header.menu-open .mobile-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 12px;
+        right: 12px;
+        background: white;
+        border: 1px solid rgba(34,48,25,0.08);
+        box-shadow: 0 18px 45px rgba(32, 56, 18, 0.14);
+        padding: 18px;
+      }
+      .site-header.menu-open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .site-header.menu-open .menu-toggle span:nth-child(2) { opacity: 0; }
+      .site-header.menu-open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      .mobile-menu a {
+        font-size: 14px;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: #28351f;
+      }
+      .hero { min-height: 440px; }
+      .hero-intro,
+      .quick-links,
+      #beneficii .section-title h2,
+      #poveste .section-title,
+      .footer a[href="#beneficii"],
+      .footer a[href="#poveste"],
+      .footer a[href="#activitati"],
+      .footer a[href="#resurse"] { display: none !important; }
+      .container { width: min(var(--container), calc(100% - 24px)); }
+      .content-grid,
+      .activity-gallery-right { grid-template-columns: 1fr; }
+      .join-inner { flex-direction: column; align-items: flex-start; }
+      section { padding: 68px 0; }
+      .split-visual { min-height: 360px; }
+      .brand-logo { width: 82px; }
+      .activity-photo.large { min-height: 340px; }
+      .activity-photo.small-one,
+      .activity-photo.small-two,
+      .wide-photo { min-height: 240px; }
+
+      .goal-row,
+      .goal-row.reverse {
+        grid-template-columns: 1fr;
+      }
+      .goal-image {
+        min-height: 240px;
+      }
+      .goal-row.reverse .goal-image {
+        order: -1;
+      }
+      .goal-body,
+      .goal-row.reverse .goal-body {
+        border-left: 0;
+        border-right: 0;
+        border-top: 6px solid var(--green);
+        padding: 28px 22px 24px;
+      }
+
+      .benefits-grid,
+      .tariff-grid {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 100%;
+        grid-template-columns: none;
+        gap: 0;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        padding: 0;
+      }
+      .benefits-grid::-webkit-scrollbar,
+      .tariff-grid::-webkit-scrollbar { display: none; }
+      .benefits-grid > *,
+      .tariff-grid > * {
+        scroll-snap-align: start;
+        min-width: 100%;
+        width: 100%;
+        margin: 0;
+      }
+      .benefit-card,
+      .tariff-card {
+        min-height: 100%;
+        border-radius: 0;
+      }
+      .mobile-slider-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 14px;
+      }
+      .mobile-slider-dots button {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        border: 0;
+        padding: 0;
+        background: rgba(34,48,25,0.28);
+      }
+      .mobile-slider-dots button.active {
+        background: var(--green-dark);
+      }
+      .benefits .mobile-slider-dots button {
+        background: rgba(255,255,255,0.45);
+      }
+       .benefits .mobile-slider-dots button.active {
+         background: white;
+       }
+       .activity-intro-banner {
+         background:
+           linear-gradient(90deg, rgba(34,58,20,0.78) 0%, rgba(34,58,20,0.62) 42%, rgba(34,58,20,0.26) 100%),
+           url('./imagini site/WhatsApp Image 2026-04-01 at 00.38.34.jpeg') center/cover;
+       }
+       .footer-brand,
+       .footer-grid > div,
+       .footer-grid { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+       <a href="#" class="brand">
+         <img src="./PNG/logo.png" alt="Vis de Verde" class="brand-logo" />
+       </a>
+
+      <nav class="main-nav">
+        <a href="#home" class="active">Home</a>
+        <a href="#misiune">Misiunea noastră</a>
+        <a href="#scopuri">Scopuri</a>
+        <a href="#beneficii">Beneficii</a>
+        <a href="#poveste">Povestea noastră</a>
+        <a href="#activitati">Activități</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="menu-toggle" type="button" aria-label="Deschide meniul" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#home">Home</a>
+        <a href="#misiune">Misiunea noastră</a>
+        <a href="#scopuri">Scopuri</a>
+        <a href="#beneficii">Beneficii</a>
+        <a href="#poveste">Povestea noastră</a>
+        <a href="#activitati">Activități</a>
+        <a href="#contact">Contact</a>
+        <a href="#resurse">Resurse</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">Grădină educațională • natură • respect • învățare vie</div>
+        <h1>Vis de Verde</h1>
+        <div class="hero-line"></div>
+        <div class="quote">“We receive our nourishment from the Mother Earth. So we should put our hands together in an attitude of prayer and say “please” and “thank you” when dealing with nature.”</div>
+        <div class="quote-author">— Masanobu Fukuoka</div>
+
+        <div class="hero-actions">
+          <a href="#misiune" class="btn btn-outline">Misiunea noastră</a>
+          <a href="#scopuri" class="btn btn-green">Scopurile urmărite</a>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <section id="misiune" class="split-section">
+    <div class="container split-grid">
+      <div class="split-visual visual-mission"></div>
+      <div class="split-copy">
+        <h2>Misiunea noastră</h2>
+        <div class="line"></div>
+        <p>
+          Grădina educațională “Vis De Verde” s-a născut din dragoste și respect față de natură, față de pământ, din pasiune pentru studiul și practica grădinăritului ecologic, permaculturii și agriculturii regenerative și din dorința de a lăsa în urmă o lume mai sănătoasă, mai bună și mai frumoasă din punct de vedere spiritual și estetic pentru copiii noștri și urmașii lor.
+        </p>
+        <a href="#scopuri" class="btn btn-ghost">Vezi scopurile urmărite</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="scopuri" class="goals">
+    <div class="container">
+      <div class="section-title" style="color:#1f2d17;">
+        <h2>Scopurile urmărite</h2>
+        <div class="line" style="background: var(--green);"></div>
+      </div>
+
+      <div class="content-grid">
+        <article class="goal-row">
+          <div class="goal-image one"></div>
+          <div class="goal-body">
+            <h3>Scopul principal</h3>
+            <p>
+              Scopul principal al grădinii noastre îl constituie familiarizarea, în principal a copiilor preșcolari și a celor din clasele primare, cu practicile sănătoase, ecologice și sustenabile de producere primară a hranei și de protejare și conservare a solului și a mediului ambiant, ca organisme vii, asemănătoare nouă oamenilor.
+            </p>
+            <p>
+              Ne dorim ca experiențele de la “Vis de Verde” să încolțească și să dezvolte în ei sămânța unui caracter conștient și responsabil față de natură și oameni, cât mai palpabil cu putință, “la firul ierbii”, în natură.
+            </p>
+            <p>
+              Astfel, copiii beneficiază din plin, atât din punct de vedere fizic, cât și cognitiv, mental și emoțional, de binefacerile timpului petrecut în aer liber, într-o lume tot mai dominată de tehnologie și ecrane.
+            </p>
+          </div>
+        </article>
+
+        <article class="goal-row reverse">
+          <div class="goal-body">
+            <h3>Scopul secundar</h3>
+            <p>
+              Scopul secundar este educarea gustului și a preferințelor culinare ale celor mici înspre consumul unor fructe, legume, plante aromatice și medicinale indigene sau aclimatizate și obținute în mod sănătos în România, pe plan local, în funcție de disponibilitatea sezonieră naturală și corelat cu necesarul de vitamine și minerale specific fiecărui anotimp.
+            </p>
+            <p>
+              Rezultatul urmărit este crearea unui comportament alimentar responsabil atât față de sănătatea propriului corp, cât și față de Terra, prin reducerea amprentei de carbon a fiecăruia dintre noi.
+            </p>
+            <p>
+              În acest fel, cei mici înțeleg mai bine de ce contează ritmul anotimpurilor și consumul local, în locul produselor aduse de la mii de kilometri distanță.
+            </p>
+          </div>
+          <div class="goal-image two"></div>
+        </article>
+
+        <article class="goal-row">
+          <div class="goal-image three"></div>
+          <div class="goal-body">
+            <h3>Scopul terțiar</h3>
+            <p>
+              Ne propunem ca, după 5 ani, Vis De Verde să devină un micro-climat complex și sustenabil, a cărui administrare să necesite input-uri externe minime de energie și resurse, cu excepția mâinii de lucru și a pasiunii grădinarului.
+            </p>
+            <p>
+              Acest spațiu va genera externalități sociale, educaționale, de mediu și financiare pozitive și va deveni un exemplu despre cum copiii pot fi conectați cu natura și despre cum, lucrând împreună cu ea, cu atenție, spirit de observație și respect, aceasta ne recompensează cu sănătate, abundență și emoții pozitive.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="beneficii" class="benefits">
+    <div class="container">
+      <div class="section-title">
+        <h2>Beneficiile experiențelor la Vis de Verde</h2>
+        <div class="line"></div>
+      </div>
+
+      <div class="benefits-grid" id="benefitsSlider">
+        <article class="benefit-card">
+          <div class="benefit-top">
+            <div class="benefit-icon"><img src="./PNG/64/13 - Earth.png" alt="Dezvoltare fizică" /></div>
+            <h3>Dezvoltare fizică</h3>
+          </div>
+          <p>Activitățile în aer liber contribuie la îmbunătățirea coordonării, echilibrului și forței musculare. Copiii devin mai activi și evită sedentarismul.</p>
+        </article>
+
+        <article class="benefit-card">
+          <div class="benefit-top">
+            <div class="benefit-icon"><img src="./PNG/64/30 - Forest.png" alt="Creativitate" /></div>
+            <h3>Creativitate și imaginație</h3>
+          </div>
+          <p>Natura oferă un mediu deschis în care cei mici pot explora, inventa și descoperi noi moduri de a interacționa cu lumea din jur.</p>
+        </article>
+
+        <article class="benefit-card">
+          <div class="benefit-top">
+            <div class="benefit-icon"><img src="./PNG/64/32 - Sun Energy.png" alt="Lucru în echipă" /></div>
+            <h3>Lucru în echipă</h3>
+          </div>
+          <p>Timpul petrecut în natură alături de alți copii favorizează comunicarea, cooperarea, empatia și rezolvarea firească a conflictelor.</p>
+        </article>
+
+        <article class="benefit-card">
+          <div class="benefit-top">
+            <div class="benefit-icon"><img src="./PNG/64/64 - Enviroment Love.png" alt="Reducerea stresului" /></div>
+            <h3>Reducerea stresului și anxietății</h3>
+          </div>
+          <p>Contactul cu natura are un efect liniștitor și contribuie la îmbunătățirea stării de spirit și la promovarea unei atitudini pozitive.</p>
+        </article>
+
+        <article class="benefit-card">
+          <div class="benefit-top">
+            <div class="benefit-icon"><img src="./PNG/64/76 - Plant.png" alt="Conexiune cu mediul" /></div>
+            <h3>Conexiune cu mediul înconjurător</h3>
+          </div>
+          <p>Copiii învață să aprecieze și să respecte mediul și devin mai conștienți de importanța protejării naturii și a resurselor sale.</p>
+        </article>
+
+        <article class="benefit-card">
+          <div class="benefit-top">
+            <div class="benefit-icon"><img src="./PNG/64/98 - Ecology.png" alt="Concentrare" /></div>
+            <h3>Îmbunătățirea concentrării</h3>
+          </div>
+          <p>Expunerea la mediul natural poate ajuta la îmbunătățirea atenției și a echilibrului interior, inclusiv la copiii cu dificultăți de concentrare.</p>
+        </article>
+      </div>
+
+      <div class="mobile-slider-dots" data-for="benefitsSlider"></div>
+
+      <div class="notice" style="margin-top:30px; background: rgba(255,255,255,0.12); border-left-color: rgba(255,255,255,0.7); color: white; box-shadow:none;">
+        <p style="color:white; margin:0; font-size:17px;">În concluzie, integrarea timpului petrecut în natură în rutina zilnică a copiilor contribuie semnificativ la sănătatea lor generală și la o dezvoltare armonioasă, oferindu-le șansa de a descoperi frumusețea și complexitatea lumii naturale.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="poveste" class="story split-section">
+    <div class="container split-grid">
+      <div class="split-copy">
+        <h2>Povestea noastră</h2>
+        <div class="line"></div>
+        <p>
+          Totul a început în anul 2012 cu filmul <em>One Man, One Cow, One Planet – How to save the world</em>, realizat de Peter Proctor, despre aplicarea principiilor agriculturii biodinamice, practică dezvoltată de Rudolf Steiner.
+        </p>
+        <p>
+          În legătură directă cu proiectul dezvoltat în acei ani de către soția fondatorului, grădinița “Castelul Bucuriei”, s-a conturat convingerea că una dintre cele mai eficiente forme de schimbare a relației noastre cu natura este transmiterea acestor valori către copii, viitorii locuitori responsabili ai acestui Pământ.
+        </p>
+        <p>
+          După un prim experiment derulat între 2015 și 2017 în comuna Berceni, pe o suprafață de 1.500 mp și destinat exclusiv experiențelor copiilor grădiniței “Castelul Bucuriei”, în anul 2023 au fost puse bazele noii grădini experimentale “Vis de Verde”, dezvoltate pe aproximativ 10.000 mp, în comuna Conțești, județul Dâmbovița.
+        </p>
+        <p>
+          Mărginit de râul Dâmbovița și înconjurat de pădure, proiectul este gândit ca un sistem integrat circular și sustenabil, cu grădină de legume, flori și plante aromatice, zonă de fructe de pădure, livadă, compostare, poiană cu copaci, zone de relaxare, spații de joacă, foișor pentru adăpost și servit masa, precum și alte structuri aflate în proiect.
+        </p>
+      </div>
+      <div class="split-visual visual-story"></div>
+    </div>
+  </section>
+
+  <section id="activitati" class="activity-program">
+    <div class="container">
+      <div class="section-title" style="color:#1f2d17;">
+        <h2>Activități, program, tarife și condiții de acces</h2>
+        <div class="line" style="background: var(--green);"></div>
+      </div>
+
+      <div class="activity-intro-banner">
+        <div class="activity-intro-content">
+          <h3>Ce vor trăi copiii la Vis de Verde</h3>
+          <p>“Vis de Verde” este locul în care copiii vor vedea, vor auzi, vor mirosi, vor atinge și vor gusta natura și frumusețile ei, prin intermediul unei game variate de activități practice, ateliere și jocuri menite să-i conecteze cu bio-diversitatea și cu viața solului, plantelor, insectelor, animalelor și păsărilor care populează micro-climatul grădinii.</p>
+          <p><strong>Ce urmăresc activitățile:</strong></p>
+          <ul class="activity-points">
+            <li>familiarizare cu biodiversitatea și cu viața solului</li>
+            <li>cultivare, recunoaștere și îngrijire plante, fructe și legume</li>
+            <li>reducerea risipei alimentare și compostare</li>
+            <li>colectarea și folosirea judicioasă a apei</li>
+            <li>lucru în echipă și dezvoltarea motricității prin activități practice</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tariff-grid" id="tariffSlider">
+        <article class="tariff-card">
+          <h3>Vizite pentru grupuri organizate</h3>
+          <p>Destinate preșcolarilor și elevilor din clasele primare, însoțiți de coordonatori sau supraveghetori mandatați în scris.</p>
+          <ul>
+            <li>maxim 4 ore, între 10:00 – 14:00</li>
+            <li>acces la proprietate, joacă, relaxare și atelier de grădinărit</li>
+            <li>grupuri de minim 20 de copii</li>
+            <li>100 lei / copil</li>
+            <li>coordonatorii nu plătesc acces</li>
+          </ul>
+        </article>
+
+        <article class="tariff-card">
+          <h3>Serbări grădinițe și școli primare</h3>
+          <p>Evenimente dedicate grupurilor care doresc exclusivitate în utilizarea locației.</p>
+          <ul>
+            <li>maxim 6 ore</li>
+            <li>luni – duminică</li>
+            <li>grupuri de minim 40 de persoane</li>
+            <li>100 lei / persoană în timpul săptămânii</li>
+            <li>120 lei / persoană sâmbăta și duminica</li>
+          </ul>
+        </article>
+
+        <article class="tariff-card">
+          <h3>Evenimente agricole și socio-culturale</h3>
+          <p>Dezbateri, conferințe, workshop-uri și alte întâlniri tematice.</p>
+          <ul>
+            <li>maxim 6 ore / zi</li>
+            <li>grupuri de minim 40 de persoane</li>
+            <li>75 lei / persoană</li>
+            <li>100 lei / adult + copil pentru participanți însoțiți de copii</li>
+            <li>exclusivitate în utilizarea locației</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="mobile-slider-dots" data-for="tariffSlider"></div>
+
+      <div class="conditions-box">
+        <p><strong>Condiții de rezervare și acces:</strong> Rezervarea locației se realizează cu cel puțin 2 zile lucrătoare înainte, în funcție de disponibilitate, și este condiționată de plata a 30% din valoarea contractului. Coordonatorii grupurilor vizitatoare vor semna și Regulamentul privind normele de conduită și utilizare a spațiilor și obiectelor Vis de Verde.</p>
+        <p style="margin-bottom:0;"><strong>Vreme nefavorabilă:</strong> în cazul în care condițiile meteorologice nu permit utilizarea locației în ziua stabilită, vizita se va reprograma la o dată ulterioară, de comun acord.</p>
+      </div>
+
+      </div>
+  </section>
+
+  <section class="activity-cta">
+    <div class="container">
+      <div class="activity-cta-box">
+        <h3>Programează o experiență la Vis de Verde</h3>
+        <p>Fie că este vorba despre o vizită educațională, o serbare sau un eveniment tematic, fiecare întâlnire este gândită ca o experiență directă, vie și memorabilă în natură.</p>
+        <a href="#contact" class="btn btn-outline">Solicită detalii</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="resurse" class="thanks">
+    <div class="container">
+      <div class="section-title">
+        <h2>Mulțumiri și resurse</h2>
+        <div class="line"></div>
+      </div>
+
+      <div class="thanks-grid">
+        <article class="thankyou-card">
+          <h3>Oameni și comunități care au inspirat proiectul</h3>
+          <p>Doresc să-mi exprim respectul și recunoștința pentru munca și realizările oamenilor și comunităților care m-au inspirat în alegerea și parcursul acestei aventuri minunate.</p>
+          <ul class="resource-list">
+            <li>Peter Proctor, Rudolf Steiner, Bill Mollison, David Holmgren, Louis Bromfield</li>
+            <li>Edward H. Faulkner, Henry A. Wallace, Sir Albert Howard, Lady Eve Balfour</li>
+            <li>Rachel Carson, John Jeavons, Toby Hemenway, Sepp Holzer, Masanobu Fukuoka</li>
+            <li>Geoff Lawton, Vandana Shiva, John D. Liu, Paul Wheaton, Eliot Coleman</li>
+            <li>Charles Dowding, Paul Gautschi, J.M. Fortier, Richard Perkins, Curtis Stone</li>
+            <li>Allan Savory, Joel Salatin, Gabe Brown, Dale Strickler, Mark Shepard</li>
+            <li>Elaine Ingham, Karl Hammer, Stefan Sobkowiak, Michael Phillips</li>
+            <li>Rodale Institute, Real Organic Project, Living Web Farms, Claudian Dobos, Ermitaj Mălin, Cărți din Tei, Andrei Lupse, Ferma Gardenbio, România în Tranziție, Ecoruralis</li>
+          </ul>
+        </article>
+
+        <article class="thankyou-card">
+          <h3>Concepte și practici relevante</h3>
+          <ul class="resource-list">
+            <li>Agricultură bio-dinamică</li>
+            <li>Permacultură</li>
+            <li>Raised beds, swales, hugelkultur</li>
+            <li>Guerilla garden</li>
+            <li>Construcții ecologice: cob, chirpici, saci de pământ, baloți de paie</li>
+            <li>Transition towns</li>
+            <li>Biochar, terra preta</li>
+            <li>Grădinărit organic</li>
+            <li>No-dig / no-till garden</li>
+            <li>Vermicultură</li>
+            <li>Grădinărit bio-intensiv</li>
+            <li>Agricultură regenerativă</li>
+            <li>Management holistic</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+       <div class="footer-brand">
+         <img src="./PNG/logo.png" alt="Vis de Verde" class="footer-logo" />
+         <p>Grădină educațională pentru copii și familii care aleg conștient natura, echilibrul și educația cu sens.</p>
+        <p>visdeverde@gmail.com</p>
+        <p>0799 147 912 • 0772 095 940</p>
+      </div>
+
+      <div>
+        <h4>Navigare</h4>
+        <a href="#misiune">Misiunea noastră</a>
+        <a href="#scopuri">Scopurile urmărite</a>
+        <a href="#beneficii">Beneficiile experiențelor</a>
+        <a href="#poveste">Povestea noastră</a>
+      </div>
+
+      <div>
+        <h4>Acces rapid</h4>
+        <a href="#activitati">Activități și tarife</a>
+        <a href="#contact">Contact</a>
+        <a href="#resurse">Mulțumiri și resurse</a>
+      </div>
+
+      <div>
+        <h4>Locație</h4>
+        <span>Strada Primăriei nr. 181 A</span>
+        <span>Conțești, Dâmbovița</span>
+        <span>Vizite pe bază de programare</span>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>Copyright 2026 Vis de Verde. Toate drepturile rezervate.</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const header = document.querySelector('.site-header');
+      const toggle = document.querySelector('.menu-toggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      if (toggle && header && mobileMenu) {
+        toggle.addEventListener('click', function () {
+          const isOpen = header.classList.toggle('menu-open');
+          toggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            header.classList.remove('menu-open');
+            toggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      function setupSlider(sliderId, dotsSelector) {
+        const slider = document.getElementById(sliderId);
+        const dotsWrap = document.querySelector(dotsSelector);
+        if (!slider || !dotsWrap) return;
+
+        const cards = Array.from(slider.children);
+        dotsWrap.innerHTML = '';
+        cards.forEach(function (_, index) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.setAttribute('aria-label', 'Slide ' + (index + 1));
+          btn.addEventListener('click', function () {
+            slider.scrollTo({ left: index * slider.clientWidth, behavior: 'smooth' });
+          });
+          dotsWrap.appendChild(btn);
+        });
+
+        const dots = Array.from(dotsWrap.children);
+        function updateActive() {
+          const index = Math.round(slider.scrollLeft / Math.max(slider.clientWidth, 1));
+          dots.forEach(function (dot, i) {
+            dot.classList.toggle('active', i === index);
+          });
+        }
+
+        slider.addEventListener('scroll', updateActive, { passive: true });
+        window.addEventListener('resize', updateActive);
+        updateActive();
+      }
+
+      setupSlider('benefitsSlider', '.mobile-slider-dots[data-for="benefitsSlider"]');
+      setupSlider('tariffSlider', '.mobile-slider-dots[data-for="tariffSlider"]');
+    })();
+  </script>
+</body>
+</html>
