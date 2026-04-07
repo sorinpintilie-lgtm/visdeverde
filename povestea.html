@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Povestea noastră — Vis de Verde</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --green: #73b63d; --green-dark: #4f7f28; --green-soft: #8fcb58; --cream: #f6f4ee; --cream-2: #efede6; --text: #223019; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Montserrat', sans-serif; color: var(--text); background: var(--cream); line-height: 1.72; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    .container { width: min(1240px, calc(100% - 40px)); margin: 0 auto; }
+    .site-header { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 50; }
+    .header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 18px; }
+    .brand-logo { width: 92px; display: block; }
+    .main-nav { display: flex; align-items: center; gap: 32px; font-weight: 700; font-size: 14px; text-transform: uppercase; }
+    .main-nav a { color: #28351f; }
+    .main-nav a:hover, .main-nav a.active { color: var(--green-dark); }
+    .menu-toggle { display: none; }
+    .page-hero {
+      position: relative;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      color: white;
+      background: linear-gradient(90deg, rgba(34,58,18,0.76) 0%, rgba(45,76,22,0.56) 40%, rgba(65,112,28,0.18) 100%), url('./imagini site/WhatsApp Image 2026-04-01 at 00.49.05.jpeg') center/cover;
+    }
+    .page-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(24,42,12,0.28), rgba(24,42,12,0)); }
+    .page-hero-content { position: relative; z-index: 1; padding: 18px 0; }
+    .eyebrow { display: inline-block; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #eaf8da; margin-bottom: 6px; }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(2.8rem, 7vw, 5.4rem); font-weight: 800; text-transform: uppercase; }
+    .line { width: 74px; height: 3px; background: var(--green); margin: 18px 0 24px; }
+    .story-section { padding: 88px 0; background: #fff; }
+    .content-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: start; }
+    .content-text h2 { font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 800; text-transform: uppercase; color: #213117; }
+    .content-text p { font-size: 17px; margin: 0 0 18px; color: #394534; }
+    .content-visual { min-height: 520px; background-size: cover; background-position: center; box-shadow: 0 18px 50px rgba(32, 56, 18, 0.14); border-radius: 22px; }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--green-dark); font-weight: 700; font-size: 14px; text-transform: uppercase; margin-bottom: 24px; }
+    .back-link:hover { color: var(--green); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 48px; }
+    .gallery-item { min-height: 220px; background-size: cover; background-position: center; border-radius: 16px; }
+    .cta-box { background: var(--green); color: white; padding: 54px 0; text-align: center; }
+    .cta-box h2 { font-size: clamp(2rem, 4vw, 3.1rem); text-transform: uppercase; font-weight: 800; margin-bottom: 16px; }
+    .cta-box p { font-size: 18px; margin-bottom: 24px; }
+    .btn { display: inline-flex; padding: 16px 28px; border-radius: 999px; font-weight: 800; text-transform: uppercase; font-size: 13px; transition: 0.25s ease; border: 2px solid transparent; letter-spacing: 0.03em; }
+    .btn-outline { border-color: rgba(255,255,255,0.85); color: white; background: transparent; }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); }
+    .footer { background: #2a160a; color: rgba(255,255,255,0.86); padding: 56px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 0.9fr 1fr; gap: 42px; padding-bottom: 56px; }
+    .footer h4 { margin: 0 0 20px; color: white; font-size: 1.1rem; text-transform: uppercase; }
+    .footer a { display: block; margin-bottom: 10px; font-size: 15px; color: rgba(255,255,255,0.7); }
+    .footer a:hover { color: var(--green-soft); }
+    .footer-logo { width: 100px; margin-bottom: 16px; }
+    .footer-brand p { margin: 0 0 8px; font-size: 15px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; font-size: 14px; color: rgba(255,255,255,0.5); }
+    .timeline-section {
+      padding: 88px 0;
+      background: var(--cream-2);
+    }
+    .timeline {
+      position: relative;
+      margin-top: 48px;
+      padding-left: 32px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--green);
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: 32px;
+      margin-bottom: 40px;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      top: 4px;
+      width: 20px;
+      height: 20px;
+      background: var(--green);
+      border-radius: 50%;
+      border: 4px solid var(--cream-2);
+    }
+    .timeline-item h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      margin-bottom: 8px;
+    }
+    .timeline-item p {
+      font-size: 16px;
+      color: #394534;
+      margin: 0;
+    }
+    .values-section {
+      padding: 88px 0;
+      background: #fff;
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      margin-top: 48px;
+    }
+    .value-card {
+      background: var(--cream);
+      padding: 32px;
+      border-radius: 22px;
+      text-align: center;
+      border-bottom: 5px solid var(--green);
+    }
+    .value-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      margin-bottom: 12px;
+    }
+    .value-card p {
+      font-size: 15px;
+      color: #394534;
+      margin: 0;
+    }
+    @media (max-width: 900px) {
+      .main-nav { display: none; }
+      .menu-toggle { display: block; width: 32px; height: 24px; background: none; border: none; cursor: pointer; position: relative; }
+      .menu-toggle span { display: block; width: 100%; height: 3px; background: #28351f; position: absolute; }
+      .menu-toggle span:nth-child(1) { top: 0; }
+      .menu-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+      .menu-toggle span:nth-child(3) { bottom: 0; }
+      .content-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      .page-hero { min-height: 320px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand"><img src="./PNG/logo.png" alt="Vis de Verde" class="brand-logo" /></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="misiunea.html">Misiunea noastră</a>
+        <a href="scopuri.html">Scopuri</a>
+        <a href="beneficii.html">Beneficii</a>
+        <a href="povestea.html" class="active">Povestea noastră</a>
+        <a href="activitati.html">Activități</a>
+        <a href="contact.html">Contact</a>
+        <a href="resurse.html">Resurse</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Meniu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <div class="eyebrow">Grădină educațională</div>
+      <h1>Povestea noastră</h1>
+      <div class="line"></div>
+    </div>
+  </section>
+
+  <section class="story-section">
+    <div class="container">
+      <div class="content-grid">
+<div class="content-text">
+            <a href="index.html" class="back-link">← Înapoi la Home</a>
+          <h2>De unde am plecat</h2>
+          <div class="line"></div>
+          <p>Totul a început în anul 2012 cu un film intitulat <em>One Man, One Cow, One Planet – How to save the world</em>, un film de Peter Proctor despre aplicarea principiilor agriculturii biodinamice (practică dezvoltată de enciclopedicul Rudolf Steiner – creatorul, printre altele, și al sistemului de educație Waldorf) și de atunci totul este istorie.</p>
+          <p>Racordat sufletește și spiritual la subiectul filmului și prin natura/obiectul proiectului dezvoltat în acei ani de către soția mea, respectiv o grădiniță (Castelul Bucuriei), în care copiii să mănânce cât mai sănătos cu putință și să fie educați cu atenție și dragoste, am conștientizat că, dacă vreau să contribui în vreun fel la schimbarea de paradigmă privind relația noastră cu natura, cel mai eficient și rapid mod de face această schimbare este transmiterea acestor valori copiilor, ca viitori locuitori responsabili pe acest Pământ.</p>
+          <p>Și cum altfel decât printr-o grădină educațională, în care copiii să experimenteze relația cu pământul și viața plantelor, animalelor și păsărilor și să se obișnuiască să le respecte și să le protejeze, obișnuință ce se va transforma în comportamente și atitudini responsabile față de oameni și natură.</p>
+          <p>După un prim experiment derulat în cursul anilor 2015-2017, în comuna Berceni pe o suprafață de 1.500 mp și destinat exclusiv experiențelor "piticilor" grădiniței "Castelul Bucuriei", în anul 2023 am pus bazele proiectului noii grădini experimentale "Vis de Verde", dezvoltat pe o suprafață de aproximativ 10.000 mp, în comuna Conțești, județul Dâmbovița.</p>
+          <p>Mărginit de râul Dâmbovița și înconjurat de pădure, ne propunem ca "Vis De Verde" să devină, în timp, un proiect integrat circular și sustenabil de învățare și recreere, având în componente o grădină cu legume, flori și plante aromatice, medicinale, zonă de fructe de pădure, livadă de pomi fructiferi, spațiu de compostare, poiană cu copaci, zone de relaxare, spații de joacă diverse, foișor de 100 mp pentru adăpost și servit masa, un generos loc de alergare, precum și alte structuri aflate în stadiul de proiect care vor ajuta la sustenabilitatea proiectului.</p>
+          <p>O listă de concepte, practici, inițiative și oameni care m-au inspirat și mă inspiră în continuare este prezentată la secțiunea "Mulțumiri și Resurse".</p>
+        </div>
+        <div class="content-visual" style="background-image: linear-gradient(to top, rgba(115,182,61,0.20), rgba(115,182,61,0)), url('./imagini site/WhatsApp Image 2026-04-01 at 00.49.26.jpeg');"></div>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" style="background-image: linear-gradient(to top, rgba(115,182,61,0.16), rgba(115,182,61,0.16)), url('./imagini site/WhatsApp Image 2026-04-01 at 00.10.58.jpeg');"></div>
+        <div class="gallery-item" style="background-image: linear-gradient(to top, rgba(115,182,61,0.16), rgba(115,182,61,0.16)), url('./imagini site/WhatsApp Image 2026-04-01 at 00.39.12.jpeg');"></div>
+        <div class="gallery-item" style="background-image: linear-gradient(to top, rgba(115,182,61,0.16), rgba(115,182,61,0.16)), url('./imagini site/WhatsApp Image 2026-04-01 at 00.45.22.jpeg');"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="timeline-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Cronologia proiectului</h2>
+        <div class="line" style="background: var(--green);"></div>
+      </div>
+      <div class="timeline">
+        <article class="timeline-item">
+          <h4>2012 - Începutul</h4>
+          <p>Descoperim agricultura biodinamică și conceptul de permacultură. Vedem "One Man, One Cow, One Planet" și totul capătă sens.</p>
+        </article>
+        <article class="timeline-item">
+          <h4>2015-2017 - Primul experiment</h4>
+          <p>Înființăm prima grădină educațională în Berceni, 1500 mp, destinată exclusiv copiilor din grădinița "Castelul Bucuriei".</p>
+        </article>
+        <article class="timeline-item">
+          <h4>2023 - Vis de Verde</h4>
+          <p>Punem bazele proiectului "Vis de Verde" în Conțești, Dâmbovița, pe 10.000 mp. Începem să construim grădina visurilor noastre.</p>
+        </article>
+        <article class="timeline-item">
+          <h4>Viitorul</h4>
+          <p>Ne propunem să dezvoltăm un ecosistem complet, sustenabil, care să inspire copii și adulți deopotrivă.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="values-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Ce ne definește</h2>
+        <div class="line" style="background: var(--green);"></div>
+      </div>
+      <div class="values-grid">
+        <article class="value-card">
+          <h3>Dragoste</h3>
+          <p>Pornim din dragoste pentru natură și pentru copii. Aceasta este energia care ne mișcă zilnic.</p>
+        </article>
+        <article class="value-card">
+          <h3>Pasiune</h3>
+          <p>Pasiunea pentru grădinărit și educație ne dă puterea să construim ceva cu adevărat valoros.</p>
+        </article>
+        <article class="value-card">
+          <h3>Perseverență</h3>
+          <p>Nu renunțăm. Știm că schimbarea reală necesită timp și dedicare, generație după generație.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-box">
+    <div class="container">
+      <h2>Scrieți următorul capitol</h2>
+      <p>Te așteptăm să faci parte din povestea noastră.</p>
+      <a href="contact.html" class="btn btn-outline">Programează o vizită</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="./PNG/logo.png" alt="Vis de Verde" class="footer-logo" />
+        <p>Grădină educațională pentru copii și familii.</p>
+        <p>visdeverde@gmail.com</p>
+        <p>0799 147 912 • 0772 095 940</p>
+      </div>
+      <div>
+        <h4>Navigare</h4>
+        <a href="index.html">Home</a>
+        <a href="misiunea.html">Misiunea noastră</a>
+        <a href="scopuri.html">Scopurile urmărite</a>
+        <a href="beneficii.html">Beneficiile experiențelor</a>
+      </div>
+      <div>
+        <h4>Acces rapid</h4>
+        <a href="povestea.html">Povestea noastră</a>
+        <a href="activitati.html">Activități și tarife</a>
+        <a href="contact.html">Contact</a>
+        <a href="resurse.html">Resurse</a>
+      </div>
+      <div>
+        <h4>Locație</h4>
+        <p>Strada Primăriei nr. 181 A</p>
+        <p>Conțești, Dâmbovița</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>Copyright 2026 Vis de Verde.</p>
+    </div>
+  </footer>
+</body>
+</html>

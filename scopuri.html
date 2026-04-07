@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scopurile urmărite — Vis de Verde</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #73b63d;
+      --green-dark: #4f7f28;
+      --green-deep: #2f4e19;
+      --green-soft: #8fcb58;
+      --cream: #f6f4ee;
+      --cream-2: #efede6;
+      --white: #ffffff;
+      --text: #223019;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: 'Montserrat', sans-serif; color: var(--text); background: var(--cream); line-height: 1.72; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    .container { width: min(1240px, calc(100% - 40px)); margin: 0 auto; }
+    .site-header { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 50; }
+    .header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 18px; }
+    .brand-logo { width: 92px; display: block; }
+    .main-nav { display: flex; align-items: center; gap: 32px; font-weight: 700; font-size: 14px; text-transform: uppercase; }
+    .main-nav a { color: #28351f; }
+    .main-nav a:hover, .main-nav a.active { color: var(--green-dark); }
+    .menu-toggle { display: none; }
+    .page-hero {
+      position: relative;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      color: white;
+      background: linear-gradient(90deg, rgba(34,58,18,0.76) 0%, rgba(45,76,22,0.56) 40%, rgba(65,112,28,0.18) 100%), url('./imagini site/WhatsApp Image 2026-04-01 at 00.02.25.jpeg') center/cover;
+    }
+    .page-hero::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(24,42,12,0.28), rgba(24,42,12,0));
+    }
+    .page-hero-content { position: relative; z-index: 1; padding: 18px 0; }
+    .eyebrow { display: inline-block; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #eaf8da; margin-bottom: 6px; }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(2.8rem, 7vw, 5.4rem); font-weight: 800; text-transform: uppercase; }
+    .line { width: 74px; height: 3px; background: var(--green); margin: 18px 0 24px; }
+    .goals-section { padding: 88px 0; background: var(--cream-2); }
+    .section-title { text-align: center; margin-bottom: 48px; }
+    .section-title h2 { font-size: clamp(2.1rem, 5vw, 4rem); font-weight: 800; text-transform: uppercase; color: #1f2d17; }
+    .goal-row { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: center; margin-bottom: 64px; }
+    .goal-row.reverse { grid-template-columns: 1.2fr 1fr; }
+    .goal-row.reverse .goal-image { order: 1; }
+    .goal-image { min-height: 380px; background-size: cover; background-position: center; box-shadow: 0 18px 50px rgba(32, 56, 18, 0.14); border-radius: 22px; }
+    .goal-body { padding: 32px; }
+    .goal-body h3 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; text-transform: uppercase; color: #213117; margin-bottom: 16px; }
+    .goal-body p { font-size: 17px; margin: 0 0 14px; color: #394534; }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--green-dark); font-weight: 700; font-size: 14px; text-transform: uppercase; margin-bottom: 24px; }
+    .back-link:hover { color: var(--green); }
+    .cta-box { background: var(--green); color: white; padding: 54px 0; text-align: center; }
+    .cta-box h2 { font-size: clamp(2rem, 4vw, 3.1rem); text-transform: uppercase; font-weight: 800; margin-bottom: 16px; }
+    .cta-box p { font-size: 18px; margin-bottom: 24px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 28px; border-radius: 999px; font-weight: 800; text-transform: uppercase; font-size: 13px; transition: 0.25s ease; border: 2px solid transparent; letter-spacing: 0.03em; }
+    .btn-outline { border-color: rgba(255,255,255,0.85); color: white; background: transparent; }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); }
+    .footer { background: #2a160a; color: rgba(255,255,255,0.86); padding: 56px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 0.9fr 1fr; gap: 42px; padding-bottom: 56px; }
+    .footer h4 { margin: 0 0 20px; color: white; font-size: 1.1rem; text-transform: uppercase; }
+    .footer a { display: block; margin-bottom: 10px; font-size: 15px; color: rgba(255,255,255,0.7); }
+    .footer a:hover { color: var(--green-soft); }
+    .footer-logo { width: 100px; margin-bottom: 16px; }
+    .footer-brand p { margin: 0 0 8px; font-size: 15px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; font-size: 14px; color: rgba(255,255,255,0.5); }
+    .impact-section {
+      padding: 88px 0;
+      background: var(--green);
+      color: white;
+    }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 26px;
+      margin-top: 48px;
+    }
+    .impact-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 32px;
+      border-radius: 22px;
+      text-align: center;
+    }
+    .impact-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: white;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .impact-label {
+      font-size: 1rem;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .approach-section {
+      padding: 88px 0;
+      background: #fff;
+    }
+    .approach-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .approach-image {
+      min-height: 400px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 22px;
+      box-shadow: 0 18px 50px rgba(32, 56, 18, 0.14);
+    }
+    .approach-text h3 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #213117;
+      margin-bottom: 16px;
+    }
+    .approach-text p {
+      font-size: 17px;
+      color: #394534;
+      margin: 0 0 14px;
+    }
+    @media (max-width: 900px) {
+      .impact-grid { grid-template-columns: 1fr 1fr; }
+      .approach-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand"><img src="./PNG/logo.png" alt="Vis de Verde" class="brand-logo" /></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="misiunea.html">Misiunea noastră</a>
+        <a href="scopuri.html" class="active">Scopuri</a>
+        <a href="beneficii.html">Beneficii</a>
+        <a href="povestea.html">Povestea noastră</a>
+        <a href="activitati.html">Activități</a>
+        <a href="contact.html">Contact</a>
+        <a href="resurse.html">Resurse</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Meniu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <div class="eyebrow">Grădină educațională</div>
+      <h1>Scopurile urmărite</h1>
+      <div class="line"></div>
+    </div>
+  </section>
+
+  <section class="goals-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Ce ne propunem să realizăm</h2>
+        <div class="line" style="background: var(--green);"></div>
+      </div>
+
+      <article class="goal-row">
+        <div class="goal-image" style="background-image: linear-gradient(to top, rgba(115,182,61,0.20), rgba(115,182,61,0)), url('./imagini site/WhatsApp Image 2026-04-01 at 00.24.58.jpeg');"></div>
+        <div class="goal-body">
+          <a href="index.html" class="back-link">← Înapoi la Home</a>
+          <h3>Scopul principal</h3>
+          <p>Scopul principal al grădinii noastre îl constituie familiarizarea, în principal a copiilor preșcolari și a celor din clasele primare, cu practicile sănătoase, ecologice și sustenabile de producere primară a hranei și de protejare și conservare a solului și a mediului ambiant.</p>
+          <p>Ne dorim ca experiențele de la "Vis de Verde" să încolțească și să dezvolte în ei sămânța unui caracter conștient și responsabil față de natură și oameni, cât mai palpabil cu putință, "la firul ierbii", în natură.</p>
+          <p>Astfel, copiii beneficiază din plin, atât din punct de vedere fizic, cât și cognitiv, mental și emoțional, de binefacerile timpului petrecut în aer liber.</p>
+        </div>
+      </article>
+
+      <article class="goal-row reverse">
+        <div class="goal-body">
+          <h3>Scopul secundar</h3>
+          <p>Scopul secundar este educarea gustului și a preferințelor culinare ale celor mici înspre consumul unor fructe, legume, plante aromatice și medicinale indigene sau aclimatizate și obținute în mod sănătos în România.</p>
+          <p>Rezultatul urmărit este crearea unui comportament alimentar responsabil atât față de sănătatea propriului corp, cât și față de Terra, prin reducerea amprentei de carbon a fiecăruia dintre noi.</p>
+          <p>În acest fel, cei mici înțeleg mai bine de ce contează ritmul anotimpurilor și consumul local, în locul produselor aduse de la mii de kilometri distanță.</p>
+        </div>
+        <div class="goal-image" style="background-image: linear-gradient(to top, rgba(115,182,61,0.20), rgba(115,182,61,0)), url('./imagini site/WhatsApp Image 2026-04-01 at 00.02.02.jpeg');"></div>
+      </article>
+
+      <article class="goal-row">
+        <div class="goal-image" style="background-image: linear-gradient(to top, rgba(115,182,61,0.20), rgba(115,182,61,0)), url('./imagini site/WhatsApp Image 2026-04-01 at 00.37.53.jpeg');"></div>
+        <div class="goal-body">
+          <h3>Scopul terțiar</h3>
+          <p>Ne propunem ca, după 5 ani, Vis De Verde să devină un micro-climat complex și sustenabil, a cărui administrare să necesita input-uri externe minime de energie și resurse.</p>
+          <p>Acest spațiu va genera externalități sociale, educaționale, de mediu și financiare pozitive și va deveni un exemplu despre cum copiii pot fi conectați cu natura.</p>
+          <p>Lucrând împreună cu ea, cu atenție, spirit de observație și respect, natura ne recompensează cu sănătate, abundență și emoții pozitive.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="impact-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Ce dorim să realizăm</h2>
+        <div class="line"></div>
+      </div>
+      <div class="impact-grid">
+        <article class="impact-card">
+          <span class="impact-number">5</span>
+          <span class="impact-label">Ani pentru un ecosistem complet</span>
+        </article>
+        <article class="impact-card">
+          <span class="impact-number">1000+</span>
+          <span class="impact-label">Copii educați anual</span>
+        </article>
+        <article class="impact-card">
+          <span class="impact-number">50+</span>
+          <span class="impact-label">Specii de plante cultivate</span>
+        </article>
+        <article class="impact-card">
+          <span class="impact-number">100%</span>
+          <span class="impact-label">Agricultură ecologică</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="approach-section">
+    <div class="container">
+      <div class="approach-grid">
+        <div class="approach-image" style="background-image: linear-gradient(to top, rgba(115,182,61,0.20), rgba(115,182,61,0)), url('./imagini site/WhatsApp Image 2026-04-01 at 00.38.34.jpeg');"></div>
+        <div class="approach-text">
+          <h3>Cum abordăm</h3>
+          <div class="line" style="background: var(--green);"></div>
+          <p>Abordarea noastră se bazează pe învățarea prin descoperire și experiență directă. Copiii nu sunt doar observatori, ci participanți activi la viața grădinii.</p>
+          <p>Încurajăm curiozitatea naturală a copiilor și răspundem la întrebările lor despre cum funcționează natura. Fiecare zi în grădină este o lecție vie.</p>
+          <p>Lucrăm în echipă și învățăm unii de la alții. Copiii descoperă că au puterea de a face o diferență reală în lumea din jurul lor.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-box">
+    <div class="container">
+      <h2>Vino să ne cunoști</h2>
+      <p>Te așteptăm să descoperi împreună cu noi frumusețea grădinii educaționale.</p>
+      <a href="contact.html" class="btn btn-outline">Programează o vizită</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="./PNG/logo.png" alt="Vis de Verde" class="footer-logo" />
+        <p>Grădină educațională pentru copii și familii.</p>
+        <p>visdeverde@gmail.com</p>
+        <p>0799 147 912 • 0772 095 940</p>
+      </div>
+      <div>
+        <h4>Navigare</h4>
+        <a href="index.html">Home</a>
+        <a href="misiunea.html">Misiunea noastră</a>
+        <a href="scopuri.html">Scopurile urmărite</a>
+        <a href="beneficii.html">Beneficiile experiențelor</a>
+      </div>
+      <div>
+        <h4>Acces rapid</h4>
+        <a href="povestea.html">Povestea noastră</a>
+        <a href="activitati.html">Activități și tarife</a>
+        <a href="contact.html">Contact</a>
+        <a href="resurse.html">Resurse</a>
+      </div>
+      <div>
+        <h4>Locație</h4>
+        <p>Strada Primăriei nr. 181 A</p>
+        <p>Conțești, Dâmbovița</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>Copyright 2026 Vis de Verde.</p>
+    </div>
+  </footer>
+</body>
+</html>

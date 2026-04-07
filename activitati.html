@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Activități și tarife — Vis de Verde</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --green: #73b63d; --green-dark: #4f7f28; --green-soft: #8fcb58; --cream: #f6f4ee; --cream-2: #efede6; --text: #223019; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Montserrat', sans-serif; color: var(--text); background: var(--cream); line-height: 1.72; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    .container { width: min(1240px, calc(100% - 40px)); margin: 0 auto; }
+    .site-header { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 50; }
+    .header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 18px; }
+    .brand-logo { width: 92px; display: block; }
+    .main-nav { display: flex; align-items: center; gap: 32px; font-weight: 700; font-size: 14px; text-transform: uppercase; }
+    .main-nav a { color: #28351f; }
+    .main-nav a:hover, .main-nav a.active { color: var(--green-dark); }
+    .menu-toggle { display: none; }
+    .page-hero {
+      position: relative;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      color: white;
+      background: linear-gradient(90deg, rgba(34,58,18,0.76) 0%, rgba(45,76,22,0.56) 40%, rgba(65,112,28,0.18) 100%), url('./imagini site/WhatsApp Image 2026-04-01 at 00.38.34.jpeg') center/cover;
+    }
+    .page-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(24,42,12,0.28), rgba(24,42,12,0)); }
+    .page-hero-content { position: relative; z-index: 1; padding: 18px 0; }
+    .eyebrow { display: inline-block; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #eaf8da; margin-bottom: 6px; }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(2.8rem, 7vw, 5.4rem); font-weight: 800; text-transform: uppercase; }
+    .line { width: 74px; height: 3px; background: var(--green); margin: 18px 0 24px; }
+    .activity-section { padding: 88px 0; background: var(--cream-2); }
+    .section-title { text-align: center; margin-bottom: 48px; }
+    .section-title h2 { font-size: clamp(2.1rem, 5vw, 4rem); font-weight: 800; text-transform: uppercase; color: #1f2d17; }
+    .intro-banner {
+      background: linear-gradient(90deg, rgba(34,58,20,0.78) 0%, rgba(34,58,20,0.62) 42%, rgba(34,58,20,0.26) 100%), url('./imagini site/WhatsApp Image 2026-04-01 at 00.38.34.jpeg') center/cover;
+      color: white;
+      padding: 48px;
+      border-radius: 22px;
+      margin-bottom: 48px;
+    }
+    .intro-banner h3 { font-size: 1.8rem; margin-bottom: 16px; }
+    .intro-banner p { font-size: 16px; margin: 0 0 12px; }
+    .intro-banner ul { margin: 16px 0 0; padding-left: 20px; }
+    .intro-banner li { margin-bottom: 8px; }
+    .tariff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+    .tariff-card { background: white; box-shadow: 0 18px 50px rgba(32, 56, 18, 0.14); padding: 32px; border-bottom: 5px solid var(--green); border-radius: 22px; }
+    .tariff-card h3 { font-size: 1.4rem; font-weight: 700; text-transform: uppercase; margin-bottom: 16px; color: #213117; }
+    .tariff-card p { font-size: 15px; margin: 0 0 16px; color: #394534; }
+    .tariff-card ul { margin: 0; padding-left: 20px; color: #394534; font-size: 15px; }
+    .tariff-card li { margin-bottom: 6px; }
+    .conditions-box { background: white; padding: 28px 32px; border-radius: 16px; margin-top: 40px; border-left: 4px solid var(--green); }
+    .conditions-box p { margin: 0 0 12px; font-size: 15px; }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--green-dark); font-weight: 700; font-size: 14px; text-transform: uppercase; margin-bottom: 24px; }
+    .back-link:hover { color: var(--green); }
+    .cta-box { background: var(--green); color: white; padding: 54px 0; text-align: center; }
+    .cta-box h2 { font-size: clamp(2rem, 4vw, 3.1rem); text-transform: uppercase; font-weight: 800; margin-bottom: 16px; }
+    .cta-box p { font-size: 18px; margin-bottom: 24px; }
+    .btn { display: inline-flex; padding: 16px 28px; border-radius: 999px; font-weight: 800; text-transform: uppercase; font-size: 13px; transition: 0.25s ease; border: 2px solid transparent; letter-spacing: 0.03em; }
+    .btn-outline { border-color: rgba(255,255,255,0.85); color: white; background: transparent; }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); }
+    .footer { background: #2a160a; color: rgba(255,255,255,0.86); padding: 56px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 0.9fr 1fr; gap: 42px; padding-bottom: 56px; }
+    .footer h4 { margin: 0 0 20px; color: white; font-size: 1.1rem; text-transform: uppercase; }
+    .footer a { display: block; margin-bottom: 10px; font-size: 15px; color: rgba(255,255,255,0.7); }
+    .footer a:hover { color: var(--green-soft); }
+    .footer-logo { width: 100px; margin-bottom: 16px; }
+    .footer-brand p { margin: 0 0 8px; font-size: 15px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; font-size: 14px; color: rgba(255,255,255,0.5); }
+    .schedule-section {
+      padding: 88px 0;
+      background: var(--cream-2);
+    }
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 26px;
+      margin-top: 48px;
+    }
+    .schedule-card {
+      background: white;
+      padding: 28px;
+      border-radius: 22px;
+      box-shadow: 0 18px 50px rgba(32, 56, 18, 0.14);
+      text-align: center;
+    }
+    .schedule-card h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      margin-bottom: 12px;
+    }
+    .schedule-card p {
+      font-size: 15px;
+      color: #394534;
+      margin: 0;
+    }
+    .activities-list {
+      padding: 88px 0;
+      background: #fff;
+    }
+    .activity-item {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+    .activity-item.reverse { grid-template-columns: 1.2fr 1fr; }
+    .activity-item.reverse .activity-image { order: 1; }
+    .activity-image {
+      min-height: 320px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 22px;
+      box-shadow: 0 18px 50px rgba(32, 56, 18, 0.14);
+    }
+    .activity-content h3 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #213117;
+      margin-bottom: 14px;
+    }
+    .activity-content p {
+      font-size: 17px;
+      color: #394534;
+      margin: 0 0 14px;
+    }
+    @media (max-width: 900px) {
+      .schedule-grid, .activity-item, .activity-item.reverse { grid-template-columns: 1fr; }
+      .activity-item.reverse .activity-image { order: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand"><img src="./PNG/logo.png" alt="Vis de Verde" class="brand-logo" /></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="misiunea.html">Misiunea noastră</a>
+        <a href="scopuri.html">Scopuri</a>
+        <a href="beneficii.html">Beneficii</a>
+        <a href="povestea.html">Povestea noastră</a>
+        <a href="activitati.html" class="active">Activități</a>
+        <a href="contact.html">Contact</a>
+        <a href="resurse.html">Resurse</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Meniu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <div class="eyebrow">Grădină educațională</div>
+      <h1>Activități și tarife</h1>
+      <div class="line"></div>
+    </div>
+  </section>
+
+  <section class="activity-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Ce oferim</h2>
+        <div class="line" style="background: var(--green);"></div>
+      </div>
+
+      <div class="intro-banner">
+        <h3>Ce vor trăi copiii la Vis de Verde</h3>
+        <p>"Vis de Verde" este locul în care copiii vor vedea, vor auzi, vor mirosi, vor atinge și vor gusta natura și frumusețile ei.</p>
+        <p><strong>Ce urmăresc activitățile:</strong></p>
+        <ul>
+          <li>familiarizare cu biodiversitatea și cu viața solului</li>
+          <li>cultivare, recunoaștere și îngrijire plante, fructe și legume</li>
+          <li>reducerea risipei alimentare și compostare</li>
+          <li>colectarea și folosirea judicioasă a apei</li>
+          <li>lucru în echipă și dezvoltarea motricității prin activități practice</li>
+        </ul>
+        <a href="index.html" class="back-link" style="color: white; margin-top: 20px;">← Înapoi la Home</a>
+      </div>
+
+      <div class="tariff-grid">
+        <article class="tariff-card">
+          <h3>Vizite pentru grupuri organizate</h3>
+          <p>Destinate preșcolarilor și elevilor din clasele primare, însoțiți de coordonatori sau supraveghetori mandatați în scris.</p>
+          <ul>
+            <li>maxim 4 ore, între 10:00 – 14:00</li>
+            <li>acces la proprietate, joacă, relaxare și atelier de grădinărit</li>
+            <li>grupuri de minim 20 de copii</li>
+            <li>100 lei / copil</li>
+            <li>coordonatorii nu plătesc acces</li>
+          </ul>
+        </article>
+
+        <article class="tariff-card">
+          <h3>Serbări grădinițe și școli</h3>
+          <p>Evenimente dedicate grupurilor care doresc exclusivitate în utilizarea locației.</p>
+          <ul>
+            <li>maxim 6 ore</li>
+            <li>luni – duminică</li>
+            <li>grupuri de minim 40 de persoane</li>
+            <li>100 lei / persoană în timpul săptămânii</li>
+            <li>120 lei / persoană sâmbăta și duminica</li>
+          </ul>
+        </article>
+
+        <article class="tariff-card">
+          <h3>Evenimente culturale</h3>
+          <p>Dezbateri, conferințe, workshop-uri și alte întâlniri tematice.</p>
+          <ul>
+            <li>maxim 6 ore / zi</li>
+            <li>grupuri de minim 40 de persoane</li>
+            <li>75 lei / persoană</li>
+            <li>100 lei / adult + copil pentru însoțitori</li>
+            <li>exclusivitate în utilizarea locației</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="conditions-box">
+        <p><strong>Condiții de rezervare și acces:</strong> Rezervarea locației se realizează cu cel puțin 2 zile lucrătoare înainte, în funcție de disponibilitate, și este condiționată de plata a 30% din valoarea contractului.</p>
+        <p style="margin-bottom: 0;"><strong>Vreme nefavorabilă:</strong> în cazul în care condițiile meteorologice nu permit utilizarea locației în ziua stabilită, vizita se va reprograma la o dată ulterioară, de comun acord.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="schedule-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Programul zilei</h2>
+        <div class="line" style="background: var(--green);"></div>
+      </div>
+      <div class="schedule-grid">
+        <article class="schedule-card">
+          <h4>10:00</h4>
+          <p>Primire și acomodare în grup</p>
+        </article>
+        <article class="schedule-card">
+          <h4>10:30</h4>
+          <p>Turul grădinii și explorare</p>
+        </article>
+        <article class="schedule-card">
+          <h4>11:30</h4>
+          <p>Activitate practică de grădinărit</p>
+        </article>
+        <article class="schedule-card">
+          <h4>13:00</h4>
+          <p>Pauză de masă și relaxare</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="activities-list">
+    <div class="container">
+      <div class="section-title">
+        <h2>Activități principale</h2>
+        <div class="line" style="background: var(--green);"></div>
+      </div>
+      <article class="activity-item">
+        <div class="activity-content">
+          <h3>Semănat și plantat</h3>
+          <p>Copiii învață despre ciclul vieții plantelor, de la sămânță la recoltă. Experimentează direct plantarea și îngrijirea răsadurilor.</p>
+          <p>Înțeleg importanța solului sănătos și a apei pentru creșterea plantelor. Văd cu ochii lor cum cresc legumele.</p>
+        </div>
+        <div class="activity-image" style="background-image: linear-gradient(to top, rgba(115,182,61,0.16), rgba(115,182,61,0.16)), url('./imagini site/WhatsApp Image 2026-04-01 at 06.32.37.jpeg');"></div>
+      </article>
+      <article class="activity-item reverse">
+        <div class="activity-image" style="background-image: linear-gradient(to top, rgba(115,182,61,0.16), rgba(115,182,61,0.16)), url('./imagini site/WhatsApp Image 2026-04-01 at 00.37.53.jpeg');"></div>
+        <div class="activity-content">
+          <h3>Compostare</h3>
+          <p>Învață despre ciclul nutrienților în natură. Descoperă cum resturile organice devin compost, hrana pentru sol.</p>
+          <p>Înțeleg de ce este important să reducem risipa și cum putem transformă "gunoiul" în "aur" pentru grădină.</p>
+        </div>
+      </article>
+      <article class="activity-item">
+        <div class="activity-content">
+          <h3>Conservare</h3>
+          <p>Activități de recoltare și conservare a legumelor și fructelor. Învață metodele tradiționale de păstrare a recoltei.</p>
+          <p>Descoperă cum să mânâncăm sănătos tot anul, nu doar în sezon.</p>
+        </div>
+        <div class="activity-image" style="background-image: linear-gradient(to top, rgba(115,182,61,0.16), rgba(115,182,61,0.16)), url('./imagini site/WhatsApp Image 2026-04-01 at 06.33.59.jpeg');"></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="cta-box">
+    <div class="container">
+      <h2>Programează o experiență</h2>
+      <p>Fiecare întâlnire este gândită ca o experiență directă, vie și memorabilă în natură.</p>
+      <a href="contact.html" class="btn btn-outline">Solicită detalii</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="./PNG/logo.png" alt="Vis de Verde" class="footer-logo" />
+        <p>Grădină educațională pentru copii și familii.</p>
+        <p>visdeverde@gmail.com</p>
+        <p>0799 147 912 • 0772 095 940</p>
+      </div>
+      <div>
+        <h4>Navigare</h4>
+        <a href="index.html">Home</a>
+        <a href="misiunea.html">Misiunea noastră</a>
+        <a href="scopuri.html">Scopurile urmărite</a>
+        <a href="beneficii.html">Beneficiile experiențelor</a>
+      </div>
+      <div>
+        <h4>Acces rapid</h4>
+        <a href="povestea.html">Povestea noastră</a>
+        <a href="activitati.html">Activități și tarife</a>
+        <a href="contact.html">Contact</a>
+        <a href="resurse.html">Resurse</a>
+      </div>
+      <div>
+        <h4>Locație</h4>
+        <p>Strada Primăriei nr. 181 A</p>
+        <p>Conțești, Dâmbovița</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>Copyright 2026 Vis de Verde.</p>
+    </div>
+  </footer>
+</body>
+</html>
