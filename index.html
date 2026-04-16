@@ -920,13 +920,15 @@
        .footer-grid { text-align: left; }
     }
   </style>
+  <link rel="stylesheet" href="./mobile-fixes.css" />
+  <script src="./mobile-fixes.js" defer></script>
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-       <a href="#" class="brand">
-         <img src="./PNG/logo.png" alt="Vis de Verde" class="brand-logo" />
-       </a>
+       <a href="index.html" class="brand">
+          <img src="./PNG/logo.png" alt="Vis de Verde" class="brand-logo" />
+        </a>
 
 <nav class="main-nav">
          <a href="index.html" class="active">Home</a>
@@ -1352,6 +1354,7 @@
       const mobileMenu = document.getElementById('mobileMenu');
 
       if (toggle && header && mobileMenu) {
+        toggle.dataset.mobileBound = 'true';
         toggle.addEventListener('click', function () {
           const isOpen = header.classList.toggle('menu-open');
           toggle.setAttribute('aria-expanded', String(isOpen));
