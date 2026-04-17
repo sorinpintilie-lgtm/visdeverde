@@ -170,7 +170,6 @@
       font-size: clamp(2.8rem, 7vw, 5.4rem);
       font-weight: 800;
       text-transform: uppercase;
-      max-width: 10ch;
       text-shadow: 0 6px 24px rgba(0,0,0,0.18);
     }
 
@@ -320,10 +319,84 @@
       background: #efefef;
     }
 
-    .content-grid {
-      display: grid;
-      gap: 34px;
-    }
+     .content-grid {
+       display: grid;
+       grid-template-columns: 1fr;
+       gap: 34px;
+     }
+
+     .goals-grid {
+       display: grid;
+       grid-template-columns: 1fr;
+       gap: 34px;
+     }
+
+     .goal-row {
+       display: grid;
+       grid-template-columns: 0.9fr 1.1fr;
+       background: white;
+       box-shadow: var(--shadow);
+       align-items: stretch;
+       overflow: hidden;
+     }
+
+     .goal-row.reverse {
+       grid-template-columns: 1.1fr 0.9fr;
+     }
+
+     .goals-grid {
+       display: grid;
+       grid-template-columns: 1fr;
+       gap: 34px;
+     }
+
+     .goal-row {
+       display: grid;
+       grid-template-columns: 0.9fr 1.1fr;
+       background: white;
+       box-shadow: var(--shadow);
+       align-items: stretch;
+       overflow: hidden;
+     }
+
+     .goal-row.reverse {
+       grid-template-columns: 1.1fr 0.9fr;
+     }
+
+     .goal-row {
+       display: grid;
+       grid-template-columns: 0.9fr 1.1fr;
+       background: white;
+       box-shadow: var(--shadow);
+       align-items: stretch;
+       overflow: hidden;
+     }
+
+      .goal-row.reverse {
+        grid-template-columns: 1.1fr 0.9fr;
+      }
+
+     .goal-row {
+       display: grid;
+       grid-template-columns: 0.9fr 1.1fr !important;
+       background: white;
+       box-shadow: var(--shadow);
+       align-items: stretch;
+       overflow: hidden;
+     }
+
+     .goal-row.reverse {
+       grid-template-columns: 1.1fr 0.9fr;
+     }
+
+     .goal-row {
+       display: grid;
+       grid-template-columns: 0.9fr 1.1fr;
+       background: white;
+       box-shadow: var(--shadow);
+       align-items: stretch;
+       overflow: hidden;
+     }
 
     .goal-row {
       display: grid;
@@ -338,12 +411,11 @@
       grid-template-columns: 1.1fr 0.9fr;
     }
 
-    .goal-image {
-      min-height: 100%;
-      background-size: cover;
-      background-position: center;
-      min-height: 420px;
-    }
+     .goal-image {
+       min-height: 620px !important;
+       background-size: cover;
+       background-position: center;
+     }
 
     .goal-image.one {
       background-image: linear-gradient(rgba(115,182,61,0.14), rgba(115,182,61,0.14)), url('./imagini site/WhatsApp Image 2026-03-31 at 23.57.52.jpeg');
@@ -388,18 +460,18 @@
 
     .benefits .section-title { color: white; }
 
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
+     .benefits-grid {
+       display: grid;
+       grid-template-columns: repeat(3, 1fr) !important;
+       gap: 20px;
+     }
 
     .benefit-card {
-      padding: 30px 28px;
+      padding: 20px 18px;
       border: 1px solid rgba(255,255,255,0.22);
       background: rgba(255,255,255,0.06);
       backdrop-filter: blur(8px);
-      min-height: 250px;
+      border-radius: 16px;
     }
 
     .benefit-top {
@@ -488,12 +560,45 @@
       font-weight: 600;
     }
 
-    .tariff-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 26px;
-      margin-top: 34px;
-    }
+     .tariff-grid {
+       display: grid;
+       grid-template-columns: repeat(3, 1fr) !important;
+       gap: 60px !important;
+       margin-top: 34px;
+     }
+
+     .tariff-card {
+       background: white;
+       box-shadow: 0 18px 50px rgba(32, 56, 18, 0.14);
+       padding: 32px;
+       border-bottom: 5px solid var(--green);
+       border-radius: 22px;
+     }
+
+     .tariff-card h3 {
+       font-size: 1.4rem;
+       font-weight: 700;
+       text-transform: uppercase;
+       margin-bottom: 16px;
+       color: #213117;
+     }
+
+     .tariff-card p {
+       font-size: 15px;
+       margin: 0 0 16px;
+       color: #394534;
+     }
+
+     .tariff-card ul {
+       margin: 0;
+       padding-left: 20px;
+       color: #394534;
+       font-size: 15px;
+     }
+
+     .tariff-card li {
+       margin-bottom: 6px;
+     }
 
     .tariff-card {
       background: white;
@@ -535,7 +640,7 @@
       min-height: 360px;
       background:
         linear-gradient(90deg, rgba(34,58,20,0.78) 0%, rgba(34,58,20,0.62) 42%, rgba(34,58,20,0.26) 100%),
-        url('./imagini site/WhatsApp Image 2026-04-01 at 00.28.24.jpeg') center/cover;
+        url('./imagini site/WhatsApp Image 2026-04-01 at 07.25.40.jpeg') center/cover;
       box-shadow: var(--shadow);
       display: flex;
       align-items: center;
@@ -789,137 +894,187 @@
       .activity-gallery-right { grid-template-rows: auto; grid-template-columns: 1fr 1fr; }
     }
 
-    @media (max-width: 860px) {
-      .main-nav,
-      .header-inner > .btn { display: none; }
-      .menu-toggle { display: inline-flex; }
-      .header-inner {
-        min-height: 74px;
-        position: relative;
-      }
-      .site-header.menu-open .mobile-menu {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-        position: absolute;
-        top: calc(100% + 8px);
-        left: 12px;
-        right: 12px;
-        background: white;
-        border: 1px solid rgba(34,48,25,0.08);
-        box-shadow: 0 18px 45px rgba(32, 56, 18, 0.14);
-        padding: 18px;
-      }
-      .site-header.menu-open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-      .site-header.menu-open .menu-toggle span:nth-child(2) { opacity: 0; }
-      .site-header.menu-open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-      .mobile-menu a {
-        font-size: 14px;
-        font-weight: 800;
-        text-transform: uppercase;
-        color: #28351f;
-      }
-      .hero { min-height: 440px; }
-      .hero-intro,
-      .quick-links,
-      #beneficii .section-title h2,
-      #poveste .section-title,
-      .footer a[href="#beneficii"],
-      .footer a[href="#poveste"],
-      .footer a[href="#activitati"],
-      .footer a[href="#resurse"] { display: none !important; }
-      .container { width: min(var(--container), calc(100% - 24px)); }
-      .content-grid,
-      .activity-gallery-right { grid-template-columns: 1fr; }
-      .join-inner { flex-direction: column; align-items: flex-start; }
-      section { padding: 68px 0; }
-      .split-visual { min-height: 360px; }
-      .brand-logo { width: 82px; }
-      .activity-photo.large { min-height: 340px; }
-      .activity-photo.small-one,
-      .activity-photo.small-two,
-      .wide-photo { min-height: 240px; }
-
-      .goal-row,
-      .goal-row.reverse {
-        grid-template-columns: 1fr;
-      }
-      .goal-image {
-        min-height: 240px;
-      }
-      .goal-row.reverse .goal-image {
-        order: -1;
-      }
-      .goal-body,
-      .goal-row.reverse .goal-body {
-        border-left: 0;
-        border-right: 0;
-        border-top: 6px solid var(--green);
-        padding: 28px 22px 24px;
-      }
-
-      .benefits-grid,
-      .tariff-grid {
-        display: grid;
-        grid-auto-flow: column;
-        grid-auto-columns: 100%;
-        grid-template-columns: none;
-        gap: 0;
-        overflow-x: auto;
-        overscroll-behavior-x: contain;
-        scroll-snap-type: x mandatory;
-        scroll-behavior: smooth;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-        padding: 0;
-      }
-      .benefits-grid::-webkit-scrollbar,
-      .tariff-grid::-webkit-scrollbar { display: none; }
-      .benefits-grid > *,
-      .tariff-grid > * {
-        scroll-snap-align: start;
-        min-width: 100%;
-        width: 100%;
-        margin: 0;
-      }
-      .benefit-card,
-      .tariff-card {
-        min-height: 100%;
-        border-radius: 0;
-      }
-      .mobile-slider-dots {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin-top: 14px;
-      }
-      .mobile-slider-dots button {
-        width: 10px;
-        height: 10px;
-        border-radius: 999px;
-        border: 0;
-        padding: 0;
-        background: rgba(34,48,25,0.28);
-      }
-      .mobile-slider-dots button.active {
-        background: var(--green-dark);
-      }
-      .benefits .mobile-slider-dots button {
-        background: rgba(255,255,255,0.45);
-      }
-       .benefits .mobile-slider-dots button.active {
+     @media (max-width: 860px) {
+       .main-nav { display: none; }
+       .menu-toggle { display: inline-flex; }
+       .header-inner {
+         min-height: 74px;
+         position: relative;
+       }
+       .site-header.menu-open .mobile-menu {
+         display: flex;
+         flex-direction: column;
+         gap: 14px;
+         position: absolute;
+         top: calc(100% + 8px);
+         left: 12px;
+         right: 12px;
          background: white;
+         border: 1px solid rgba(34,48,25,0.08);
+         box-shadow: 0 18px 45px rgba(32, 56, 18, 0.14);
+         padding: 18px;
        }
+       .site-header.menu-open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+       .site-header.menu-open .menu-toggle span:nth-child(2) { opacity: 0; }
+       .site-header.menu-open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+       .mobile-menu a {
+         font-size: 14px;
+         font-weight: 800;
+         text-transform: uppercase;
+         color: #28351f;
+       }
+       .hero { min-height: 440px; }
+       .hero-intro,
+       .quick-links,
+       #beneficii .section-title h2,
+       #poveste .section-title,
+       .footer a[href="#beneficii"],
+       .footer a[href="#poveste"],
+       .footer a[href="#activitati"],
+       .footer a[href="#resurse"] { display: none !important; }
+       .container { width: min(var(--container), calc(100% - 24px)); }
+       .content-grid,
+       .activity-gallery-right { grid-template-columns: 1fr; }
+       .join-inner { flex-direction: column; align-items: flex-start; }
+       section { padding: 68px 0; }
+       .split-visual { min-height: 360px; }
+       .brand-logo { width: 82px; }
+       .activity-photo.large { min-height: 340px; }
+       .activity-photo.small-one,
+       .activity-photo.small-two,
+       .wide-photo { min-height: 240px; }
+
+       .goal-row,
+       .goal-row.reverse {
+         grid-template-columns: 1fr;
+       }
+       .goal-image {
+         min-height: 240px;
+       }
+       .goal-row.reverse .goal-image {
+         order: -1;
+       }
+       .goal-body,
+       .goal-row.reverse .goal-body {
+         border-left: 0;
+         border-right: 0;
+         border-top: 6px solid var(--green);
+         padding: 28px 22px 24px;
+       }
+
+       .tariff-grid {
+         display: grid;
+         grid-auto-flow: row;
+         grid-auto-columns: 100%;
+         grid-template-columns: none;
+         gap: 0;
+       }
+
        .activity-intro-banner {
-         background:
-           linear-gradient(90deg, rgba(34,58,20,0.78) 0%, rgba(34,58,20,0.62) 42%, rgba(34,58,20,0.26) 100%),
-           url('./imagini site/WhatsApp Image 2026-04-01 at 00.38.34.jpeg') center/cover;
+          background:
+            linear-gradient(90deg, rgba(34,58,20,0.78) 0%, rgba(34,58,20,0.62) 42%, rgba(34,58,20,0.26) 100%),
+            url('./imagini site/WhatsApp Image 2026-04-01 at 00.38.34.jpeg') center/cover;
+        }
+        .footer-brand,
+        .footer-grid > div,
+        .footer-grid { text-align: left; }
+     }
+       .site-header.menu-open .mobile-menu {
+         display: flex;
+         flex-direction: column;
+         gap: 14px;
+         position: absolute;
+         top: calc(100% + 8px);
+         left: 12px;
+         right: 12px;
+         background: white;
+         border: 1px solid rgba(34,48,25,0.08);
+         box-shadow: 0 18px 45px rgba(32, 56, 18, 0.14);
+         padding: 18px;
        }
-       .footer-brand,
-       .footer-grid > div,
-       .footer-grid { text-align: left; }
-    }
-  </style>
+       .site-header.menu-open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+       .site-header.menu-open .menu-toggle span:nth-child(2) { opacity: 0; }
+       .site-header.menu-open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+       .mobile-menu a {
+         font-size: 14px;
+         font-weight: 800;
+         text-transform: uppercase;
+         color: #28351f;
+       }
+       .hero { min-height: 440px; }
+       .hero-intro,
+       .quick-links,
+       #beneficii .section-title h2,
+       #poveste .section-title,
+       .footer a[href="#beneficii"],
+       .footer a[href="#poveste"],
+       .footer a[href="#activitati"],
+       .footer a[href="#resurse"] { display: none !important; }
+       .container { width: min(var(--container), calc(100% - 24px)); }
+       .content-grid,
+       .activity-gallery-right { grid-template-columns: 1fr; }
+       .join-inner { flex-direction: column; align-items: flex-start; }
+       section { padding: 68px 0; }
+       .split-visual { min-height: 360px; }
+       .brand-logo { width: 82px; }
+       .activity-photo.large { min-height: 340px; }
+       .activity-photo.small-one,
+       .activity-photo.small-two,
+       .wide-photo { min-height: 240px; }
+
+       .goal-row,
+       .goal-row.reverse {
+         grid-template-columns: 1fr;
+       }
+       .goal-image {
+         min-height: 240px;
+       }
+       .goal-row.reverse .goal-image {
+         order: -1;
+       }
+       .goal-body,
+       .goal-row.reverse .goal-body {
+         border-left: 0;
+         border-right: 0;
+         border-top: 6px solid var(--green);
+         padding: 28px 22px 24px;
+        }
+
+       .benefits-grid {
+         grid-template-columns: 1fr !important;
+       }
+
+       @media (min-width: 861px) {
+         .benefits-grid {
+           grid-template-columns: repeat(3, 1fr) !important;
+         }
+       }
+
+       @media (min-width: 981px) {
+         .goal-image {
+           min-height: 350px !important;
+         }
+       }
+
+        .tariff-grid {
+         display: grid;
+         grid-auto-flow: row;
+         grid-auto-columns: 100%;
+         grid-template-columns: none;
+         gap: 0;
+       }
+
+       .activity-intro-banner {
+          background:
+            linear-gradient(90deg, rgba(34,58,20,0.78) 0%, rgba(34,58,20,0.62) 42%, rgba(34,58,20,0.26) 100%),
+            url('./imagini site/WhatsApp Image 2026-04-01 at 00.38.34.jpeg') center/cover;
+        }
+        .footer-brand,
+        .footer-grid > div,
+        .footer-grid {
+          text-align: left;
+        }
+   </style>
   <link rel="stylesheet" href="./mobile-fixes.css" />
   <script src="./mobile-fixes.js" defer></script>
 </head>
@@ -931,15 +1086,15 @@
         </a>
 
 <nav class="main-nav">
-         <a href="index.html" class="active">Home</a>
-         <a href="misiunea.html">Misiunea noastră</a>
-         <a href="scopuri.html">Scopuri</a>
-         <a href="beneficii.html">Beneficii</a>
-         <a href="povestea.html">Povestea noastră</a>
-         <a href="activitati.html">Activități</a>
-         <a href="contact.html">Contact</a>
-         <a href="resurse.html">Resurse</a>
-       </nav>
+          <a href="index.html" class="active">Home</a>
+          <a href="misiunea.html">Misiunea noastră</a>
+          <a href="scopuri.html">Scopuri</a>
+          <a href="beneficii.html">Beneficii</a>
+          <a href="povestea.html">Povestea noastră</a>
+          <a href="activitati.html">Activități</a>
+<a href="contact.html">Contact</a>
+        <a href="resurse.html">Mulțumiri și resurse</a>
+      </nav>
 
       <button class="menu-toggle" type="button" aria-label="Deschide meniul" aria-expanded="false" aria-controls="mobileMenu">
         <span></span>
@@ -948,16 +1103,16 @@
       </button>
 
 <div class="mobile-menu" id="mobileMenu">
-         <a href="index.html">Home</a>
-         <a href="misiunea.html">Misiunea noastră</a>
-         <a href="scopuri.html">Scopuri</a>
-         <a href="beneficii.html">Beneficii</a>
-         <a href="povestea.html">Povestea noastră</a>
-         <a href="activitati.html">Activități</a>
-         <a href="contact.html">Contact</a>
-         <a href="resurse.html">Resurse</a>
-       </div>
-    </div>
+          <a href="index.html">Home</a>
+          <a href="misiunea.html">Misiunea noastră</a>
+          <a href="scopuri.html">Scopuri</a>
+          <a href="beneficii.html">Beneficii</a>
+          <a href="povestea.html">Povestea noastră</a>
+          <a href="activitati.html">Activități</a>
+<a href="contact.html">Contact</a>
+        <a href="resurse.html">Mulțumiri și resurse</a>
+  </div>
+</div>
   </header>
 
   <section id="home" class="hero">
@@ -985,9 +1140,9 @@
       <div class="split-copy">
         <h2>Misiunea noastră</h2>
         <div class="line"></div>
-        <p>
-          Grădina educațională “Vis De Verde” s-a născut din dragoste și respect față de natură, față de pământ, din pasiune pentru studiul și practica grădinăritului ecologic, permaculturii și agriculturii regenerative și din dorința de a lăsa în urmă o lume mai sănătoasă, mai bună și mai frumoasă din punct de vedere spiritual și estetic pentru copiii noștri și urmașii lor.
-        </p>
+<p>
+           Grădina educațională „Vis De Verde" s-a născut din dragoste și respect față de natură, față de pământ, din pasiune pentru studiul și practica grădinăritului ecologic, permaculturii și agriculturii regenerative și din dorința de a lăsa în urmă o lume mai sănătoasă, mai bună și mai frumoasă din punct de vedere spiritual și estetic pentru copiii noștri și urmașii lor.
+         </p>
         <a href="scopuri.html" class="btn btn-ghost">Vezi scopurile urmărite</a>
       </div>
     </div>
@@ -1000,49 +1155,11 @@
         <div class="line" style="background: var(--green);"></div>
       </div>
 
-      <div class="content-grid">
+<div class="goals-grid">
         <article class="goal-row">
           <div class="goal-image one"></div>
           <div class="goal-body">
-            <h3>Scopul principal</h3>
-            <p>
-              Scopul principal al grădinii noastre îl constituie familiarizarea, în principal a copiilor preșcolari și a celor din clasele primare, cu practicile sănătoase, ecologice și sustenabile de producere primară a hranei și de protejare și conservare a solului și a mediului ambiant, ca organisme vii, asemănătoare nouă oamenilor.
-            </p>
-            <p>
-              Ne dorim ca experiențele de la “Vis de Verde” să încolțească și să dezvolte în ei sămânța unui caracter conștient și responsabil față de natură și oameni, cât mai palpabil cu putință, “la firul ierbii”, în natură.
-            </p>
-            <p>
-              Astfel, copiii beneficiază din plin, atât din punct de vedere fizic, cât și cognitiv, mental și emoțional, de binefacerile timpului petrecut în aer liber, într-o lume tot mai dominată de tehnologie și ecrane.
-            </p>
-          </div>
-        </article>
-
-        <article class="goal-row reverse">
-          <div class="goal-body">
-            <h3>Scopul secundar</h3>
-            <p>
-              Scopul secundar este educarea gustului și a preferințelor culinare ale celor mici înspre consumul unor fructe, legume, plante aromatice și medicinale indigene sau aclimatizate și obținute în mod sănătos în România, pe plan local, în funcție de disponibilitatea sezonieră naturală și corelat cu necesarul de vitamine și minerale specific fiecărui anotimp.
-            </p>
-            <p>
-              Rezultatul urmărit este crearea unui comportament alimentar responsabil atât față de sănătatea propriului corp, cât și față de Terra, prin reducerea amprentei de carbon a fiecăruia dintre noi.
-            </p>
-            <p>
-              În acest fel, cei mici înțeleg mai bine de ce contează ritmul anotimpurilor și consumul local, în locul produselor aduse de la mii de kilometri distanță.
-            </p>
-          </div>
-          <div class="goal-image two"></div>
-        </article>
-
-        <article class="goal-row">
-          <div class="goal-image three"></div>
-          <div class="goal-body">
-            <h3>Scopul terțiar</h3>
-            <p>
-              Ne propunem ca, după 5 ani, Vis De Verde să devină un micro-climat complex și sustenabil, a cărui administrare să necesite input-uri externe minime de energie și resurse, cu excepția mâinii de lucru și a pasiunii grădinarului.
-            </p>
-            <p>
-              Acest spațiu va genera externalități sociale, educaționale, de mediu și financiare pozitive și va deveni un exemplu despre cum copiii pot fi conectați cu natura și despre cum, lucrând împreună cu ea, cu atenție, spirit de observație și respect, aceasta ne recompensează cu sănătate, abundență și emoții pozitive.
-            </p>
+            <p>Scopul principal al grădinii noastre îl constituie familiarizarea, în principal a copiilor preșcolari și a celor din clasele primare, cu practicile săntoase/ecologice și sustenabile de producere primară a hranei și de protejare și conservare a solului și a mediului ambiant, ca organisme vii, asemănătoare nouă oamenilor, astfel încât experiențele de la "Vis de Verde" să încolțească și să dezvolte în ei sămânța unui caracter conștient și responsabil față de natură și oameni.</p>
           </div>
         </article>
       </div>
@@ -1062,7 +1179,6 @@
             <div class="benefit-icon"><img src="./PNG/64/13 - Earth.png" alt="Dezvoltare fizică" /></div>
             <h3>Dezvoltare fizică</h3>
           </div>
-          <p>Activitățile în aer liber contribuie la îmbunătățirea coordonării, echilibrului și forței musculare. Copiii devin mai activi și evită sedentarismul.</p>
         </article>
 
         <article class="benefit-card">
@@ -1070,7 +1186,6 @@
             <div class="benefit-icon"><img src="./PNG/64/30 - Forest.png" alt="Creativitate" /></div>
             <h3>Creativitate și imaginație</h3>
           </div>
-          <p>Natura oferă un mediu deschis în care cei mici pot explora, inventa și descoperi noi moduri de a interacționa cu lumea din jur.</p>
         </article>
 
         <article class="benefit-card">
@@ -1078,7 +1193,6 @@
             <div class="benefit-icon"><img src="./PNG/64/32 - Sun Energy.png" alt="Lucru în echipă" /></div>
             <h3>Lucru în echipă</h3>
           </div>
-          <p>Timpul petrecut în natură alături de alți copii favorizează comunicarea, cooperarea, empatia și rezolvarea firească a conflictelor.</p>
         </article>
 
         <article class="benefit-card">
@@ -1086,7 +1200,6 @@
             <div class="benefit-icon"><img src="./PNG/64/64 - Enviroment Love.png" alt="Reducerea stresului" /></div>
             <h3>Reducerea stresului și anxietății</h3>
           </div>
-          <p>Contactul cu natura are un efect liniștitor și contribuie la îmbunătățirea stării de spirit și la promovarea unei atitudini pozitive.</p>
         </article>
 
         <article class="benefit-card">
@@ -1094,127 +1207,92 @@
             <div class="benefit-icon"><img src="./PNG/64/76 - Plant.png" alt="Conexiune cu mediul" /></div>
             <h3>Conexiune cu mediul înconjurător</h3>
           </div>
-          <p>Copiii învață să aprecieze și să respecte mediul și devin mai conștienți de importanța protejării naturii și a resurselor sale.</p>
         </article>
 
         <article class="benefit-card">
           <div class="benefit-top">
             <div class="benefit-icon"><img src="./PNG/64/98 - Ecology.png" alt="Concentrare" /></div>
-            <h3>Îmbunătățirea concentrării</h3>
+            <h3>Îmbunătățirea capacității de concentrare</h3>
           </div>
-          <p>Expunerea la mediul natural poate ajuta la îmbunătățirea atenției și a echilibrului interior, inclusiv la copiii cu dificultăți de concentrare.</p>
         </article>
       </div>
 
-      <div class="mobile-slider-dots" data-for="benefitsSlider"></div>
-
-      <div class="notice" style="margin-top:30px; background: rgba(255,255,255,0.12); border-left-color: rgba(255,255,255,0.7); color: white; box-shadow:none;">
-        <p style="color:white; margin:0; font-size:17px;">În concluzie, integrarea timpului petrecut în natură în rutina zilnică a copiilor contribuie semnificativ la sănătatea lor generală și la o dezvoltare armonioasă, oferindu-le șansa de a descoperi frumusețea și complexitatea lumii naturale.</p>
-      </div>
+      
     </div>
   </section>
 
-  <section id="poveste" class="story split-section">
+<section id="poveste" class="story split-section">
     <div class="container split-grid">
       <div class="split-copy">
         <h2>Povestea noastră</h2>
         <div class="line"></div>
-        <p>
-          Totul a început în anul 2012 cu filmul <em>One Man, One Cow, One Planet – How to save the world</em>, realizat de Peter Proctor, despre aplicarea principiilor agriculturii biodinamice, practică dezvoltată de Rudolf Steiner.
-        </p>
-        <p>
-          În legătură directă cu proiectul dezvoltat în acei ani de către soția fondatorului, grădinița “Castelul Bucuriei”, s-a conturat convingerea că una dintre cele mai eficiente forme de schimbare a relației noastre cu natura este transmiterea acestor valori către copii, viitorii locuitori responsabili ai acestui Pământ.
-        </p>
-        <p>
-          După un prim experiment derulat între 2015 și 2017 în comuna Berceni, pe o suprafață de 1.500 mp și destinat exclusiv experiențelor copiilor grădiniței “Castelul Bucuriei”, în anul 2023 au fost puse bazele noii grădini experimentale “Vis de Verde”, dezvoltate pe aproximativ 10.000 mp, în comuna Conțești, județul Dâmbovița.
-        </p>
-        <p>
-          Mărginit de râul Dâmbovița și înconjurat de pădure, proiectul este gândit ca un sistem integrat circular și sustenabil, cu grădină de legume, flori și plante aromatice, zonă de fructe de pădure, livadă, compostare, poiană cu copaci, zone de relaxare, spații de joacă, foișor pentru adăpost și servit masa, precum și alte structuri aflate în proiect.
-        </p>
+        <p>Totul a început în 2012, când am descoperit agricultura biodinamică prin filmul lui Peter Proctor. Am realizat că cel mai eficient mod de a schimba relația noastră cu natura este să transmitem aceste valori copiilor.</p>
+        <p>După un prim experiment în Berceni (2015-2017), în 2023 am pus bazele "Vis de Verde" în Conțești, pe 10.000 mp, un spațiu unde copiii experimentează direct legătura cu pământul, plantele și animalele.</p>
+        <a href="povestea.html" class="btn btn-ghost">Citește povestea completă</a>
       </div>
       <div class="split-visual visual-story"></div>
     </div>
   </section>
 
-  <section id="activitati" class="activity-program">
+<section id="activitati" class="activity-program">
     <div class="container">
       <div class="section-title" style="color:#1f2d17;">
-        <h2>Activități, program, tarife și condiții de acces</h2>
+        <h2>Activități și tarife</h2>
         <div class="line" style="background: var(--green);"></div>
       </div>
 
       <div class="activity-intro-banner">
         <div class="activity-intro-content">
           <h3>Ce vor trăi copiii la Vis de Verde</h3>
-          <p>“Vis de Verde” este locul în care copiii vor vedea, vor auzi, vor mirosi, vor atinge și vor gusta natura și frumusețile ei, prin intermediul unei game variate de activități practice, ateliere și jocuri menite să-i conecteze cu bio-diversitatea și cu viața solului, plantelor, insectelor, animalelor și păsărilor care populează micro-climatul grădinii.</p>
-          <p><strong>Ce urmăresc activitățile:</strong></p>
-          <ul class="activity-points">
-            <li>familiarizare cu biodiversitatea și cu viața solului</li>
-            <li>cultivare, recunoaștere și îngrijire plante, fructe și legume</li>
-            <li>reducerea risipei alimentare și compostare</li>
-            <li>colectarea și folosirea judicioasă a apei</li>
-            <li>lucru în echipă și dezvoltarea motricității prin activități practice</li>
+          <p>"Vis de Verde" este locul în care copiii vor vedea, auzi, mirosi, atinge și gusta natura, prin activități practice și ateliere care să-i:</p>
+          <ul>
+            <li>familiarizeze și conecteze cu bio-diversitatea, viața solului, plantelor, insectelor, animalelor și păsărilor;</li>
+            <li>învete să cultive legume, fructe, flori, plante aromatice și medicinale;</li>
+            <li>conștientizeze importanța reducerii risipei alimentare și compostării;</li>
+            <li>obișnuiască cu colectarea judicioasă a apei de ploaie;</li>
+            <li>stimuleze lucru în echipă și protejarea mediului.</li>
           </ul>
         </div>
       </div>
 
-      <div class="tariff-grid" id="tariffSlider">
-        <article class="tariff-card">
-          <h3>Vizite pentru grupuri organizate</h3>
-          <p>Destinate preșcolarilor și elevilor din clasele primare, însoțiți de coordonatori sau supraveghetori mandatați în scris.</p>
-          <ul>
-            <li>maxim 4 ore, între 10:00 – 14:00</li>
-            <li>acces la proprietate, joacă, relaxare și atelier de grădinărit</li>
-            <li>grupuri de minim 20 de copii</li>
-            <li>100 lei / copil</li>
-            <li>coordonatorii nu plătesc acces</li>
-          </ul>
-        </article>
+       <div class="tariff-grid" id="tariffSlider">
+         <article class="tariff-card">
+           <h3>Vizite grupuri organizate</h3>
+           <p>Preșcolari și elevi cls. 0-4</p>
+           <ul>
+             <li>4 ore (L-V)</li>
+             <li>100 lei/copil</li>
+             <li>minim 20 copii</li>
+           </ul>
+         </article>
 
-        <article class="tariff-card">
-          <h3>Serbări grădinițe și școli primare</h3>
-          <p>Evenimente dedicate grupurilor care doresc exclusivitate în utilizarea locației.</p>
-          <ul>
-            <li>maxim 6 ore</li>
-            <li>luni – duminică</li>
-            <li>grupuri de minim 40 de persoane</li>
-            <li>100 lei / persoană în timpul săptămânii</li>
-            <li>120 lei / persoană sâmbăta și duminica</li>
-          </ul>
-        </article>
+         <article class="tariff-card">
+           <h3>Serbări</h3>
+           <p>Exclusivitate locație</p>
+           <ul>
+             <li>maxim 6 ore</li>
+             <li>100-120 lei/persoană</li>
+             <li>minim 40 persoane</li>
+           </ul>
+         </article>
 
-        <article class="tariff-card">
-          <h3>Evenimente agricole și socio-culturale</h3>
-          <p>Dezbateri, conferințe, workshop-uri și alte întâlniri tematice.</p>
-          <ul>
-            <li>maxim 6 ore / zi</li>
-            <li>grupuri de minim 40 de persoane</li>
-            <li>75 lei / persoană</li>
-            <li>100 lei / adult + copil pentru participanți însoțiți de copii</li>
-            <li>exclusivitate în utilizarea locației</li>
-          </ul>
-        </article>
-      </div>
+         <article class="tariff-card">
+           <h3>Evenimente</h3>
+           <p>Dezbateri, workshop-uri</p>
+           <ul>
+             <li>75 lei/persoană</li>
+             <li>minim 40 persoane</li>
+           </ul>
+         </article>
+       </div>
 
-      <div class="mobile-slider-dots" data-for="tariffSlider"></div>
+      
 
-      <div class="conditions-box">
-        <p><strong>Condiții de rezervare și acces:</strong> Rezervarea locației se realizează cu cel puțin 2 zile lucrătoare înainte, în funcție de disponibilitate, și este condiționată de plata a 30% din valoarea contractului. Coordonatorii grupurilor vizitatoare vor semna și Regulamentul privind normele de conduită și utilizare a spațiilor și obiectelor Vis de Verde.</p>
-        <p style="margin-bottom:0;"><strong>Vreme nefavorabilă:</strong> în cazul în care condițiile meteorologice nu permit utilizarea locației în ziua stabilită, vizita se va reprograma la o dată ulterioară, de comun acord.</p>
-      </div>
-
-      </div>
-  </section>
-
-  <section class="activity-cta">
-    <div class="container">
-      <div class="activity-cta-box">
-        <h3>Programează o experiență la Vis de Verde</h3>
-        <p>Fie că este vorba despre o vizită educațională, o serbare sau un eveniment tematic, fiecare întâlnire este gândită ca o experiență directă, vie și memorabilă în natură.</p>
-        <a href="contact.html" class="btn btn-outline">Solicită detalii</a>
+      <div style="text-align:center; margin-top:32px;">
+        <a href="activitati.html" class="btn btn-ghost">Vezi programul complet</a>
       </div>
     </div>
-  </section>
+</section>
 
   <section id="contact" class="contact">
     <div class="container">
@@ -1226,11 +1304,13 @@
       <div class="contact-grid">
         <div class="contact-card">
           <h3>Programează o vizită</h3>
-          <p>Te așteptăm la Vis de Verde pentru a descoperi împreună magia grădinii educaționale. Programează o vizită și lasă-ne să-ți arătăm cum pot copiii să învețe despre natură, ecologie și sustenabilitate.</p>
-          <p><strong>Telefon:</strong> 0799 147 912 / 0772 095 940</p>
           <p><strong>Email:</strong> visdeverde@gmail.com</p>
-          <p><strong>Program:</strong> Luni - Duminică, cu programare prealabilă</p>
-          <p><strong>Locație:</strong> Strada Primăriei nr. 181 A, Conțești, Dâmbovița</p>
+          <p><strong>Telefon:</strong></p>
+          <p><strong>Marian Balaban</strong> <a href="tel:+40799147912" style="color:var(--green-dark);font-weight:600;">0799 147 912</a></p>
+          <p><strong>Mariana Balaban</strong> <a href="tel:+40772095940" style="color:var(--green-dark);font-weight:600;">0772 095 940</a></p>
+          <p><strong>Locația grădinii</strong> „Vis De Verde" este:</p>
+          <p><a href="https://www.google.com/maps/search/?api=1&query=44.667381,25.637715" target="_blank" style="color:var(--green-dark);font-weight:600;">Strada Primăriei nr. 181 A, Conțești, Dâmbovița</a></p>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m11!1m3!1d178.89658662815404!2d25.637715291700285!3d44.66738120836653!2m2!1f290.68234634340706!2f45!3m2!1i1024!2i768!4f35!3m3!1m2!1s0x40b26e439def3bd7%3A0x51b15044c17e6641!2sStr.%20Aeroportului%20180%2C%20Con%C5%A3e%C5%9Fti!5e1!3m2!1sen!2sro!4v1776432061845!5m2!1sen!2sro" width="100%" height="250" style="border:0; border-radius: 12px; margin-top: 16px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
         <div class="contact-card">
@@ -1257,56 +1337,7 @@
         </div>
       </div>
 
-      <div class="map-placeholder" style="margin-top: 48px;">
-        <div style="background: rgba(34,48,25,0.7); padding: 16px 24px; border-radius: 12px;">
-          <span style="font-size: 15px; text-transform: uppercase; letter-spacing: 0.08em;">Conțești, Dâmbovița</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="resurse" class="thanks">
-    <div class="container">
-      <div class="section-title">
-        <h2>Mulțumiri și resurse</h2>
-        <div class="line"></div>
-      </div>
-
-      <div class="thanks-grid">
-        <article class="thankyou-card">
-          <h3>Oameni și comunități care au inspirat proiectul</h3>
-          <p>Doresc să-mi exprim respectul și recunoștința pentru munca și realizările oamenilor și comunităților care m-au inspirat în alegerea și parcursul acestei aventuri minunate.</p>
-          <ul class="resource-list">
-            <li>Peter Proctor, Rudolf Steiner, Bill Mollison, David Holmgren, Louis Bromfield</li>
-            <li>Edward H. Faulkner, Henry A. Wallace, Sir Albert Howard, Lady Eve Balfour</li>
-            <li>Rachel Carson, John Jeavons, Toby Hemenway, Sepp Holzer, Masanobu Fukuoka</li>
-            <li>Geoff Lawton, Vandana Shiva, John D. Liu, Paul Wheaton, Eliot Coleman</li>
-            <li>Charles Dowding, Paul Gautschi, J.M. Fortier, Richard Perkins, Curtis Stone</li>
-            <li>Allan Savory, Joel Salatin, Gabe Brown, Dale Strickler, Mark Shepard</li>
-            <li>Elaine Ingham, Karl Hammer, Stefan Sobkowiak, Michael Phillips</li>
-            <li>Rodale Institute, Real Organic Project, Living Web Farms, Claudian Dobos, Ermitaj Mălin, Cărți din Tei, Andrei Lupse, Ferma Gardenbio, România în Tranziție, Ecoruralis</li>
-          </ul>
-        </article>
-
-        <article class="thankyou-card">
-          <h3>Concepte și practici relevante</h3>
-          <ul class="resource-list">
-            <li>Agricultură bio-dinamică</li>
-            <li>Permacultură</li>
-            <li>Raised beds, swales, hugelkultur</li>
-            <li>Guerilla garden</li>
-            <li>Construcții ecologice: cob, chirpici, saci de pământ, baloți de paie</li>
-            <li>Transition towns</li>
-            <li>Biochar, terra preta</li>
-            <li>Grădinărit organic</li>
-            <li>No-dig / no-till garden</li>
-            <li>Vermicultură</li>
-            <li>Grădinărit bio-intensiv</li>
-            <li>Agricultură regenerativă</li>
-            <li>Management holistic</li>
-          </ul>
-        </article>
-      </div>
+      
     </div>
   </section>
 
@@ -1331,7 +1362,6 @@
         <h4>Acces rapid</h4>
         <a href="activitati.html">Activități și tarife</a>
         <a href="contact.html">Contact</a>
-        <a href="resurse.html">Mulțumiri și resurse</a>
       </div>
 
       <div>
@@ -1364,42 +1394,9 @@
           link.addEventListener('click', function () {
             header.classList.remove('menu-open');
             toggle.setAttribute('aria-expanded', 'false');
-          });
+});
         });
       }
-
-      function setupSlider(sliderId, dotsSelector) {
-        const slider = document.getElementById(sliderId);
-        const dotsWrap = document.querySelector(dotsSelector);
-        if (!slider || !dotsWrap) return;
-
-        const cards = Array.from(slider.children);
-        dotsWrap.innerHTML = '';
-        cards.forEach(function (_, index) {
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          btn.setAttribute('aria-label', 'Slide ' + (index + 1));
-          btn.addEventListener('click', function () {
-            slider.scrollTo({ left: index * slider.clientWidth, behavior: 'smooth' });
-          });
-          dotsWrap.appendChild(btn);
-        });
-
-        const dots = Array.from(dotsWrap.children);
-        function updateActive() {
-          const index = Math.round(slider.scrollLeft / Math.max(slider.clientWidth, 1));
-          dots.forEach(function (dot, i) {
-            dot.classList.toggle('active', i === index);
-          });
-        }
-
-        slider.addEventListener('scroll', updateActive, { passive: true });
-        window.addEventListener('resize', updateActive);
-        updateActive();
-      }
-
-      setupSlider('benefitsSlider', '.mobile-slider-dots[data-for="benefitsSlider"]');
-      setupSlider('tariffSlider', '.mobile-slider-dots[data-for="tariffSlider"]');
     })();
   </script>
 </body>

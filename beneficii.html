@@ -7,125 +7,160 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <style>
-    :root { --green: #73b63d; --green-dark: #4f7f28; --green-deep: #2f4e19; --green-soft: #8fcb58; --cream: #f6f4ee; --white: #ffffff; --text: #223019; }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: 'Montserrat', sans-serif; color: var(--text); background: var(--cream); line-height: 1.72; }
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
-    .container { width: min(1240px, calc(100% - 40px)); margin: 0 auto; }
-    .site-header { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 50; }
-    .header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .brand { display: flex; align-items: center; gap: 18px; }
-    .brand-logo { width: 92px; display: block; }
-    .main-nav { display: flex; align-items: center; gap: 32px; font-weight: 700; font-size: 14px; text-transform: uppercase; }
-    .main-nav a { color: #28351f; }
-    .main-nav a:hover, .main-nav a.active { color: var(--green-dark); }
-    .menu-toggle { display: none; }
-    .page-hero {
-      position: relative;
-      min-height: 420px;
-      display: flex;
-      align-items: center;
-      color: white;
-      background: linear-gradient(90deg, rgba(34,58,18,0.76) 0%, rgba(45,76,22,0.56) 40%, rgba(65,112,28,0.18) 100%), url('./imagini site/WhatsApp Image 2026-04-01 at 00.30.29.jpeg') center/cover;
-    }
-    .page-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(24,42,12,0.28), rgba(24,42,12,0)); }
-    .page-hero-content { position: relative; z-index: 1; padding: 18px 0; }
-    .eyebrow { display: inline-block; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #eaf8da; margin-bottom: 6px; }
-    h1, h2, h3 { margin: 0; line-height: 1.08; }
-    h1 { font-size: clamp(2.8rem, 7vw, 5.4rem); font-weight: 800; text-transform: uppercase; }
-    .line { width: 74px; height: 3px; background: var(--green); margin: 18px 0 24px; }
-    .benefits-section { padding: 88px 0; background: var(--green); color: white; }
-    .section-title { text-align: center; margin-bottom: 48px; }
-    .section-title h2 { font-size: clamp(2.1rem, 5vw, 4rem); font-weight: 800; text-transform: uppercase; }
-    .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
-    .benefit-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); padding: 32px; border-radius: 22px; }
-    .benefit-card h3 { font-size: 1.3rem; font-weight: 700; text-transform: uppercase; margin-bottom: 16px; }
-    .benefit-card p { font-size: 16px; color: rgba(255,255,255,0.84); margin: 0; }
-    .benefit-icon { width: 64px; height: 64px; margin-bottom: 20px; }
-    .notice { margin-top: 48px; background: rgba(255,255,255,0.12); padding: 28px 32px; border-radius: 16px; border-left: 4px solid rgba(255,255,255,0.7); }
-    .notice p { font-size: 18px; margin: 0; color: white; }
-    .cta-box { background: var(--green-dark); color: white; padding: 54px 0; text-align: center; }
-    .cta-box h2 { font-size: clamp(2rem, 4vw, 3.1rem); text-transform: uppercase; font-weight: 800; margin-bottom: 16px; }
-    .cta-box p { font-size: 18px; margin-bottom: 24px; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 28px; border-radius: 999px; font-weight: 800; text-transform: uppercase; font-size: 13px; transition: 0.25s ease; border: 2px solid transparent; letter-spacing: 0.03em; }
-    .btn-outline { border-color: rgba(255,255,255,0.85); color: white; background: transparent; }
-    .btn-outline:hover { background: rgba(255,255,255,0.12); }
-    .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--green-dark); font-weight: 700; font-size: 14px; text-transform: uppercase; margin-bottom: 24px; }
-    .back-link:hover { color: var(--green); }
-    .footer { background: #2a160a; color: rgba(255,255,255,0.86); padding: 56px 0 32px; }
-    .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 0.9fr 1fr; gap: 42px; padding-bottom: 56px; }
-    .footer h4 { margin: 0 0 20px; color: white; font-size: 1.1rem; text-transform: uppercase; }
-    .footer a { display: block; margin-bottom: 10px; font-size: 15px; color: rgba(255,255,255,0.7); }
-    .footer a:hover { color: var(--green-soft); }
-    .footer-logo { width: 100px; margin-bottom: 16px; }
-    .footer-brand p { margin: 0 0 8px; font-size: 15px; }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; font-size: 14px; color: rgba(255,255,255,0.5); }
-    .testimonials-section {
-      padding: 88px 0;
-      background: var(--cream-2);
-    }
-    .testimonial-card {
-      background: white;
-      padding: 34px;
-      border-radius: 22px;
-      box-shadow: 0 18px 50px rgba(32, 56, 18, 0.14);
-      border-left: 5px solid var(--green);
-    }
-    .testimonial-card p {
-      font-size: 17px;
-      font-style: italic;
-      color: #394534;
-      margin: 0 0 16px;
-    }
-    .testimonial-card cite {
-      font-style: normal;
-      font-weight: 700;
-      color: var(--green-dark);
-    }
-    .stats-section {
-      padding: 88px 0;
-      background: var(--green-dark);
-      color: white;
-    }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      text-align: center;
-    }
-    .stat-item .stat-number {
-      font-size: 4rem;
-      font-weight: 800;
-      display: block;
-      margin-bottom: 8px;
-    }
-    .stat-item .stat-label {
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-    @media (max-width: 900px) {
-      .main-nav { display: none; }
-      .menu-toggle { display: block; width: 32px; height: 24px; background: none; border: none; cursor: pointer; position: relative; }
-      .menu-toggle span { display: block; width: 100%; height: 3px; background: #28351f; position: absolute; }
-      .menu-toggle span:nth-child(1) { top: 0; }
-      .menu-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
-      .menu-toggle span:nth-child(3) { bottom: 0; }
-      .benefits-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: 1fr; }
-      .page-hero { min-height: 320px; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-    }
-  </style>
+   <style>
+     :root { --green: #73b63d; --green-dark: #4f7f28; --green-deep: #2f4e19; --green-soft: #8fcb58; --cream: #f6f4ee; --white: #ffffff; --text: #223019; }
+     * { box-sizing: border-box; }
+     body { margin: 0; font-family: 'Montserrat', sans-serif; color: var(--text); background: var(--cream); line-height: 1.72; }
+     img { max-width: 100%; display: block; }
+     a { text-decoration: none; color: inherit; }
+     .container { width: min(1240px, calc(100% - 40px)); margin: 0 auto; }
+     .site-header { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 50; }
+     .header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+     .brand { display: flex; align-items: center; gap: 18px; }
+     .brand-logo { width: 92px; display: block; }
+     .main-nav { display: flex; align-items: center; gap: 32px; font-weight: 700; font-size: 14px; text-transform: uppercase; }
+     .main-nav a { color: #28351f; }
+     .main-nav a:hover, .main-nav a.active { color: var(--green-dark); }
+     .menu-toggle {
+       display: none;
+       width: 52px;
+       height: 52px;
+       border-radius: 999px;
+       border: 1px solid rgba(34,48,25,0.12);
+       background: white;
+       align-items: center;
+       justify-content: center;
+       flex-direction: column;
+       gap: 5px;
+       padding: 0;
+       cursor: pointer;
+     }
+     .menu-toggle span {
+       width: 18px;
+       height: 2px;
+       border-radius: 999px;
+       background: var(--green-dark);
+       transition: 0.25s ease;
+     }
+     .mobile-menu { display: none; }
+     .page-hero {
+       position: relative;
+       min-height: 420px;
+       display: flex;
+       align-items: center;
+       color: white;
+       background: linear-gradient(90deg, rgba(34,58,18,0.76) 0%, rgba(45,76,22,0.56) 40%, rgba(65,112,28,0.18) 100%), url('./imagini site/WhatsApp Image 2026-04-01 at 00.30.29.jpeg') center/cover;
+     }
+     .page-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(24,42,12,0.28), rgba(24,42,12,0)); }
+     .page-hero-content { position: relative; z-index: 1; padding: 18px 0; }
+     .eyebrow { display: inline-block; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #eaf8da; margin-bottom: 6px; }
+     h1, h2, h3 { margin: 0; line-height: 1.08; }
+     h1 { font-size: clamp(2.8rem, 7vw, 5.4rem); font-weight: 800; text-transform: uppercase; }
+     .line { width: 74px; height: 3px; background: var(--green); margin: 18px 0 24px; }
+     .benefits-section { 
+       padding: 88px 0; 
+       background: linear-gradient(rgba(115,182,61,0.90), rgba(115,182,61,0.90)), url('./imagini site/WhatsApp Image 2026-04-01 at 00.39.00.jpeg') center/cover fixed;
+       color: white; 
+     }
+     .section-title { text-align: center; margin-bottom: 48px; }
+     .section-title h2 { font-size: clamp(2.1rem, 5vw, 4rem); font-weight: 800; text-transform: uppercase; }
+     .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+     .benefit-card { background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.14); padding: 32px; border-radius: 22px; }
+     .benefit-card h3 { font-size: 1.3rem; font-weight: 700; text-transform: uppercase; margin-bottom: 16px; color: #223019; }
+     .benefit-card p { font-size: 16px; color: #223019; margin: 0; }
+     .benefit-icon { width: 64px; height: 64px; margin-bottom: 20px; }
+     .notice { margin-top: 48px; background: rgba(255,255,255,0.5); padding: 28px 32px; border-radius: 16px; border-left: 4px solid var(--green); }
+     .notice p { font-size: 18px; margin: 0; color: #223019; }
+     .cta-box { background: var(--green-dark); color: white; padding: 54px 0; text-align: center; }
+     .cta-box h2 { font-size: clamp(2rem, 4vw, 3.1rem); text-transform: uppercase; font-weight: 800; margin-bottom: 16px; }
+     .cta-box p { font-size: 18px; margin-bottom: 24px; }
+     .btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 28px; border-radius: 999px; font-weight: 800; text-transform: uppercase; font-size: 13px; transition: 0.25s ease; border: 2px solid transparent; letter-spacing: 0.03em; }
+     .btn-outline { border-color: rgba(255,255,255,0.85); color: white; background: transparent; }
+     .btn-outline:hover { background: rgba(255,255,255,0.12); }
+     .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--green-dark); font-weight: 700; font-size: 14px; text-transform: uppercase; margin-bottom: 24px; }
+     .back-link:hover { color: var(--green); }
+     .footer { background: #2a160a; color: rgba(255,255,255,0.86); padding: 56px 0 32px; }
+     .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 0.9fr 1fr; gap: 42px; padding-bottom: 56px; }
+     .footer h4 { margin: 0 0 20px; color: white; font-size: 1.1rem; text-transform: uppercase; }
+     .footer a { display: block; margin-bottom: 10px; font-size: 15px; color: rgba(255,255,255,0.7); }
+     .footer a:hover { color: var(--green-soft); }
+     .footer-logo { width: 100px; margin-bottom: 16px; }
+     .footer-brand p { margin: 0 0 8px; font-size: 15px; }
+     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; font-size: 14px; color: rgba(255,255,255,0.5); }
+     .testimonials-section {
+       padding: 88px 0;
+       background: var(--cream-2);
+     }
+     .testimonial-card {
+       background: white;
+       padding: 34px;
+       border-radius: 22px;
+       box-shadow: 0 18px 50px rgba(32, 56, 18, 0.14);
+       border-left: 5px solid var(--green);
+     }
+     .testimonial-card p {
+       font-size: 17px;
+       font-style: italic;
+       color: #394534;
+       margin: 0 0 16px;
+     }
+     .testimonial-card cite {
+       font-style: normal;
+       font-weight: 700;
+       color: var(--green-dark);
+     }
+     .stats-section {
+       padding: 88px 0;
+       background: var(--green-dark);
+       color: white;
+     }
+     .stats-grid {
+       display: grid;
+       grid-template-columns: repeat(3, 1fr);
+       gap: 32px;
+       text-align: center;
+     }
+     .stat-item .stat-number {
+       font-size: 4rem;
+       font-weight: 800;
+       display: block;
+       margin-bottom: 8px;
+     }
+     .stat-item .stat-label {
+       font-size: 1.1rem;
+       text-transform: uppercase;
+       font-weight: 600;
+     }
+      @media (max-width: 860px) {
+        .main-nav { display: none; }
+        .menu-toggle { display: inline-flex; }
+        .header-inner { min-height: 74px; position: relative; }
+        .site-header.menu-open .mobile-menu { display: flex; flex-direction: column; gap: 14px; position: absolute; top: calc(100% + 8px); left: 12px; right: 12px; background: white; border: 1px solid rgba(34,48,25,0.08); box-shadow: 0 18px 45px rgba(32, 56, 18, 0.14); padding: 18px; }
+        .site-header.menu-open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .site-header.menu-open .menu-toggle span:nth-child(2) { opacity: 0; }
+        .site-header.menu-open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .mobile-menu a { font-size: 14px; font-weight: 800; text-transform: uppercase; color: #28351f; }
+        section.benefits-section .benefits-grid,
+        .benefits-section .benefits-grid,
+        .benefits-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+        .benefit-card { padding: 20px 16px; }
+        .benefit-icon { width: 48px; height: 48px; margin-bottom: 14px; }
+        .benefit-card h3 { font-size: 1.1rem; }
+        .benefit-card p { font-size: 15px; }
+        .stats-grid { grid-template-columns: 1fr 1fr; }
+        .page-hero { min-height: 320px; }
+        .footer-grid { grid-template-columns: 1fr 1fr; }
+      }
+   </style>
   <link rel="stylesheet" href="./mobile-fixes.css" />
   <script src="./mobile-fixes.js" defer></script>
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="brand"><img src="./PNG/logo.png" alt="Vis de Verde" class="brand-logo" /></a>
+       <a href="index.html" class="brand">
+         <img src="./PNG/logo.png" alt="Vis de Verde" class="brand-logo" />
+       </a>
       <nav class="main-nav">
         <a href="index.html">Home</a>
         <a href="misiunea.html">Misiunea noastră</a>
@@ -134,11 +169,25 @@
         <a href="povestea.html">Povestea noastră</a>
         <a href="activitati.html">Activități</a>
         <a href="contact.html">Contact</a>
-        <a href="resurse.html">Resurse</a>
+        <a href="resurse.html">Mulțumiri și resurse</a>
       </nav>
-      <button class="menu-toggle" aria-label="Meniu"><span></span><span></span><span></span></button>
-    </div>
-  </header>
+      <button class="menu-toggle" type="button" aria-label="Deschide meniul" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="misiunea.html">Misiunea noastră</a>
+    <a href="scopuri.html">Scopuri</a>
+    <a href="beneficii.html">Beneficii</a>
+    <a href="povestea.html">Povestea noastră</a>
+    <a href="activitati.html">Activități</a>
+    <a href="contact.html">Contact</a>
+        <a href="resurse.html">Mulțumiri și resurse</a>
+  </div>
+</div>
+</header>
 
   <section class="page-hero">
     <div class="container page-hero-content">
@@ -158,36 +207,36 @@
         <article class="benefit-card">
           <div class="benefit-icon"><img src="./PNG/64/13 - Earth.png" alt="" /></div>
           <h3>Dezvoltare fizică</h3>
-          <p>Activitățile în aer liber contribuie la îmbunătățirea coordonării, echilibrului și forței musculare. Copiii devin mai activi și evită sedentarismul.</p>
+          <p>Activitățile în aer liber, cum ar fi alergatul, cățăratul sau explorarea mediului înconjurător, contribuie la îmbunătățirea coordonării, echilibrului și forței musculare. Copiii devin mai activi, evitând astfel sedentarismul și obezitatea, problemă tot mai frecventă în rândul celor mici.</p>
         </article>
         <article class="benefit-card">
           <div class="benefit-icon"><img src="./PNG/64/30 - Forest.png" alt="" /></div>
-          <h3>Creativitate și imaginație</h3>
-          <p>Natura oferă un mediu deschis în care cei mici pot explora, inventa și descoperi noi moduri de a interacționa cu lumea din jur.</p>
+          <h3>Stimularea creativității și imaginației</h3>
+          <p>Natura oferă un mediu deschis, unde copiii pot explora, inventa jocuri și descoperi noi moduri de a interacționa cu lumea din jur. Fără jucării sau reguli stricte, cei mici își dezvoltă imaginația și creativitatea într-un mod natural.</p>
         </article>
         <article class="benefit-card">
           <div class="benefit-icon"><img src="./PNG/64/32 - Sun Energy.png" alt="" /></div>
-          <h3>Lucru în echipă</h3>
-          <p>Timpul petrecut în natură alături de alți copii favorizează comunicarea, cooperarea, empatia și rezolvarea firească a conflictelor.</p>
+          <h3>Stimulurea lucrului în echipă</h3>
+          <p>Petrecerea timpului în natură, mai ales alături de alți copii, favorizează dezvoltarea abilităților de comunicare, cooperare și rezolvare a conflictelor. Fie că joacă împreună jocuri sau explorează natura, copiii învață să colaboreze și să-și dezvolte empatia.</p>
         </article>
         <article class="benefit-card">
           <div class="benefit-icon"><img src="./PNG/64/64 - Enviroment Love.png" alt="" /></div>
-          <h3>Reducerea stresului</h3>
-          <p>Contactul cu natura are un efect liniștitor și contribuie la îmbunătățirea stării de spirit și la promovarea unei atitudini pozitive.</p>
+          <h3>Reducerea stresului și anxietății</h3>
+          <p>Contactul cu natura are un efect liniștitor asupra copiilor. Studiile arată că timpul petrecut în aer liber contribuie la reducerea nivelului de stres și anxietate, îmbunătățind starea de spirit și promovând o atitudine pozitivă.</p>
         </article>
         <article class="benefit-card">
           <div class="benefit-icon"><img src="./PNG/64/76 - Plant.png" alt="" /></div>
-          <h3>Conexiune cu natura</h3>
-          <p>Copiii învață să aprecieze și să respecte mediul și devin mai conștienți de importanța protejării naturii și a resurselor sale.</p>
+          <h3>Dezvoltarea unei conexiuni cu mediul înconjurător</h3>
+          <p>Copiii care petrec timp în natură învață să aprecieze și să respecte mediul. Aceștia devin mai conștienți de importanța protejării naturii și a resurselor acesteia, dezvoltând astfel o atitudine ecologică sănătoasă.</p>
         </article>
         <article class="benefit-card">
           <div class="benefit-icon"><img src="./PNG/64/98 - Ecology.png" alt="" /></div>
-          <h3>Îmbunătățirea concentrării</h3>
-          <p>Expunerea la mediul natural poate ajuta la îmbunătățirea atenției și a echilibrului interior, inclusiv la copiii cu dificultăți de concentrare.</p>
+          <h3>Îmbunătățirea capacității de concentrare</h3>
+          <p>Studiile arată că expunerea la mediul natural poate ajuta la îmbunătățirea atenției și concentrării la copii, mai ales la cei care suferă de tulburări de deficit de atenție (ADHD). Timpul petrecut în natură îi ajută să se simtă mai relaxați și mai echilibrați.</p>
         </article>
       </div>
       <div class="notice">
-        <p>În concluzie, integrarea timpului petrecut în natură în rutina zilnică a copiilor contribuie semnificativ la sănătatea lor generală și la o dezvoltare armonioasă.</p>
+        <p>În concluzie, integrarea timpului petrecut în natură în rutina zilnică a copiilor contribuie semnificativ la sănătatea lor generală și la o dezvoltare armonioasă. Aceasta nu doar că îi ajută să devină mai sănătoși și mai fericiți, dar le oferă și oportunitatea de a descoperi frumusețea și complexitatea lumii naturale.</p>
       </div>
       <a href="index.html" class="back-link" style="color: white; margin-top: 32px;">← Înapoi la Home</a>
     </div>
@@ -257,7 +306,7 @@
         <a href="povestea.html">Povestea noastră</a>
         <a href="activitati.html">Activități și tarife</a>
         <a href="contact.html">Contact</a>
-        <a href="resurse.html">Resurse</a>
+        <a href="resurse.html">Mulțumiri și resurse</a>
       </div>
       <div>
         <h4>Locație</h4>

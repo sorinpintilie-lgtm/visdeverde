@@ -21,7 +21,28 @@
     .main-nav { display: flex; align-items: center; gap: 32px; font-weight: 700; font-size: 14px; text-transform: uppercase; }
     .main-nav a { color: #28351f; }
     .main-nav a:hover, .main-nav a.active { color: var(--green-dark); }
-    .menu-toggle { display: none; }
+    .menu-toggle {
+      display: none;
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      border: 1px solid rgba(34,48,25,0.12);
+      background: white;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0;
+      cursor: pointer;
+    }
+    .menu-toggle span {
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--green-dark);
+      transition: 0.25s ease;
+    }
+    .mobile-menu { display: none; }
     .page-hero {
       position: relative;
       min-height: 420px;
@@ -39,7 +60,7 @@
     .contact-section { padding: 88px 0; background: #fff; }
     .section-title { text-align: center; margin-bottom: 48px; }
     .section-title h2 { font-size: clamp(2.1rem, 5vw, 4rem); font-weight: 800; text-transform: uppercase; }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
     .contact-card { background: var(--cream); padding: 34px; border-radius: 22px; box-shadow: 0 18px 50px rgba(32, 56, 18, 0.14); }
     .contact-card h3 { font-size: 1.3rem; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; color: #213117; }
     .contact-card p { font-size: 16px; margin: 0 0 12px; color: #394534; }
@@ -140,7 +161,9 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="brand"><img src="./PNG/logo.png" alt="Vis de Verde" class="brand-logo" /></a>
+       <a href="index.html" class="brand">
+         <img src="./PNG/logo.png" alt="Vis de Verde" class="brand-logo" />
+       </a>
       <nav class="main-nav">
         <a href="index.html">Home</a>
         <a href="misiunea.html">Misiunea noastră</a>
@@ -149,11 +172,25 @@
         <a href="povestea.html">Povestea noastră</a>
         <a href="activitati.html">Activități</a>
         <a href="contact.html" class="active">Contact</a>
-        <a href="resurse.html">Resurse</a>
+        <a href="resurse.html">Mulțumiri și resurse</a>
       </nav>
-      <button class="menu-toggle" aria-label="Meniu"><span></span><span></span><span></span></button>
-    </div>
-  </header>
+      <button class="menu-toggle" type="button" aria-label="Deschide meniul" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="misiunea.html">Misiunea noastră</a>
+    <a href="scopuri.html">Scopuri</a>
+    <a href="beneficii.html">Beneficii</a>
+    <a href="povestea.html">Povestea noastră</a>
+    <a href="activitati.html">Activități</a>
+    <a href="contact.html">Contact</a>
+    <a href="resurse.html">Mulțumiri și resurse</a>
+  </div>
+</div>
+</header>
 
   <section class="page-hero">
     <div class="container page-hero-content">
@@ -171,27 +208,16 @@
       </div>
 
       <div class="contact-grid">
-        <div class="contact-card">
-          <a href="index.html" class="back-link">← Înapoi la Home</a>
-          <h3>Programează o vizită</h3>
-          <p>Te așteptăm la Vis de Verde pentru a descoperi împreună magia grădinii educaționale.</p>
-          <div class="info-row">
-            <strong>Telefon:</strong>
-            <span>0799 147 912 / 0772 095 940</span>
-          </div>
-          <div class="info-row">
-            <strong>Email:</strong>
-            <span>visdeverde@gmail.com</span>
-          </div>
-          <div class="info-row">
-            <strong>Program:</strong>
-            <span>Luni - Duminică, cu programare prealabilă</span>
-          </div>
-          <div class="info-row">
-            <strong>Locație:</strong>
-            <span>Strada Primăriei nr. 181 A, Conțești, Dâmbovița</span>
-          </div>
-        </div>
+         <div class="contact-card">
+           <h3>Programează o vizită</h3>
+           <p><strong>Email:</strong> visdeverde@gmail.com</p>
+           <p><strong>Telefon:</strong></p>
+           <p><strong>Marian Balaban</strong> <a href="tel:+40799147912" style="color:var(--green-dark);font-weight:600;">0799 147 912</a></p>
+           <p><strong>Mariana Balaban</strong> <a href="tel:+40772095940" style="color:var(--green-dark);font-weight:600;">0772 095 940</a></p>
+           <p><strong>Locația grădinii</strong> „Vis De Verde" este:</p>
+           <p><a href="https://www.google.com/maps/search/?api=1&query=44.667381,25.637715" target="_blank" style="color:var(--green-dark);font-weight:600;">Strada Primăriei nr. 181 A, Conțești, Dâmbovița</a></p>
+           <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m11!1m3!1d178.89658662815404!2d25.637715291700285!3d44.66738120836653!2m2!1f290.68234634340706!2f45!3m2!1i1024!2i768!4f35!3m3!1m2!1s0x40b26e439def3bd7%3A0x51b15044c17e6641!2sStr.%20Aeroportului%20180%2C%20Con%C5%A3e%C5%9Fti!5e1!3m2!1sen!2sro!4v1776432061845!5m2!1sen!2sro" width="100%" height="250" style="border:0; border-radius: 12px; margin-top: 16px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+         </div>
 
         <div class="contact-card">
           <h3>Trimite un mesaj</h3>
@@ -217,9 +243,7 @@
         </div>
       </div>
 
-      <div class="map-placeholder">
-        <span>Conțești, Dâmbovița</span>
-      </div>
+
     </div>
   </section>
 
@@ -293,7 +317,7 @@
         <a href="povestea.html">Povestea noastră</a>
         <a href="activitati.html">Activități și tarife</a>
         <a href="contact.html">Contact</a>
-        <a href="resurse.html">Resurse</a>
+        <a href="resurse.html">Mulțumiri și resurse</a>
       </div>
       <div>
         <h4>Locație</h4>

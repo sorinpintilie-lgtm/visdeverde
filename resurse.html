@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Resurse — Vis de Verde</title>
+  <title>Mulțumiri și Resurse — Vis de Verde</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -21,7 +21,28 @@
     .main-nav { display: flex; align-items: center; gap: 32px; font-weight: 700; font-size: 14px; text-transform: uppercase; }
     .main-nav a { color: #28351f; }
     .main-nav a:hover, .main-nav a.active { color: var(--green-dark); }
-    .menu-toggle { display: none; }
+    .menu-toggle {
+      display: none;
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      border: 1px solid rgba(34,48,25,0.12);
+      background: white;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0;
+      cursor: pointer;
+    }
+    .menu-toggle span {
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--green-dark);
+      transition: 0.25s ease;
+    }
+    .mobile-menu { display: none; }
     .page-hero {
       position: relative;
       min-height: 420px;
@@ -122,7 +143,9 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="brand"><img src="./PNG/logo.png" alt="Vis de Verde" class="brand-logo" /></a>
+       <a href="index.html" class="brand">
+         <img src="./PNG/logo.png" alt="Vis de Verde" class="brand-logo" />
+       </a>
       <nav class="main-nav">
         <a href="index.html">Home</a>
         <a href="misiunea.html">Misiunea noastră</a>
@@ -131,11 +154,25 @@
         <a href="povestea.html">Povestea noastră</a>
         <a href="activitati.html">Activități</a>
         <a href="contact.html">Contact</a>
-        <a href="resurse.html" class="active">Resurse</a>
+        <a href="resurse.html" class="active">Mulțumiri și resurse</a>
       </nav>
-      <button class="menu-toggle" aria-label="Meniu"><span></span><span></span><span></span></button>
-    </div>
-  </header>
+      <button class="menu-toggle" type="button" aria-label="Deschide meniul" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="misiunea.html">Misiunea noastră</a>
+    <a href="scopuri.html">Scopuri</a>
+    <a href="beneficii.html">Beneficii</a>
+    <a href="povestea.html">Povestea noastră</a>
+    <a href="activitati.html">Activități</a>
+    <a href="contact.html">Contact</a>
+        <a href="resurse.html">Mulțumiri și resurse</a>
+  </div>
+</div>
+</header>
 
   <section class="page-hero">
     <div class="container page-hero-content">
@@ -155,36 +192,43 @@
       <div class="resources-grid">
         <article class="resource-card">
           <a href="index.html" class="back-link" style="color: white;">← Înapoi la Home</a>
-          <h3>Oameni și comunități</h3>
-          <p>Doresc să-mi exprim respectul și recunoștința pentru munca și realizările oamenilor și comunităților care m-au inspirat în alegerea și parcursul acestei aventuri minunate.</p>
+          <h3>Oameni si comunităti care au inspirat proiectul</h3>
+          <p>Doresc să-mi exprim respectul și recunostința pentru munca și realizările oamenilor și comunitătilor/grupurilor de initiativă care m-au inspirat în alegerea și parcursul acestei aventuri minunate:</p>
           <ul class="resource-list">
             <li>Peter Proctor, Rudolf Steiner, Bill Mollison, David Holmgren, Louis Bromfield</li>
             <li>Edward H. Faulkner, Henry A. Wallace, Sir Albert Howard, Lady Eve Balfour</li>
-            <li>Rachel Carson, John Jeavons, Toby Hemenway, Sepp Holzer, Masanobu Fukuoka</li>
+            <li>Rachel Carlson, John Jeavons, Toby Hemenway, Sepp Holzer, Mosanobu Fukuoka</li>
             <li>Geoff Lawton, Vandana Shiva, John D. Liu, Paul Wheaton, Eliot Coleman</li>
             <li>Charles Dowding, Paul Gautschi, J.M. Fortier, Richard Perkins, Curtis Stone</li>
-            <li>Allan Savory, Joel Salatin, Gabe Brown, Dale Strickler, Mark Shepard</li>
-            <li>Elaine Ingham, Karl Hammer, Stefan Sobkowiak, Michael Phillips</li>
-            <li>Rodale Institute, Real Organic Project, Living Web Farms, Claudian Dobos, Ermitaj Mălin, Cărți din Tei, Andrei Lupse, Ferma Gardenbio, România în Tranziție, Ecoruralis</li>
+            <li>Jesse Frost, Allan Savory, Joel Salatin, Gabe Brown, Dale Strickler</li>
+            <li>Mark Shepard, Jody Scheckter, Justin Rhodes, Jeff Lowenfels, Wayne Lewis</li>
+            <li>Elaine Ingham, Karl Hammer, Stefan Sobkowiak, Michael Philips</li>
+            <li>Nader Khalili, Ianto Evans, Charles Eisenstein</li>
+            <li>Rodale Institute, Real Organic Project, Living Web Farms</li>
+            <li>Claudian Dobos, Ermitaj Malin, Cărți din Tei, Andrei Lupse (Baza Ulmu)</li>
+            <li>Ferma Gardenbio, România în Tranzitie, Ecoruralis</li>
           </ul>
         </article>
 
         <article class="resource-card">
-          <h3>Concepte și practici</h3>
+          <h3>Concepte si practici relevante</h3>
           <ul class="resource-list">
-            <li>Agricultură bio-dinamică</li>
-            <li>Permacultură</li>
-            <li>Raised beds, swales, hugelkultur</li>
-            <li>Guerilla garden</li>
-            <li>Construcții ecologice: cob, chirpici, saci de pământ, baloți de paie</li>
-            <li>Transition towns</li>
-            <li>Biochar, terra preta</li>
-            <li>Grădinărit organic</li>
-            <li>No-dig / no-till garden</li>
-            <li>Vermicultură</li>
-            <li>Grădinărit bio-intensiv</li>
-            <li>Agricultură regenerativă</li>
-            <li>Management holistic</li>
+            <li>agricultură bio-dinamica</li>
+            <li>permacultură</li>
+            <li>raised beds</li>
+            <li>swales</li>
+            <li>hugelkultur</li>
+            <li>guerilla garden</li>
+            <li>construcții ecologice (cob, chirpici, saci de pamant, baloti de paie)</li>
+            <li>transition towns</li>
+            <li>biochar</li>
+            <li>terra petra</li>
+            <li>gradinarit organic</li>
+            <li>no-dig/no-till garden</li>
+            <li>vermicultură</li>
+            <li>grădinarit bio-intensiv</li>
+            <li>agricultură regenerativă</li>
+            <li>management holistic</li>
           </ul>
         </article>
       </div>
@@ -261,7 +305,7 @@
         <a href="povestea.html">Povestea noastră</a>
         <a href="activitati.html">Activități și tarife</a>
         <a href="contact.html">Contact</a>
-        <a href="resurse.html">Resurse</a>
+        <a href="resurse.html">Mulțumiri și resurse</a>
       </div>
       <div>
         <h4>Locație</h4>
