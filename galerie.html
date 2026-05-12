@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galerie Foto — Vis de Verde</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+   <link rel="icon" href="./images/logo.png" type="image/png">
+   <style>
+    :root {
+      --green: #73b63d;
+      --green-dark: #4f7f28;
+      --green-deep: #2f4e19;
+      --green-soft: #8fcb58;
+      --cream: #f6f4ee;
+      --cream-2: #efede6;
+      --white: #ffffff;
+      --text: #223019;
+      --muted: #5e6b56;
+      --brown: #2d180c;
+      --line: rgba(255,255,255,0.22);
+      --shadow: 0 18px 50px rgba(32, 56, 18, 0.14);
+      --container: 1240px;
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.72;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      background: #fff;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-inner {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand-logo {
+      width: 92px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .main-nav {
+      display: none;
+      align-items: center;
+      gap: 32px;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .main-nav a { color: #28351f; }
+    .main-nav a:hover,
+    .main-nav a.active { color: var(--green-dark); }
+
+    .cta-phone {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .cta-phone:hover { color: var(--green-dark); }
+
+    .cta-phone svg {
+      color: var(--green);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 28px;
+      border-radius: 999px;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 13px;
+      transition: 0.25s ease;
+      border: 2px solid transparent;
+      letter-spacing: 0.03em;
+      text-align: center;
+    }
+
+    .btn-green {
+      background: var(--green);
+      color: white;
+    }
+
+    .btn-green:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      border-color: rgba(255,255,255,0.85);
+      color: white;
+      background: transparent;
+    }
+
+    .btn-outline:hover { background: rgba(255,255,255,0.12); }
+
+    .btn-ghost {
+      border-color: rgba(34,48,25,0.12);
+      background: white;
+      color: var(--green-deep);
+    }
+
+    .btn-ghost:hover { border-color: rgba(34,48,25,0.25); }
+
+    section { padding: 88px 0; }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2.1rem, 5vw, 4rem);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .section-title .line {
+      width: 74px;
+      height: 3px;
+      background: currentColor;
+      margin: 18px auto 0;
+      opacity: 0.85;
+    }
+
+    .menu-toggle {
+      display: inline-flex;
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      border: 1px solid rgba(34,48,25,0.12);
+      background: white;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--green-dark);
+      transition: 0.25s ease;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    @media (max-width: 860px) {
+      .container {
+        width: min(var(--container), calc(100% - 24px));
+      }
+
+      section {
+        padding: 68px 0;
+      }
+
+      .brand-logo {
+        width: 82px;
+      }
+    }
+
+    .footer {
+      background: #2a160a;
+      color: rgba(255,255,255,0.86);
+      padding-top: 72px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 0.9fr 1fr;
+      gap: 42px;
+      padding-bottom: 56px;
+    }
+
+    .footer h3,
+    .footer h4 {
+      margin: 0 0 20px;
+      color: white;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+    }
+
+    .footer p,
+    .footer a,
+    .footer span {
+      color: rgba(255,255,255,0.78);
+      display: block;
+      margin: 10px 0;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 22px 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: rgba(255,255,255,0.62);
+      font-size: 14px;
+    }
+
+    .footer-logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 1200px) {
+      .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    }
+
+    /* Gallery styles */
+    .gallery-filters {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .gallery-filter {
+      padding: 12px 24px;
+      background: white;
+      border: 2px solid rgba(115,182,61,0.2);
+      color: var(--green-deep);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .gallery-filter.active,
+    .gallery-filter:hover {
+      background: var(--green);
+      color: white;
+      border-color: var(--green);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.25s;
+      cursor: pointer;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 60px rgba(32, 56, 18, 0.2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      transition: 0.25s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox.show {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-prev {
+      left: 20px;
+    }
+
+    .lightbox-next {
+      right: 20px;
+    }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 16px;
+      background: rgba(0,0,0,0.5);
+      padding: 8px 16px;
+      border-radius: 20px;
+    }
+
+    .lightbox-category {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: white;
+      font-size: 18px;
+      background: rgba(0,0,0,0.5);
+      padding: 8px 16px;
+      border-radius: 20px;
+    }
+
+    /* Mobile dropdown */
+    .gallery-filters-mobile {
+      display: none;
+      margin-bottom: 40px;
+    }
+
+    .gallery-select {
+      width: 100%;
+      max-width: 300px;
+      padding: 12px 16px;
+      border: 2px solid rgba(115,182,61,0.2);
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: inherit;
+      background: white;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-filters { display: none; }
+      .gallery-filters-mobile { display: block; }
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 16px;
+      }
+      .gallery-item img {
+        height: 200px;
+      }
+      .lightbox img {
+        max-width: 95%;
+        max-height: 95%;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="./mobile-fixes.css" />
+  <script src="./mobile-fixes.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="brand" aria-label="Vis de Verde - Acasă">
+      <img src="./images/logo.png" alt="Vis de Verde" class="brand-logo" />
+    </a>
+
+    <div class="header-right">
+      <a href="tel:0799147912" class="cta-phone" aria-label="Sună la Vis de Verde: 0799 147 912">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M16.5562 12.9062L16.1007 13.359C16.1007 13.359 15.0181 14.4355 12.0631 11.4972C9.10812 8.55901 10.1907 7.48257 10.1907 7.48257L10.4775 7.19738C11.1841 6.49484 11.2507 5.36691 10.6342 4.54348L9.37326 2.85908C8.61028 1.83992 7.13596 1.70529 6.26145 2.57483L4.69185 4.13552C4.25823 4.56668 3.96765 5.12559 4.00289 5.74561C4.09304 7.33182 4.81071 10.7447 8.81536 14.7266C13.0621 18.9492 17.0468 19.117 18.6763 18.9651C19.1917 18.9171 19.6399 18.6546 20.0011 18.2954L21.4217 16.883C22.3806 15.9295 22.1102 14.2949 20.8833 13.628L18.9728 12.5894C18.1672 12.1515 17.1858 12.2801 16.5562 12.9062Z" fill="currentColor"/>
+        </svg>
+        <span>0799 147 912</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Deschide meniul" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Meniu principal">
+      <a href="index.html">Acasă</a>
+      <a href="misiunea.html">Misiunea noastră</a>
+      <a href="scopuri.html">Scopurile urmărite</a>
+      <a href="beneficii.html">Beneficii</a>
+      <a href="povestea.html">Povestea noastră</a>
+      <a href="activitati.html">Activități</a>
+      <a href="galerie.html" class="active">Galerie</a>
+      <a href="contact.html">Contact</a>
+      <a href="resurse.html">Mulțumiri și resurse</a>
+    </nav>
+  </div>
+</header>
+
+  <section id="galerie">
+    <div class="container">
+      <div class="section-title">
+        <h2>Galerie Foto</h2>
+        <div class="line" style="background: var(--green);"></div>
+      </div>
+
+      <div class="gallery-filters">
+        <button class="gallery-filter active" data-filter="all">Toate pozele</button>
+        <button class="gallery-filter" data-filter="activitati">Activități</button>
+        <button class="gallery-filter" data-filter="atmosfera">Atmosfera Vis de Verde</button>
+        <button class="gallery-filter" data-filter="gradina">Grădina noastră</button>
+        <button class="gallery-filter" data-filter="serbari">Serbări</button>
+      </div>
+
+      <div class="gallery-filters-mobile">
+        <select class="gallery-select" id="mobileFilter">
+          <option value="all">Toate pozele</option>
+          <option value="activitati">Activități</option>
+          <option value="atmosfera">Atmosfera Vis de Verde</option>
+          <option value="gradina">Grădina noastră</option>
+          <option value="serbari">Serbări</option>
+        </select>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Images will be populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&lt;</button>
+    <img id="lightboxImg" src="" alt="" />
+    <button class="lightbox-nav lightbox-next" id="lightboxNext">&gt;</button>
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+    <div class="lightbox-category" id="lightboxCategory"></div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+       <div class="footer-brand">
+         <img src="./images/logo.png" alt="Vis de Verde" class="footer-logo" />
+         <p>Grădină educațională pentru copii și familii care aleg conștient natura, echilibrul și educația cu sens.</p>
+         <p>visdeverde@gmail.com</p>
+         <p>0799 147 912 • 0772 095 940</p>
+       </div>
+
+       <div>
+         <h4>Navigare</h4>
+         <a href="misiunea.html">Misiunea noastră</a>
+         <a href="scopuri.html">Scopurile urmărite</a>
+         <a href="beneficii.html">Beneficiile experiențelor</a>
+         <a href="povestea.html">Povestea noastră</a>
+       </div>
+
+       <div>
+         <h4>Acces rapid</h4>
+         <a href="activitati.html">Activități și tarife</a>
+         <a href="contact.html">Contact</a>
+       </div>
+
+       <div>
+         <h4>Locație</h4>
+         <span>Strada Primăriei nr. 181 A</span>
+         <span>Conțești, Dâmbovița</span>
+         <span>Vizite pe bază de programare</span>
+       </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>Copyright 2026 Vis de Verde. Toate drepturile rezervate.</span>
+    </div>
+  </footer>
+
+  <script>
+    const images = {
+      atmosfera: Array.from({length: 13}, (_, i) => ({src: `./images/atmosfera-vis-de-verde/atmosfera-vis-de-verde-${String(i+1).padStart(2, '0')}.jpeg`, category: 'atmosfera'})),
+      activitati: Array.from({length: 23}, (_, i) => ({src: `./images/activitati/activitati-${String(i+1).padStart(2, '0')}.jpeg`, category: 'activitati'})),
+      gradina: Array.from({length: 20}, (_, i) => ({src: `./images/gradina-noastra/gradina-noastra-${String(i+1).padStart(2, '0')}.jpg`, category: 'gradina'})),
+      serbari: Array.from({length: 15}, (_, i) => ({src: `./images/serbari/serbari-${String(i+1).padStart(2, '0')}.jpeg`, category: 'serbari'}))
+    };
+
+    const allImages = [...images.atmosfera, ...images.activitati, ...images.gradina, ...images.serbari];
+
+    const galleryGrid = document.getElementById('galleryGrid');
+    const filters = document.querySelectorAll('.gallery-filter');
+    const mobileFilter = document.getElementById('mobileFilter');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    const lightboxCategory = document.getElementById('lightboxCategory');
+
+    let currentFilter = 'all';
+    let currentImages = allImages;
+    let currentIndex = 0;
+
+    function renderGallery(filter = 'all') {
+      currentFilter = filter;
+      currentImages = filter === 'all' ? allImages : images[filter];
+      galleryGrid.innerHTML = '';
+      currentImages.forEach((img, index) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.innerHTML = `<img src="${img.src}" alt="" loading="lazy" data-index="${index}" />`;
+        item.addEventListener('click', () => openLightbox(index));
+        galleryGrid.appendChild(item);
+      });
+    }
+
+    function openLightbox(index) {
+      currentIndex = index;
+      updateLightbox();
+      lightbox.classList.add('show');
+    }
+
+    function updateLightbox() {
+      lightboxImg.src = currentImages[currentIndex].src;
+      lightboxCounter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+      const categoryNames = {
+        atmosfera: 'Atmosfera Vis de Verde',
+        activitati: 'Activități',
+        gradina: 'Grădina noastră',
+        serbari: 'Serbări'
+      };
+      lightboxCategory.textContent = categoryNames[currentImages[currentIndex].category] || 'Toate pozele';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('show');
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      updateLightbox();
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      updateLightbox();
+    }
+
+    // Event listeners
+    filters.forEach(filter => {
+      filter.addEventListener('click', () => {
+        filters.forEach(f => f.classList.remove('active'));
+        filter.classList.add('active');
+        renderGallery(filter.dataset.filter);
+      });
+    });
+
+    mobileFilter.addEventListener('change', () => {
+      renderGallery(mobileFilter.value);
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', prevImage);
+    lightboxNext.addEventListener('click', nextImage);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('show')) return;
+      if (e.key === 'ArrowRight') nextImage();
+      else if (e.key === 'ArrowLeft') prevImage();
+      else if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Touch/swipe for mobile
+    let startX = 0;
+    lightbox.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+    lightbox.addEventListener('touchend', (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diffX = startX - endX;
+      if (Math.abs(diffX) > 50) {
+        if (diffX > 0) nextImage();
+        else prevImage();
+      }
+    });
+
+
+
+    // Initial render
+    renderGallery();
+  </script>
+</body>
+</html>

@@ -2,51 +2,38 @@
   var header = document.querySelector('.site-header');
   if (!header) return;
 
-  var nav = header.querySelector('.main-nav');
   var toggle = header.querySelector('.menu-toggle');
-  if (!nav || !toggle) return;
-
-  if (!toggle.hasAttribute('aria-controls')) {
-    var menu = header.querySelector('.mobile-menu');
-    if (!menu) {
-      menu = document.createElement('div');
-      menu.className = 'mobile-menu';
-      menu.id = 'mobileMenu';
-
-      var current = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
-      Array.prototype.forEach.call(nav.querySelectorAll('a'), function (link) {
-        var clone = link.cloneNode(true);
-        var href = (clone.getAttribute('href') || '').toLowerCase();
-        if (href === current) {
-          clone.classList.add('active');
-        }
-        menu.appendChild(clone);
-      });
-
-      header.querySelector('.header-inner').appendChild(menu);
-    }
-
-    toggle.type = 'button';
-    toggle.setAttribute('aria-label', 'Deschide meniul');
-    toggle.setAttribute('aria-controls', 'mobileMenu');
-    toggle.setAttribute('aria-expanded', 'false');
-  }
-
-  if (toggle.dataset.mobileBound === 'true') return;
-  toggle.dataset.mobileBound = 'true';
-
   var mobileMenu = header.querySelector('#mobileMenu') || header.querySelector('.mobile-menu');
-  if (!mobileMenu) return;
+  var closeButton = header.querySelector('.menu-close');
+
+  if (!toggle || !mobileMenu) return;
+  if (toggle.dataset.mobileBound === 'true') return;
+
+  toggle.dataset.mobileBound = 'true';
+  toggle.type = 'button';
+  toggle.setAttribute('aria-expanded', 'false');
 
   function closeMenu() {
     header.classList.remove('menu-open');
     toggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-lock');
   }
 
-  toggle.addEventListener('click', function () {
+  function toggleMenu(event) {
+    event.stopPropagation();
     var isOpen = header.classList.toggle('menu-open');
     toggle.setAttribute('aria-expanded', String(isOpen));
-  });
+    document.body.classList.toggle('menu-lock', isOpen);
+  }
+
+  toggle.addEventListener('click', toggleMenu);
+
+  if (closeButton) {
+    closeButton.addEventListener('click', function (event) {
+      event.stopPropagation();
+      closeMenu();
+    });
+  }
 
   Array.prototype.forEach.call(mobileMenu.querySelectorAll('a'), function (link) {
     link.addEventListener('click', closeMenu);
@@ -61,6 +48,79 @@
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') {
       closeMenu();
+    }
+  });
+})();
+
+(function () {
+  var contactForm = document.getElementById('contactForm');
+  var formStatus = document.getElementById('formStatus');
+
+  if (!contactForm || !formStatus) return;
+
+  function setStatus(message, type) {
+    formStatus.textContent = message;
+    formStatus.classList.remove('success', 'error');
+
+    if (type) {
+      formStatus.classList.add(type);
+    }
+  }
+
+  contactForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      setStatus('Te rugăm să completezi toate câmpurile obligatorii.', 'error');
+      return;
+    }
+
+    var submitButton = contactForm.querySelector('button[type="submit"]');
+    var originalButtonText = submitButton ? submitButton.textContent : '';
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Se trimite...';
+    }
+
+    setStatus('Se trimite mesajul...', '');
+
+    var formData = new FormData(contactForm);
+
+    var payload = {
+      name: String(formData.get('name') || '').trim(),
+      email: String(formData.get('email') || '').trim(),
+      phone: String(formData.get('phone') || '').trim(),
+      message: String(formData.get('message') || '').trim()
+    };
+
+    try {
+      var response = await fetch('/.netlify/functions/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      var result = await response.json().catch(function () {
+        return {};
+      });
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Mesajul nu a putut fi trimis.');
+      }
+
+      contactForm.reset();
+      setStatus('Mesajul a fost trimis cu succes. Vă vom contacta în cel mai scurt timp.', 'success');
+    } catch (error) {
+      setStatus(error.message || 'A apărut o eroare. Te rugăm să încerci din nou.', 'error');
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText || 'Trimite mesaj';
+      }
     }
   });
 })();

@@ -75,7 +75,7 @@
     }
 
     .main-nav {
-      display: flex;
+      display: none;
       align-items: center;
       gap: 32px;
       font-weight: 700;
@@ -317,128 +317,70 @@
     }
 
     .goals {
-      background: #efefef;
-    }
+  background: #efefef;
+}
 
-     .content-grid {
-       display: grid;
-       grid-template-columns: 1fr;
-       gap: 34px;
-     }
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 34px;
+}
 
-     .goals-grid {
-       display: grid;
-       grid-template-columns: 1fr;
-       gap: 34px;
-     }
+.goals-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 34px;
+}
 
-     .goal-row {
-       display: grid;
-       grid-template-columns: 0.9fr 1.1fr;
-       background: white;
-       box-shadow: var(--shadow);
-       align-items: stretch;
-       overflow: hidden;
-     }
+.goal-row,
+.goal-row.reverse {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  background: white;
+  box-shadow: var(--shadow);
+  align-items: stretch;
+  overflow: hidden;
+}
 
-     .goal-row.reverse {
-       grid-template-columns: 1.1fr 0.9fr;
-     }
+.goal-row.reverse {
+  grid-template-columns: 1.1fr 0.9fr;
+}
 
-     .goals-grid {
-       display: grid;
-       grid-template-columns: 1fr;
-       gap: 34px;
-     }
+.goal-image {
+  min-height: 0;
+  height: auto;
+  background-size: cover;
+  background-position: center 38%;
+}
 
-     .goal-row {
-       display: grid;
-       grid-template-columns: 0.9fr 1.1fr;
-       background: white;
-       box-shadow: var(--shadow);
-       align-items: stretch;
-       overflow: hidden;
-     }
+.goal-image.one {
+  background-image: linear-gradient(rgba(115,182,61,0.14), rgba(115,182,61,0.14)), url('./images/index-gallery1.jpg');
+}
 
-     .goal-row.reverse {
-       grid-template-columns: 1.1fr 0.9fr;
-     }
+.goal-image.two {
+  background-image: linear-gradient(rgba(115,182,61,0.14), rgba(115,182,61,0.14)), url('./images/index-gallery2.jpg');
+}
 
-     .goal-row {
-       display: grid;
-       grid-template-columns: 0.9fr 1.1fr;
-       background: white;
-       box-shadow: var(--shadow);
-       align-items: stretch;
-       overflow: hidden;
-     }
+.goal-image.three {
+  background-image: linear-gradient(rgba(115,182,61,0.14), rgba(115,182,61,0.14)), url('./images/index-gallery3.jpg');
+}
 
-      .goal-row.reverse {
-        grid-template-columns: 1.1fr 0.9fr;
-      }
+.goal-body {
+  padding: 34px;
+  border-left: 5px solid var(--green);
+  background: white;
+  display: flex;
+  align-items: center;
+}
 
-     .goal-row {
-       display: grid;
-       grid-template-columns: 0.9fr 1.1fr !important;
-       background: white;
-       box-shadow: var(--shadow);
-       align-items: stretch;
-       overflow: hidden;
-     }
+.goal-body p {
+  margin: 0;
+}
 
-     .goal-row.reverse {
-       grid-template-columns: 1.1fr 0.9fr;
-     }
-
-     .goal-row {
-       display: grid;
-       grid-template-columns: 0.9fr 1.1fr;
-       background: white;
-       box-shadow: var(--shadow);
-       align-items: stretch;
-       overflow: hidden;
-     }
-
-    .goal-row {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      background: white;
-      box-shadow: var(--shadow);
-      align-items: stretch;
-      overflow: hidden;
-    }
-
-    .goal-row.reverse {
-      grid-template-columns: 1.1fr 0.9fr;
-    }
-
-     .goal-image {
-       min-height: 620px !important;
-       background-size: cover;
-       background-position: center;
-     }
-
-    .goal-image.one {
-      background-image: linear-gradient(rgba(115,182,61,0.14), rgba(115,182,61,0.14)), url('./images/index-gallery1.jpg');
-    }
-
-    .goal-image.two {
-      background-image: linear-gradient(rgba(115,182,61,0.14), rgba(115,182,61,0.14)), url('./images/index-gallery2.jpg');
-    }
-
-    .goal-image.three {
-      background-image: linear-gradient(rgba(115,182,61,0.14), rgba(115,182,61,0.14)), url('./images/index-gallery3.jpg');
-    }
-
-    .goal-body {
-      padding: 34px;
-      border-left: 5px solid var(--green);
-    }
-
-    .goal-row.reverse .goal-body {
-      border-left: 0;
-      border-right: 5px solid var(--green);
-    }
+.goal-row.reverse .goal-body {
+  border-left: 0;
+  border-right: 5px solid var(--green);
+}
 
     .content-card h3,
     .benefit-card h3,
@@ -846,7 +788,7 @@
     
 
     .menu-toggle {
-      display: none;
+      display: inline-flex;
       width: 52px;
       height: 52px;
       border-radius: 999px;
@@ -895,186 +837,49 @@
       .activity-gallery-right { grid-template-rows: auto; grid-template-columns: 1fr 1fr; }
     }
 
-     @media (max-width: 860px) {
-       .main-nav { display: none; }
-       .menu-toggle { display: inline-flex; }
-       .header-inner {
-         min-height: 74px;
-         position: relative;
-       }
-       .site-header.menu-open .mobile-menu {
-         display: flex;
-         flex-direction: column;
-         gap: 14px;
-         position: absolute;
-         top: calc(100% + 8px);
-         left: 12px;
-         right: 12px;
-         background: white;
-         border: 1px solid rgba(34,48,25,0.08);
-         box-shadow: 0 18px 45px rgba(32, 56, 18, 0.14);
-         padding: 18px;
-       }
-       .site-header.menu-open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-       .site-header.menu-open .menu-toggle span:nth-child(2) { opacity: 0; }
-       .site-header.menu-open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-       .mobile-menu a {
-         font-size: 14px;
-         font-weight: 800;
-         text-transform: uppercase;
-         color: #28351f;
-       }
-       .hero { min-height: 440px; }
-       .hero-intro,
-       .quick-links,
-       #beneficii .section-title h2,
-       #poveste .section-title,
-       .footer a[href="#beneficii"],
-       .footer a[href="#poveste"],
-       .footer a[href="#activitati"],
-       .footer a[href="#resurse"] { display: none !important; }
-       .container { width: min(var(--container), calc(100% - 24px)); }
-       .content-grid,
-       .activity-gallery-right { grid-template-columns: 1fr; }
-       .join-inner { flex-direction: column; align-items: flex-start; }
-       section { padding: 68px 0; }
-       .split-visual { min-height: 360px; }
-       .brand-logo { width: 82px; }
-       .activity-photo.large { min-height: 340px; }
-       .activity-photo.small-one,
-       .activity-photo.small-two,
-       .wide-photo { min-height: 240px; }
+    @media (max-width: 860px) {
+      .header-inner {
+        min-height: 74px;
+        position: relative;
+      }
 
-       .goal-row,
-       .goal-row.reverse {
-         grid-template-columns: 1fr;
-       }
-       .goal-image {
-         min-height: 240px;
-       }
-       .goal-row.reverse .goal-image {
-         order: -1;
-       }
-       .goal-body,
-       .goal-row.reverse .goal-body {
-         border-left: 0;
-         border-right: 0;
-         border-top: 6px solid var(--green);
-         padding: 28px 22px 24px;
-       }
+      .container {
+        width: min(var(--container), calc(100% - 24px));
+      }
 
-       .tariff-grid {
-         display: grid;
-         grid-auto-flow: row;
-         grid-auto-columns: 100%;
-         grid-template-columns: none;
-         gap: 0;
-       }
+      .hero {
+        min-height: 440px;
+      }
 
-       .activity-intro-banner {
-          background:
-            linear-gradient(90deg, rgba(34,58,20,0.78) 0%, rgba(34,58,20,0.62) 42%, rgba(34,58,20,0.26) 100%),
-            url('./images/intro-banner-activitati.jpg') center/cover;
-        }
-        .footer-brand,
-        .footer-grid > div,
-        .footer-grid { text-align: left; }
-     }
-       .site-header.menu-open .mobile-menu {
-         display: flex;
-         flex-direction: column;
-         gap: 14px;
-         position: absolute;
-         top: calc(100% + 8px);
-         left: 12px;
-         right: 12px;
-         background: white;
-         border: 1px solid rgba(34,48,25,0.08);
-         box-shadow: 0 18px 45px rgba(32, 56, 18, 0.14);
-         padding: 18px;
-       }
-       .site-header.menu-open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-       .site-header.menu-open .menu-toggle span:nth-child(2) { opacity: 0; }
-       .site-header.menu-open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-       .mobile-menu a {
-         font-size: 14px;
-         font-weight: 800;
-         text-transform: uppercase;
-         color: #28351f;
-       }
-       .hero { min-height: 440px; }
-       .hero-intro,
-       .quick-links,
-       #beneficii .section-title h2,
-       #poveste .section-title,
-       .footer a[href="#beneficii"],
-       .footer a[href="#poveste"],
-       .footer a[href="#activitati"],
-       .footer a[href="#resurse"] { display: none !important; }
-       .container { width: min(var(--container), calc(100% - 24px)); }
-       .content-grid,
-       .activity-gallery-right { grid-template-columns: 1fr; }
-       .join-inner { flex-direction: column; align-items: flex-start; }
-       section { padding: 68px 0; }
-       .split-visual { min-height: 360px; }
-       .brand-logo { width: 82px; }
-       .activity-photo.large { min-height: 340px; }
-       .activity-photo.small-one,
-       .activity-photo.small-two,
-       .wide-photo { min-height: 240px; }
+      .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
 
-       .goal-row,
-       .goal-row.reverse {
-         grid-template-columns: 1fr;
-       }
-       .goal-image {
-         min-height: 240px;
-       }
-       .goal-row.reverse .goal-image {
-         order: -1;
-       }
-       .goal-body,
-       .goal-row.reverse .goal-body {
-         border-left: 0;
-         border-right: 0;
-         border-top: 6px solid var(--green);
-         padding: 28px 22px 24px;
-        }
+      .content-grid,
+      .activity-gallery-right,
+      .split-grid,
+      .contact-grid,
+      .thanks-grid,
+      .footer-grid,
+      .activity-gallery {
+        grid-template-columns: 1fr;
+      }
 
-       .benefits-grid {
-         grid-template-columns: 1fr !important;
-       }
+      .join-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
 
-       @media (min-width: 861px) {
-         .benefits-grid {
-           grid-template-columns: repeat(3, 1fr) !important;
-         }
-       }
+      section {
+        padding: 68px 0;
+      }
 
-       @media (min-width: 981px) {
-         .goal-image {
-           min-height: 350px !important;
-         }
-       }
+      .brand-logo {
+        width: 82px;
+      }
+    }
 
-        .tariff-grid {
-         display: grid;
-         grid-auto-flow: row;
-         grid-auto-columns: 100%;
-         grid-template-columns: none;
-         gap: 0;
-       }
-
-       .activity-intro-banner {
-          background:
-            linear-gradient(90deg, rgba(34,58,20,0.78) 0%, rgba(34,58,20,0.62) 42%, rgba(34,58,20,0.26) 100%),
-            url('./images/intro-banner-activitati.jpg') center/cover;
-        }
-        .footer-brand,
-        .footer-grid > div,
-        .footer-grid {
-          text-align: left;
-        }
    </style>
   <link rel="stylesheet" href="./mobile-fixes.css" />
   <script src="./mobile-fixes.js" defer></script>
@@ -1082,38 +887,37 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
-       <a href="index.html" class="brand">
-          <img src="./images/logo.png" alt="Vis de Verde" class="brand-logo" />
+      <a href="index.html" class="brand" aria-label="Vis de Verde - Acasă">
+        <img src="./images/logo.png" alt="Vis de Verde" class="brand-logo" />
+      </a>
+
+      <div class="header-right">
+        <a href="tel:0799147912" class="cta-phone" aria-label="Sună la Vis de Verde: 0799 147 912">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16.5562 12.9062L16.1007 13.359C16.1007 13.359 15.0181 14.4355 12.0631 11.4972C9.10812 8.55901 10.1907 7.48257 10.1907 7.48257L10.4775 7.19738C11.1841 6.49484 11.2507 5.36691 10.6342 4.54348L9.37326 2.85908C8.61028 1.83992 7.13596 1.70529 6.26145 2.57483L4.69185 4.13552C4.25823 4.56668 3.96765 5.12559 4.00289 5.74561C4.09304 7.33182 4.81071 10.7447 8.81536 14.7266C13.0621 18.9492 17.0468 19.117 18.6763 18.9651C19.1917 18.9171 19.6399 18.6546 20.0011 18.2954L21.4217 16.883C22.3806 15.9295 22.1102 14.2949 20.8833 13.628L18.9728 12.5894C18.1672 12.1515 17.1858 12.2801 16.5562 12.9062Z" fill="currentColor"/>
+          </svg>
+          <span>0799 147 912</span>
         </a>
 
-<nav class="main-nav">
-          <a href="index.html" class="active">Acasă</a>
-          <a href="misiunea.html">Misiunea noastră</a>
-          <a href="scopuri.html">Scopuri</a>
-          <a href="beneficii.html">Beneficii</a>
-          <a href="povestea.html">Povestea noastră</a>
-          <a href="activitati.html">Activități</a>
-<a href="contact.html">Contact</a>
+        <button class="menu-toggle" type="button" aria-label="Deschide meniul" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="mobile-menu" id="mobileMenu" aria-label="Meniu principal">
+        <a href="index.html" class="active">Acasă</a>
+        <a href="misiunea.html">Misiunea noastră</a>
+        <a href="scopuri.html">Scopurile urmărite</a>
+        <a href="beneficii.html">Beneficii</a>
+        <a href="povestea.html">Povestea noastră</a>
+        <a href="activitati.html">Activități</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="contact.html">Contact</a>
         <a href="resurse.html">Mulțumiri și resurse</a>
       </nav>
-
-      <button class="menu-toggle" type="button" aria-label="Deschide meniul" aria-expanded="false" aria-controls="mobileMenu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-<div class="mobile-menu" id="mobileMenu">
-          <a href="index.html">Acasă</a>
-          <a href="misiunea.html">Misiunea noastră</a>
-          <a href="scopuri.html">Scopuri</a>
-          <a href="beneficii.html">Beneficii</a>
-          <a href="povestea.html">Povestea noastră</a>
-          <a href="activitati.html">Activități</a>
-<a href="contact.html">Contact</a>
-        <a href="resurse.html">Mulțumiri și resurse</a>
-  </div>
-</div>
+    </div>
   </header>
 
   <section id="home" class="hero">
@@ -1371,27 +1175,5 @@
     </div>
   </footer>
 
-  <script>
-    (function () {
-      const header = document.querySelector('.site-header');
-      const toggle = document.querySelector('.menu-toggle');
-      const mobileMenu = document.getElementById('mobileMenu');
-
-      if (toggle && header && mobileMenu) {
-        toggle.dataset.mobileBound = 'true';
-        toggle.addEventListener('click', function () {
-          const isOpen = header.classList.toggle('menu-open');
-          toggle.setAttribute('aria-expanded', String(isOpen));
-        });
-
-        mobileMenu.querySelectorAll('a').forEach(function (link) {
-          link.addEventListener('click', function () {
-            header.classList.remove('menu-open');
-            toggle.setAttribute('aria-expanded', 'false');
-});
-        });
-      }
-    })();
-  </script>
 </body>
 </html>

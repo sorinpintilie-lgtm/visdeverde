@@ -16,14 +16,14 @@
     a { text-decoration: none; color: inherit; }
     .container { width: min(1240px, calc(100% - 40px)); margin: 0 auto; }
     .site-header { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 50; }
-    .header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .brand { display: flex; align-items: center; gap: 18px; }
     .brand-logo { width: 92px; display: block; }
-    .main-nav { display: flex; align-items: center; gap: 32px; font-weight: 700; font-size: 14px; text-transform: uppercase; }
+      .main-nav { display: none; align-items: center; gap: 32px; font-weight: 700; font-size: 14px; text-transform: uppercase; }
     .main-nav a { color: #28351f; }
     .main-nav a:hover, .main-nav a.active { color: var(--green-dark); }
     .menu-toggle {
-      display: none;
+      display: inline-flex;
       width: 52px;
       height: 52px;
       border-radius: 999px;
@@ -157,6 +157,19 @@
       color: #394534;
       margin: 0;
     }
+
+    .cta-phone {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green-dark);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .cta-phone:hover { color: var(--green); }
+
     @media (max-width: 860px) {
       .main-nav { display: none; }
       .menu-toggle { display: inline-flex; }
@@ -187,41 +200,40 @@
   <script src="./mobile-fixes.js" defer></script>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-       <a href="index.html" class="brand">
+   <header class="site-header">
+     <div class="container header-inner">
+       <a href="index.html" class="brand" aria-label="Vis de Verde - Acasă">
          <img src="./images/logo.png" alt="Vis de Verde" class="brand-logo" />
        </a>
 
-      <nav class="main-nav">
-        <a href="index.html">Acasă</a>
-        <a href="misiunea.html">Misiunea noastră</a>
-        <a href="scopuri.html">Scopuri</a>
-        <a href="beneficii.html">Beneficii</a>
-        <a href="povestea.html" class="active">Povestea noastră</a>
-        <a href="activitati.html">Activități</a>
-        <a href="contact.html">Contact</a>
-        <a href="resurse.html">Mulțumiri și resurse</a>
-      </nav>
+       <div class="header-right">
+         <a href="tel:0799147912" class="cta-phone" aria-label="Sună la Vis de Verde: 0799 147 912">
+           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+             <path d="M16.5562 12.9062L16.1007 13.359C16.1007 13.359 15.0181 14.4355 12.0631 11.4972C9.10812 8.55901 10.1907 7.48257 10.1907 7.48257L10.4775 7.19738C11.1841 6.49484 11.2507 5.36691 10.6342 4.54348L9.37326 2.85908C8.61028 1.83992 7.13596 1.70529 6.26145 2.57483L4.69185 4.13552C4.25823 4.56668 3.96765 5.12559 4.00289 5.74561C4.09304 7.33182 4.81071 10.7447 8.81536 14.7266C13.0621 18.9492 17.0468 19.117 18.6763 18.9651C19.1917 18.9171 19.6399 18.6546 20.0011 18.2954L21.4217 16.883C22.3806 15.9295 22.1102 14.2949 20.8833 13.628L18.9728 12.5894C18.1672 12.1515 17.1858 12.2801 16.5562 12.9062Z" fill="currentColor"/>
+           </svg>
+           <span>0799 147 912</span>
+         </a>
 
-      <button class="menu-toggle" type="button" aria-label="Deschide meniul" aria-expanded="false" aria-controls="mobileMenu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+         <button class="menu-toggle" type="button" aria-label="Deschide meniul" aria-expanded="false" aria-controls="mobileMenu">
+           <span></span>
+           <span></span>
+           <span></span>
+         </button>
+       </div>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Acasă</a>
-    <a href="misiunea.html">Misiunea noastră</a>
-    <a href="scopuri.html">Scopuri</a>
-    <a href="beneficii.html">Beneficii</a>
-    <a href="povestea.html">Povestea noastră</a>
-    <a href="activitati.html">Activități</a>
-    <a href="contact.html">Contact</a>
-    <a href="resurse.html">Mulțumiri și resurse</a>
-  </div>
-</div>
-</header>
+       <nav class="mobile-menu" id="mobileMenu" aria-label="Meniu principal">
+         <a href="index.html">Acasă</a>
+         <a href="misiunea.html">Misiunea noastră</a>
+         <a href="scopuri.html">Scopurile urmărite</a>
+         <a href="beneficii.html">Beneficii</a>
+         <a href="povestea.html" class="active">Povestea noastră</a>
+         <a href="activitati.html">Activități</a>
+         <a href="galerie.html">Galerie</a>
+         <a href="contact.html">Contact</a>
+         <a href="resurse.html">Mulțumiri și resurse</a>
+       </nav>
+     </div>
+   </header>
 
   <section class="page-hero">
     <div class="container page-hero-content">

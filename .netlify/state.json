@@ -1,5 +1,4 @@
 {
-	"dbConnectionString": "postgres://localhost:57520/postgres",
 	"geolocation": {
 		"data": {
 			"city": "Bucharest",
@@ -16,6 +15,6 @@
 			"longitude": 26.169,
 			"postalCode": "030365"
 		},
-		"timestamp": 1778570704180
+		"timestamp": 1778579207578
 	}
 }
