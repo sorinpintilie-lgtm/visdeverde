@@ -124,3 +124,82 @@
     }
   });
 })();
+
+// Scroll animations
+(function () {
+  var selectors = [
+    '.split-section',
+    '.goals',
+    '.benefits',
+    '.story',
+    '.activity-program',
+    '.contact',
+    '.section-title',
+    '.activity-intro-banner',
+    '.tariff-grid',
+    '.benefits-grid',
+    '.goals-grid',
+    '.contact-grid',
+    '.values-section',
+    '.principles-section',
+    '.page-content',
+    '.values-grid',
+    '.principles-list',
+    '.cta-box',
+    '.goals-section',
+    '.impact-section',
+    '.goal-row',
+    '.impact-grid',
+    '.benefits-section',
+    '.stats-section',
+    '.testimonials-section',
+    '.stats-grid',
+    '.story-section',
+    '.gallery-grid',
+    '.timeline-section',
+    '.timeline',
+    '.activity-section',
+    '.intro-banner',
+    '.contact-section',
+    '.faq-section',
+    '.info-section',
+    '.faq-grid',
+    '.info-grid',
+    '.resources-section',
+    '.resources-grid'
+  ];
+
+  var animateElements = document.querySelectorAll(selectors.join(','));
+
+  document.body.classList.add('animations-ready');
+
+  if (!('IntersectionObserver' in window)) {
+    Array.prototype.forEach.call(animateElements, function (element) {
+      element.classList.add('animate-in');
+    });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.08,
+    rootMargin: '0px 0px -30px 0px'
+  });
+
+  Array.prototype.forEach.call(animateElements, function (element) {
+    element.classList.add('reveal-on-scroll');
+
+    if (element.getBoundingClientRect().top < window.innerHeight * 0.95) {
+      element.classList.add('animate-in');
+      return;
+    }
+
+    observer.observe(element);
+  });
+})();

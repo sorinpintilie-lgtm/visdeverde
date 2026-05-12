@@ -307,7 +307,8 @@
 
     .gallery-item img {
       width: 100%;
-      height: 240px;
+      aspect-ratio: 4 / 3;
+      height: auto;
       object-fit: cover;
       transition: 0.25s;
     }
@@ -319,25 +320,67 @@
     /* Lightbox */
     .lightbox {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.92);
       display: none;
       z-index: 1000;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      touch-action: pan-y;
     }
 
     .lightbox.show {
       display: flex;
     }
 
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
+    .lightbox-images {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      will-change: transform;
+      transition: transform 0.28s ease;
+    }
+
+    .lightbox-images img {
+      width: min(84vw, 1100px);
+      height: 88vh;
       object-fit: contain;
+      flex: 0 0 auto;
+      max-width: none;
+      max-height: none;
+      border-radius: 10px;
+      user-select: none;
+      -webkit-user-drag: none;
+      transform-origin: center center;
+      transition: transform 0.18s ease;
+    }
+
+    .lightbox-images img.is-zoomed {
+      z-index: 2;
+    }
+
+    @media (max-width: 768px) {
+      .lightbox {
+        touch-action: none;
+      }
+
+      .lightbox-images {
+        gap: 10px;
+      }
+      .lightbox-images img {
+        width: 84vw;
+        height: 82vh;
+      }
+      .lightbox-nav {
+        display: none;
+      }
     }
 
     .lightbox-close {
@@ -413,7 +456,6 @@
 
     .gallery-select {
       width: 100%;
-      max-width: 300px;
       padding: 12px 16px;
       border: 2px solid rgba(115,182,61,0.2);
       border-radius: 8px;
@@ -426,15 +468,15 @@
       .gallery-filters { display: none; }
       .gallery-filters-mobile { display: block; }
       .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-template-columns: 1fr;
         gap: 16px;
-      }
-      .gallery-item img {
-        height: 200px;
       }
       .lightbox img {
         max-width: 95%;
         max-height: 95%;
+      }
+      .lightbox-nav {
+        display: none;
       }
     }
   </style>
@@ -510,7 +552,7 @@
 
   <div class="lightbox" id="lightbox">
     <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&lt;</button>
-    <img id="lightboxImg" src="" alt="" />
+    <div class="lightbox-images" id="lightboxImages"></div>
     <button class="lightbox-nav lightbox-next" id="lightboxNext">&gt;</button>
     <button class="lightbox-close" id="lightboxClose">&times;</button>
     <div class="lightbox-counter" id="lightboxCounter"></div>
@@ -557,7 +599,7 @@
     const images = {
       atmosfera: Array.from({length: 13}, (_, i) => ({src: `./images/atmosfera-vis-de-verde/atmosfera-vis-de-verde-${String(i+1).padStart(2, '0')}.jpeg`, category: 'atmosfera'})),
       activitati: Array.from({length: 23}, (_, i) => ({src: `./images/activitati/activitati-${String(i+1).padStart(2, '0')}.jpeg`, category: 'activitati'})),
-      gradina: Array.from({length: 20}, (_, i) => ({src: `./images/gradina-noastra/gradina-noastra-${String(i+1).padStart(2, '0')}.jpg`, category: 'gradina'})),
+      gradina: Array.from({length: 18}, (_, i) => ({src: `./images/gradina-noastra/gradina-noastra-${String(i+3).padStart(2, '0')}.jpg`, category: 'gradina'})),
       serbari: Array.from({length: 15}, (_, i) => ({src: `./images/serbari/serbari-${String(i+1).padStart(2, '0')}.jpeg`, category: 'serbari'}))
     };
 
@@ -567,7 +609,7 @@
     const filters = document.querySelectorAll('.gallery-filter');
     const mobileFilter = document.getElementById('mobileFilter');
     const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxImages = document.getElementById('lightboxImages');
     const lightboxClose = document.getElementById('lightboxClose');
     const lightboxPrev = document.getElementById('lightboxPrev');
     const lightboxNext = document.getElementById('lightboxNext');
@@ -577,6 +619,22 @@
     let currentFilter = 'all';
     let currentImages = allImages;
     let currentIndex = 0;
+
+    let isDragging = false;
+    let isPinching = false;
+    let isPanning = false;
+
+    let startX = 0;
+    let startY = 0;
+    let dragX = 0;
+
+    let zoom = 1;
+    let panX = 0;
+    let panY = 0;
+    let startPanX = 0;
+    let startPanY = 0;
+    let pinchStartDistance = 0;
+    let pinchStartZoom = 1;
 
     function renderGallery(filter = 'all') {
       currentFilter = filter;
@@ -591,36 +649,123 @@
       });
     }
 
-    function openLightbox(index) {
-      currentIndex = index;
-      updateLightbox();
-      lightbox.classList.add('show');
+    function isMobileLightbox() {
+      return window.matchMedia('(max-width: 768px)').matches;
     }
 
-    function updateLightbox() {
-      lightboxImg.src = currentImages[currentIndex].src;
-      lightboxCounter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+    function clamp(value, min, max) {
+      return Math.min(Math.max(value, min), max);
+    }
+
+    function getDistance(touch1, touch2) {
+      const dx = touch1.clientX - touch2.clientX;
+      const dy = touch1.clientY - touch2.clientY;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    function getCurrentLightboxImage() {
+      return lightboxImages.children[1];
+    }
+
+    function resetImageZoomState() {
+      zoom = 1;
+      panX = 0;
+      panY = 0;
+      startPanX = 0;
+      startPanY = 0;
+    }
+
+    function applyImageZoom(animated = false) {
+      const currentImage = getCurrentLightboxImage();
+      if (!currentImage) return;
+
+      currentImage.style.transition = animated ? 'transform 0.18s ease' : 'none';
+      currentImage.style.transform = `translate(${panX}px, ${panY}px) scale(${zoom})`;
+      currentImage.classList.toggle('is-zoomed', zoom > 1.01);
+    }
+
+    function clampPan() {
+      const currentImage = getCurrentLightboxImage();
+      if (!currentImage) return;
+
+      const rect = currentImage.getBoundingClientRect();
+
+      const maxPanX = Math.max(0, (rect.width * (zoom - 1)) / 2);
+      const maxPanY = Math.max(0, (rect.height * (zoom - 1)) / 2);
+
+      panX = clamp(panX, -maxPanX, maxPanX);
+      panY = clamp(panY, -maxPanY, maxPanY);
+    }
+
+    function getCategoryName(category) {
       const categoryNames = {
         atmosfera: 'Atmosfera Vis de Verde',
         activitati: 'Activități',
         gradina: 'Grădina noastră',
         serbari: 'Serbări'
       };
-      lightboxCategory.textContent = categoryNames[currentImages[currentIndex].category] || 'Toate pozele';
+      return categoryNames[category] || 'Toate pozele';
+    }
+
+    function getLightboxBaseTranslate() {
+      const currentSlide = lightboxImages.children[1];
+      if (!currentSlide) return 0;
+      const slideWidth = currentSlide.getBoundingClientRect().width;
+      const gap = parseFloat(getComputedStyle(lightboxImages).gap) || 0;
+      return (window.innerWidth - slideWidth) / 2 - (slideWidth + gap);
+    }
+
+    function setLightboxTranslate(offset = 0, animated = true) {
+      lightboxImages.style.transition = animated ? 'transform 0.28s ease' : 'none';
+      lightboxImages.style.transform = `translateX(${getLightboxBaseTranslate() + offset}px)`;
+    }
+
+    function renderLightboxImages() {
+      resetImageZoomState();
+
+      const prevIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      const nextIndex = (currentIndex + 1) % currentImages.length;
+      const visibleImages = [
+        currentImages[prevIndex],
+        currentImages[currentIndex],
+        currentImages[nextIndex]
+      ];
+      lightboxImages.innerHTML = '';
+      visibleImages.forEach((img) => {
+        const image = document.createElement('img');
+        image.src = img.src;
+        image.alt = '';
+        image.draggable = false;
+        lightboxImages.appendChild(image);
+      });
+      lightboxCounter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+      lightboxCategory.textContent = getCategoryName(currentImages[currentIndex].category);
+      requestAnimationFrame(() => {
+        setLightboxTranslate(0, false);
+        applyImageZoom(false);
+      });
+    }
+
+    function openLightbox(index) {
+      currentIndex = index;
+      lightbox.classList.add('show');
+      document.body.style.overflow = 'hidden';
+      renderLightboxImages();
     }
 
     function closeLightbox() {
       lightbox.classList.remove('show');
+      document.body.style.overflow = '';
     }
 
     function nextImage() {
       currentIndex = (currentIndex + 1) % currentImages.length;
-      updateLightbox();
+      renderLightboxImages();
     }
 
     function prevImage() {
       currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-      updateLightbox();
+      renderLightboxImages();
     }
 
     // Event listeners
@@ -648,19 +793,167 @@
       else if (e.key === 'Escape') closeLightbox();
     });
 
-    // Touch/swipe for mobile
-    let startX = 0;
-    lightbox.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-    });
-    lightbox.addEventListener('touchend', (e) => {
-      const endX = e.changedTouches[0].clientX;
-      const diffX = startX - endX;
-      if (Math.abs(diffX) > 50) {
-        if (diffX > 0) nextImage();
-        else prevImage();
+    window.addEventListener('resize', () => {
+      if (lightbox.classList.contains('show')) {
+        setLightboxTranslate(0, false);
       }
     });
+
+    // Touch/swipe + pinch zoom for mobile
+    lightbox.addEventListener('touchstart', (e) => {
+      if (!lightbox.classList.contains('show')) return;
+
+      if (!isMobileLightbox()) {
+        return;
+      }
+
+      if (e.touches.length === 2) {
+        isPinching = true;
+        isDragging = false;
+        isPanning = false;
+
+        pinchStartDistance = getDistance(e.touches[0], e.touches[1]);
+        pinchStartZoom = zoom;
+
+        applyImageZoom(false);
+        return;
+      }
+
+      if (e.touches.length === 1) {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        dragX = 0;
+
+        if (zoom > 1.01) {
+          isPanning = true;
+          isDragging = false;
+
+          startPanX = panX;
+          startPanY = panY;
+        } else {
+          isDragging = true;
+          isPanning = false;
+
+          setLightboxTranslate(0, false);
+        }
+      }
+    }, { passive: false });
+
+    lightbox.addEventListener('touchmove', (e) => {
+      if (!lightbox.classList.contains('show')) return;
+
+      if (!isMobileLightbox()) {
+        return;
+      }
+
+      if (e.touches.length === 2 && isPinching) {
+        e.preventDefault();
+
+        const currentDistance = getDistance(e.touches[0], e.touches[1]);
+        const nextZoom = pinchStartZoom * (currentDistance / pinchStartDistance);
+
+        zoom = clamp(nextZoom, 1, 3);
+
+        if (zoom <= 1.01) {
+          zoom = 1;
+          panX = 0;
+          panY = 0;
+        }
+
+        clampPan();
+        applyImageZoom(false);
+        return;
+      }
+
+      if (e.touches.length === 1 && isPanning && zoom > 1.01) {
+        e.preventDefault();
+
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+
+        panX = startPanX + (currentX - startX);
+        panY = startPanY + (currentY - startY);
+
+        clampPan();
+        applyImageZoom(false);
+        return;
+      }
+
+      if (e.touches.length === 1 && isDragging && zoom <= 1.01) {
+        const currentX = e.touches[0].clientX;
+        dragX = currentX - startX;
+
+        setLightboxTranslate(dragX, false);
+      }
+    }, { passive: false });
+
+    lightbox.addEventListener('touchend', () => {
+      if (!lightbox.classList.contains('show')) return;
+
+      if (!isMobileLightbox()) {
+        return;
+      }
+
+      if (isPinching) {
+        isPinching = false;
+
+        if (zoom <= 1.01) {
+          zoom = 1;
+          panX = 0;
+          panY = 0;
+          applyImageZoom(true);
+        }
+
+        return;
+      }
+
+      if (isPanning) {
+        isPanning = false;
+        return;
+      }
+
+      if (!isDragging) return;
+
+      isDragging = false;
+
+      const currentSlide = lightboxImages.children[1];
+      const slideWidth = currentSlide ? currentSlide.getBoundingClientRect().width : window.innerWidth;
+      const gap = parseFloat(getComputedStyle(lightboxImages).gap) || 0;
+      const threshold = Math.min(90, slideWidth * 0.22);
+
+      if (Math.abs(dragX) > threshold) {
+        if (dragX < 0) {
+          setLightboxTranslate(-(slideWidth + gap), true);
+
+          setTimeout(() => {
+            currentIndex = (currentIndex + 1) % currentImages.length;
+            renderLightboxImages();
+          }, 280);
+        } else {
+          setLightboxTranslate(slideWidth + gap, true);
+
+          setTimeout(() => {
+            currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+            renderLightboxImages();
+          }, 280);
+        }
+      } else {
+        setLightboxTranslate(0, true);
+      }
+
+      dragX = 0;
+    }, { passive: false });
+
+    lightbox.addEventListener('touchcancel', () => {
+      isDragging = false;
+      isPinching = false;
+      isPanning = false;
+      dragX = 0;
+
+      if (zoom <= 1.01) {
+        setLightboxTranslate(0, true);
+      }
+    }, { passive: false });
 
 
 

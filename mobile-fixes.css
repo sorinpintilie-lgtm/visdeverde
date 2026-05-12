@@ -2,6 +2,9 @@
 
 .mobile-menu {
   display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .header-right {
@@ -62,6 +65,8 @@
 
   .site-header.menu-open .mobile-menu {
     display: flex !important;
+    opacity: 1;
+    visibility: visible;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -86,6 +91,26 @@
   text-transform: none;
   line-height: 1.15;
   letter-spacing: 0;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideIn 0.4s ease forwards;
+}
+
+.site-header.menu-open .mobile-menu a:nth-child(1) { animation-delay: 0.1s; }
+.site-header.menu-open .mobile-menu a:nth-child(2) { animation-delay: 0.15s; }
+.site-header.menu-open .mobile-menu a:nth-child(3) { animation-delay: 0.2s; }
+.site-header.menu-open .mobile-menu a:nth-child(4) { animation-delay: 0.25s; }
+.site-header.menu-open .mobile-menu a:nth-child(5) { animation-delay: 0.3s; }
+.site-header.menu-open .mobile-menu a:nth-child(6) { animation-delay: 0.35s; }
+.site-header.menu-open .mobile-menu a:nth-child(7) { animation-delay: 0.4s; }
+.site-header.menu-open .mobile-menu a:nth-child(8) { animation-delay: 0.45s; }
+.site-header.menu-open .mobile-menu a:nth-child(9) { animation-delay: 0.5s; }
+
+@keyframes slideIn {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .site-header.menu-open .mobile-menu a:hover,
@@ -262,7 +287,6 @@
   .goal-image,
   .activity-image,
   .content-visual,
-  .gallery-item,
   .map-placeholder,
   .approach-image,
   .learning-image {
@@ -344,5 +368,169 @@
   .menu-toggle {
     width: 44px;
     height: 44px;
+  }
+}
+
+/* Scroll animations - safe version */
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* fallback: dacă JS nu pornește, conținutul rămâne vizibil */
+.no-js .reveal-on-scroll,
+body:not(.animations-ready) .reveal-on-scroll {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero rămâne mereu vizibil */
+.hero,
+.hero *,
+.page-hero,
+.page-hero * {
+  opacity: 1;
+}
+
+/* Stagger pentru carduri, dar fără să le ascundă permanent */
+.reveal-on-scroll.animate-in .benefit-card,
+.reveal-on-scroll.animate-in .goal-row,
+.reveal-on-scroll.animate-in .tariff-card,
+.reveal-on-scroll.animate-in .contact-card,
+.reveal-on-scroll.animate-in .principle-item,
+.reveal-on-scroll.animate-in .impact-card,
+.reveal-on-scroll.animate-in .stat-item,
+.reveal-on-scroll.animate-in .gallery-item,
+.reveal-on-scroll.animate-in .timeline-item,
+.reveal-on-scroll.animate-in .value-card,
+.reveal-on-scroll.animate-in .faq-item,
+.reveal-on-scroll.animate-in .info-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-on-scroll .benefit-card,
+.reveal-on-scroll .goal-row,
+.reveal-on-scroll .tariff-card,
+.reveal-on-scroll .contact-card,
+.reveal-on-scroll .principle-item,
+.reveal-on-scroll .impact-card,
+.reveal-on-scroll .stat-item,
+.reveal-on-scroll .gallery-item,
+.reveal-on-scroll .timeline-item,
+.reveal-on-scroll .value-card,
+.reveal-on-scroll .faq-item,
+.reveal-on-scroll .info-card {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal-on-scroll:not(.animate-in) .benefit-card,
+.reveal-on-scroll:not(.animate-in) .goal-row,
+.reveal-on-scroll:not(.animate-in) .tariff-card,
+.reveal-on-scroll:not(.animate-in) .contact-card,
+.reveal-on-scroll:not(.animate-in) .principle-item,
+.reveal-on-scroll:not(.animate-in) .impact-card,
+.reveal-on-scroll:not(.animate-in) .stat-item,
+.reveal-on-scroll:not(.animate-in) .gallery-item,
+.reveal-on-scroll:not(.animate-in) .timeline-item,
+.reveal-on-scroll:not(.animate-in) .value-card,
+.reveal-on-scroll:not(.animate-in) .faq-item,
+.reveal-on-scroll:not(.animate-in) .info-card {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.reveal-on-scroll.animate-in .benefit-card:nth-child(1),
+.reveal-on-scroll.animate-in .goal-row:nth-child(1),
+.reveal-on-scroll.animate-in .tariff-card:nth-child(1),
+.reveal-on-scroll.animate-in .contact-card:nth-child(1),
+.reveal-on-scroll.animate-in .principle-item:nth-child(1),
+.reveal-on-scroll.animate-in .impact-card:nth-child(1),
+.reveal-on-scroll.animate-in .stat-item:nth-child(1),
+.reveal-on-scroll.animate-in .gallery-item:nth-child(1),
+.reveal-on-scroll.animate-in .timeline-item:nth-child(1),
+.reveal-on-scroll.animate-in .value-card:nth-child(1),
+.reveal-on-scroll.animate-in .faq-item:nth-child(1),
+.reveal-on-scroll.animate-in .info-card:nth-child(1) {
+  transition-delay: 0.08s;
+}
+
+.reveal-on-scroll.animate-in .benefit-card:nth-child(2),
+.reveal-on-scroll.animate-in .goal-row:nth-child(2),
+.reveal-on-scroll.animate-in .tariff-card:nth-child(2),
+.reveal-on-scroll.animate-in .contact-card:nth-child(2),
+.reveal-on-scroll.animate-in .principle-item:nth-child(2),
+.reveal-on-scroll.animate-in .impact-card:nth-child(2),
+.reveal-on-scroll.animate-in .stat-item:nth-child(2),
+.reveal-on-scroll.animate-in .gallery-item:nth-child(2),
+.reveal-on-scroll.animate-in .timeline-item:nth-child(2),
+.reveal-on-scroll.animate-in .value-card:nth-child(2),
+.reveal-on-scroll.animate-in .faq-item:nth-child(2),
+.reveal-on-scroll.animate-in .info-card:nth-child(2) {
+  transition-delay: 0.14s;
+}
+
+.reveal-on-scroll.animate-in .benefit-card:nth-child(3),
+.reveal-on-scroll.animate-in .goal-row:nth-child(3),
+.reveal-on-scroll.animate-in .principle-item:nth-child(3),
+.reveal-on-scroll.animate-in .impact-card:nth-child(3),
+.reveal-on-scroll.animate-in .stat-item:nth-child(3),
+.reveal-on-scroll.animate-in .gallery-item:nth-child(3),
+.reveal-on-scroll.animate-in .timeline-item:nth-child(3),
+.reveal-on-scroll.animate-in .value-card:nth-child(3),
+.reveal-on-scroll.animate-in .faq-item:nth-child(3),
+.reveal-on-scroll.animate-in .info-card:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.reveal-on-scroll.animate-in .benefit-card:nth-child(4),
+.reveal-on-scroll.animate-in .principle-item:nth-child(4),
+.reveal-on-scroll.animate-in .impact-card:nth-child(4),
+.reveal-on-scroll.animate-in .timeline-item:nth-child(4),
+.reveal-on-scroll.animate-in .faq-item:nth-child(4) {
+  transition-delay: 0.26s;
+}
+
+.reveal-on-scroll.animate-in .benefit-card:nth-child(5) {
+  transition-delay: 0.32s;
+}
+
+.reveal-on-scroll.animate-in .benefit-card:nth-child(6) {
+  transition-delay: 0.38s;
+}
+
+/* Hero fade-in animation */
+.page-hero .page-hero-content {
+  animation: heroFadeIn 0.8s ease-out;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll,
+  .reveal-on-scroll *,
+  .hero .hero-content,
+  .page-hero .page-hero-content,
+  .quick-links {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
   }
 }
